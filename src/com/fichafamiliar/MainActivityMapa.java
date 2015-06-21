@@ -1,19 +1,4 @@
 package com.fichafamiliar;
-/*
-import android.app.Activity;
-import android.os.Bundle;
-
-public class MainActivityMapa extends Activity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main_activity_mapa);
-	}
-
-}*/
-
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -31,6 +16,7 @@ import java.util.ArrayList;
 
 //import menuLateral.NewAdapter;
 
+import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
@@ -39,9 +25,12 @@ import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
+import com.example.minsal_ecosf.DBHelper;
+import com.example.minsal_ecosf.Handler_sqlite;
 import com.example.minsal_ecosf.MyLocationListener;
 import com.example.minsal_ecosf.MyMarker;
 import com.example.minsal_ecosf.NewAdapter;
+import com.fichafamiliar.R;
  
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -68,7 +57,7 @@ public class MainActivityMapa extends Activity {
 	ArrayList<Object> childItem = new ArrayList<Object>();
 	ArrayList<String> child;
 	//Para el menú usando BD
-	//*************************************private DBHelper BD;
+	private DBHelper BD;
 	//Para nivel 1
 	private Cursor c;
 	//Para subítems
@@ -135,7 +124,7 @@ public class MainActivityMapa extends Activity {
 		//------------------------------------------------------------------------------------
 		
 		//Instancio la clase del manejador de la BASE DE DATOS.
-		/*************************************Handler_sqlite manejador = new Handler_sqlite(this, mapView);
+		Handler_sqlite manejador = new Handler_sqlite(this, mapView);
         
 		manejador.abrir();
 		manejador.insertarFicha(1,13.6801783,-89.136031);
@@ -144,9 +133,83 @@ public class MainActivityMapa extends Activity {
 		String[] x = manejador.leer();
 		Toast.makeText(this, "Datos:" + x[0],
 				Toast.LENGTH_SHORT).show();
-		manejador.cerrar();
-		*********************************/
+		//manejador.cerrar();
 
+		/*******************************************************************************************************************
+		 *********************************** PARA MOSTRAR CASITAS POR RIESGO ***********************************************
+		 *****************************************************************************************************************/
+		
+		//Sacando longitud, latitud, tipo de riesgo, código situación, número de expediente y nombre de jefe de familia
+		//infoFicha() está en la clase Handler_sqlite y devuelve el resultado del query 
+		Cursor c = manejador.infoFicha();
+		
+		//Para almacenar los campos extraídos
+		double lon, lat;
+		String cod_sit_viv, num_exp, jefe;
+		int tipo_riesgo;
+		
+		//Pointer y MyMarket
+		Bitmap pointer;
+		MyMarker marker2;
+		
+		//Para las casitas de colores habitadas
+		try{
+			if(c.moveToFirst()){
+				do{
+					
+					lon = c.getDouble(0);
+					lat = c.getDouble(1);
+					tipo_riesgo = c.getInt(2);
+					cod_sit_viv = c.getString(3);
+					num_exp = c.getString(4);
+					jefe = c.getString(5);
+					
+					switch(tipo_riesgo){
+					
+						//Riesgo Alto--> Rojo
+						case 1:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.red_house));
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								mapView.getLayerManager().getLayers().add(marker2);
+								break;
+								
+						//Riesgo Medio--> Amarillo
+						case 2:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.yellow_house));
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								mapView.getLayerManager().getLayers().add(marker2);
+								break;		
+						
+						//Riesgo Bajo--> Verde
+						case 3:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.green_house));
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								mapView.getLayerManager().getLayers().add(marker2);
+								break;
+										
+					}												
+										
+				}while (c.moveToNext());
+				manejador.cerrar();
+			}
+		}
+		catch(Exception e){		
+			
+		}
+
+		//Viviendas Deshabitadas
+		try{
+			if(c.moveToFirst()){
+				do{
+					//Deshabitada--> Celeste
+					lon = c.getDouble(0);
+					lat = c.getDouble(1);
+					pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.lightblue_house));
+					marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada", false);
+					mapView.getLayerManager().getLayers().add(marker2);
+				}while(c2.moveToNext());
+			}
+		}
+		catch (Exception e){
+			
+		}
 		
 		
 		//-------------------------------------Menu lateral-----------------------------------
@@ -155,10 +218,10 @@ public class MainActivityMapa extends Activity {
 		getActionBar().setHomeButtonEnabled(true);
 
 		// Declarar e inicializar componentes para el Navigation Drawer
-		setGroupData();
-		//*******************creaMenu();
-		//*******************crearSubmenu();
-		setChildGroupData();	
+		//setGroupData();
+		creaMenu();
+		crearSubmenu();
+		//setChildGroupData();	
 				
 		//drawer = (ListView) findViewById(R.id.drawer);
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -260,7 +323,7 @@ public class MainActivityMapa extends Activity {
 	
 	//---------------------------Menu lateral---------------------------
 	
-	/****************************Para el menú
+	//Para el menú
 	public void creaMenu(){
 		BD=new DBHelper(this);
 		BD.open();		
@@ -337,45 +400,45 @@ public void crearSubmenu(){
 	
 	
 	
-}**********************************/
+}
 	
 	
-	public void setGroupData() {
-		groupItem.add("Familia");
-		groupItem.add("Miembros");
-	}
+//	public void setGroupData() {
+//		groupItem.add("Familia");
+//		groupItem.add("Miembros");
+//	}
 	
 
- public void setChildGroupData() {
-		/**
-		 * Sub ítems para Familia
-		 */
-		child = new ArrayList<String>();
-		child.add("Generalidades");
-		child.add("Vivienda");
-		child.add("Patrimonio");
-		child.add("Amenazas");
-		child.add("Servicios basicos");
-		child.add("Desechos");
-		child.add("Vectores");
-		child.add("Mascotas");
-		child.add("Riesgo familiar");
-		childItem.add(child); 
-
-		/**
-		 * Sub íyems para Miembro
-		 */
-	
-		child = new ArrayList<String>();
-		child.add("Generalidades");
-		child.add("Educacion");
-		child.add("Economia");
-		child.add("Salud");
-		child.add("Habitos");
-		child.add("Salud sexual");
-		child.add("Otras variables");
-		childItem.add(child);
-	}
+// public void setChildGroupData() {
+//		/**
+//		 * Sub ítems para Familia
+//		 */
+//		child = new ArrayList<String>();
+//		child.add("Generalidades");
+//		child.add("Vivienda");
+//		child.add("Patrimonio");
+//		child.add("Amenazas");
+//		child.add("Servicios basicos");
+//		child.add("Desechos");
+//		child.add("Vectores");
+//		child.add("Mascotas");
+//		child.add("Riesgo familiar");
+//		childItem.add(child); 
+//
+//		/**
+//		 * Sub íyems para Miembro
+//		 */
+//	
+//		child = new ArrayList<String>();
+//		child.add("Generalidades");
+//		child.add("Educacion");
+//		child.add("Economia");
+//		child.add("Salud");
+//		child.add("Habitos");
+//		child.add("Salud sexual");
+//		child.add("Otras variables");
+//		childItem.add(child);
+//	}
 	
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {

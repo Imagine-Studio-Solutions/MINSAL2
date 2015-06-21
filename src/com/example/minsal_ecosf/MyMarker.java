@@ -32,6 +32,7 @@ public class MyMarker extends Marker{
 	private Button crearFicha;
 	private Button verFicha;
 	private boolean gpsPointer;
+	private LatLong pointerPosition;
 
 	public MyMarker(Context ctx, LatLong latLong, Bitmap bitmap, int horizontalOffset,
 			int verticalOffset, MapView mapView, String bubbleContent, boolean gpsPointer) {
@@ -40,6 +41,7 @@ public class MyMarker extends Marker{
 		this.mapView = mapView;
 		content = bubbleContent;
 		this.gpsPointer = gpsPointer; 
+		pointerPosition = latLong;
 	}
 	@Override
 	public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
@@ -64,12 +66,12 @@ public class MyMarker extends Marker{
 			textArea.setText(content);
 			bubble = viewToBitmap(ctx, bubbleView);
 			bubble.incrementRefCount();
-			markerBubble = new Marker(tapLatLong, bubble, 0, -bubble.getHeight() + 15);
+			markerBubble = new Marker(pointerPosition, bubble, 0, -bubble.getHeight()/2);
 			mapView.getLayerManager().getLayers().add(markerBubble);
 			tapped = !tapped;
 			super.onTap(tapLatLong, layerXY, tapXY);
 			return true;
-		}else if (this.contains(layerXY, tapXY) && tapped) {
+		}else if (tapped) {
 			mapView.getLayerManager().getLayers().remove(markerBubble);
 			tapped = !tapped;
 			return true;
