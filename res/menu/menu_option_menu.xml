@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.fichafamiliar.Menu_Activity" >  
+    <item
+        android:id="@+id/action_manual"
+        android:orderInCategory="100"
+        android:title="@string/manual_app"/>
+    <item
+        android:id="@+id/action_instructivo_ff"
+        android:orderInCategory="100"
+        android:title="@string/instructivo_ff"/>
+    <item
+        android:id="@+id/action_acerca_de"
+        android:orderInCategory="100"
+        android:title="@string/acerca_de"/>
+</menu>

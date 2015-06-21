@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fichafamiliar"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_ecos_familiares"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.fichafamiliar.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Login_Activity"
+            android:label="@string/title_activity_login_"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Menu_Activity_"
+            android:label="@string/title_activity_menu"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ficha_familia_activity"
+            android:label="@string/title_activity_ficha_familia_activity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ficha_familia_ativity_01"
+            android:label="@string/title_activity_ficha_familia_ativity_01"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ficha_familia_activity_02"
+            android:label="@string/title_activity_ficha_familia_activity_02"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Datos_generales_activity_01"
+            android:label="@string/title_activity_datos_generales_activity_01"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Prueba"
+            android:label="@string/title_activity_prueba"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Miembros_familia"
+            android:label="@string/title_activity_miembros_familia"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Edit_delete_miembro_fam"
+            android:label="@string/title_activity_edit_delete_miembro_fam"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Add_new_miembro_familia"
+            android:label="@string/title_activity_add_new_miembro_familia"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Busqueda_ficha"
+            android:label="@string/title_activity_busqueda_ficha"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Result_busqueda_familia"
+            android:label="@string/title_activity_busqueda_ficha"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Buscar_por"
+            android:label="@string/title_activity_buscar_por"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Buscar_miembro"
+            android:label="@string/title_activity_buscar_miembro"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Jefes_familia"
+            android:label="@string/title_activity_jefes_familia"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ver_detalle_ficha"
+            android:label="@string/title_activity_ver_detalle_ficha"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Patrimonio"
+            android:label="@string/title_activity_patrimonio"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Amenazas"
+            android:label="@string/title_activity_amenazas"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.ServiciosBasicos"
+            android:label="@string/title_activity_servicios_basicos"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Manejo_desechos"
+            android:label="@string/title_activity_manejo_desechos"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Vectores"
+            android:label="@string/title_activity_vectores"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Mascotas"
+            android:label="@string/title_activity_macotas"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Caracteristicas_vivienda"
+            android:label="@string/title_activity_caracteristicas_vivienda"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ubicacion_vivienda"
+            android:label="@string/title_activity_ubicacion_vivienda"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Crear_Usuario"
+            android:label="@string/title_activity_crear__usuario"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Mantenimiento_Usuario"
+            android:label="@string/title_activity_mantenimiento__usuario"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.CambioPassword"
+            android:label="@string/title_activity_cambio_password"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Ver_Acciones_Usuario"
+            android:label="@string/title_activity_ver__acciones__usuario"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Integrantes"
+            android:label="@string/title_activity_integrantes"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Salud"
+            android:label="@string/title_activity_salud"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Educacion"
+            android:label="@string/title_activity_educacion"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Economico"
+            android:label="@string/title_activity_economico"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Habitos"
+            android:label="@string/title_activity_habitos"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Salud_sexual"
+            android:label="@string/title_activity_salud_sexual"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Otras_variables"
+            android:label="@string/title_activity_otras_variables"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.RiesgoFamiliar"
+            android:label="@string/title_activity_riesgo_familiar"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Pruebaaa"
+            android:label="@string/title_activity_pruebaaa" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Integrantes_fallecidos"
+            android:label="@string/title_activity_integrantes_fallecidos"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Prueba_sincronizar"
+            android:label="@string/title_activity_prueba_sincronizar" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Sincronizar"
+            android:label="@string/title_activity_sincronizar" >
+        </activity>
+        <activity
+            android:name="com.fichafamiliar.Menu_Activity"
+            android:label="@string/title_activity_menu_" >
+        </activity>
+        <activity android:name="MainActivityMapa"></activity>
+    </application>
+
+</manifest>

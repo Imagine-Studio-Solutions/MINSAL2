@@ -1,0 +1,394 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="670dp"
+        tools:context=".Ficha_familia_activity_01" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner"/>
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="550dp"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp" >
+
+               <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:text="@string/salud"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="400dp"
+                    android:layout_marginTop="40dp" />
+                
+            <TextView
+                android:layout_width="175dp"
+                android:layout_height="25dp" 
+                android:layout_marginTop="80dp"
+                android:background="#FFFFFF"
+                android:text="@string/tipo_discapacidad"
+                android:textColor="#011254" />
+            <CheckBox
+          	   android:id="@+id/Checkintelectual"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/intelectual"
+          	   android:onClick="click_intelectual"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="100dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" /> 
+            <CheckBox
+          	   android:id="@+id/Checksensorial"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/sensorial"
+          	   android:onClick="click_sensorial"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="125dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkfisica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/fisica"
+          	   android:onClick="click_fisica"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="150dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkmentalpsiquiatrica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/mental_psiquiatrica"
+          	   android:onClick="click_mentalpsiquiatrica"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="175dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkorganica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/organica"
+          	   android:onClick="click_organica"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="200dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checksindiscapacidad"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/sindiscapacidad"
+          	   android:onClick="click_sindiscapacidad"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="225dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            
+            
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="25dp" 
+                android:layout_marginTop="80dp"
+                android:background="#FFFFFF"
+                android:text="@string/causa_discapacidad"
+                android:textColor="#011254"
+                 android:layout_marginLeft="350dp"/>
+            <CheckBox
+          	   android:id="@+id/Checkcongenita"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/congenita_hereditaria"
+          	   android:onClick="click_congenita"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="100dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkaccidente"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/accidentes_tramautismo"
+          	   android:onClick="click_accidentes_traumatismo"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="125dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkporminas"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/minas"
+          	   android:onClick="click_porminas"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="150dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkotrosartefactos"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/otros_artefactos"
+          	   android:onClick="click_otrosartefactos"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="175dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checksecuelaenfermedad"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/secuela_enfermedad"
+          	   android:onClick="click_secuelaenfermedad"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="200dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checknoaplica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/no_aplica"
+          	   android:onClick="click_noaplica"
+          	   android:layout_marginLeft="360dp"
+               android:layout_marginTop="225dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />  
+               
+            <TextView
+                android:layout_width="280dp"
+                android:layout_height="25dp" 
+                android:layout_marginTop="80dp"
+                android:background="#FFFFFF"
+                android:text="@string/actividades_asistencia"
+                android:textColor="#011254"
+                 android:layout_marginLeft="750dp"/>
+            <CheckBox
+          	   android:id="@+id/Checkaseopersonal"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/aseo_personal"
+          	   android:onClick="click_aseopersonal"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="100dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checknecesidadesfisiologicas"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/necesidades_fisiologicas"
+          	   android:onClick="click_necesidadesfisiologicas"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="125dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkcaminarcorrer"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/caminar_correr"
+          	   android:onClick="click_caminarcorrer"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="150dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkasistirconsulta"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/asistir_consulta"
+          	   android:onClick="click_asistirconsulta"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="175dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkninguna"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/ninguna_actividad"
+          	   android:onClick="click_ningunaactividad"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="200dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkotrasactividades"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/otras_actividades"
+          	   android:onClick="click_otrasactividades"
+          	   android:layout_marginLeft="755dp"
+               android:layout_marginTop="225dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            
+            <TextView
+                android:layout_width="270dp"
+                android:layout_height="25dp" 
+                android:layout_marginTop="280dp"
+                android:background="#FFFFFF"
+                android:text="@string/enfermedades_cronicas"
+                android:textColor="#011254" />
+            <CheckBox
+          	   android:id="@+id/Checknopresenta"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/nopresenta"
+          	   android:onClick="click_nopresenta"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="300dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkhipertencionarterial"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/hipertencion_arterial"
+          	   android:onClick="click_hipertencionarterial"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="325dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/Checkdiabetesmellitus"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/diabetes_mellitus"
+          	   android:onClick="click_diabetesmellitus"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="350dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+            <CheckBox
+          	   android:id="@+id/CheckrespiratoriasEPOC"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/respiratorias_epoc"
+          	   android:onClick="click_respiratoriasepoc"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="375dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkasmabronquial"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/asma_bronquial"
+          	   android:onClick="click_asmabronquial"
+          	   android:layout_marginLeft="300dp"
+               android:layout_marginTop="325dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkalguncancer"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/alguna_cancer"
+          	   android:onClick="click_alguncancer"
+          	   android:layout_marginLeft="300dp"
+               android:layout_marginTop="350dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkaccidentecerebrovascular"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/accidente_cerebrovascular"
+          	   android:onClick="click_accidente_cerebrovascular"
+          	   android:layout_marginLeft="300dp"
+               android:layout_marginTop="375dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkenfermedadrenalcronica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/enfermedad_renal_cronica"
+          	   android:onClick="click_enfermedadrenalcronica"
+          	   android:layout_marginLeft="20dp"
+               android:layout_marginTop="400dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkepilepsia"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/epilepsia"
+          	   android:onClick="click_epilepsia"
+          	   android:layout_marginLeft="300dp"
+               android:layout_marginTop="300dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+             <CheckBox
+          	   android:id="@+id/Checkotracronica"
+          	   android:layout_width="wrap_content"
+          	   android:layout_height="wrap_content"
+          	   android:text="@string/otra_cronica"
+          	   android:onClick="click_otracronica"
+          	   android:layout_marginLeft="300dp"
+               android:layout_marginTop="400dp"
+               android:textColor="#004B0F"
+               android:textSize="14sp" />
+
+             <TextView
+                 android:layout_width="180dp"
+                 android:layout_height="50dp"
+                 android:layout_marginLeft="640dp"
+                 android:layout_marginTop="280dp"
+                 android:background="#FFFFFF"
+                 android:text="@string/medicamentos_enfermedad_cronica"
+                 android:textColor="#011254" />
+
+             <Spinner
+                android:id="@+id/SpnMedicamentosEnfCronica"
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="825dp" 
+                android:layout_marginTop="270dp"/>
+            </RelativeLayout>
+        </ScrollView>
+       <LinearLayout 
+			   android:layout_width="80dp"
+           	   android:layout_height="90dp"
+           	   android:layout_marginTop="600dp"
+           	   android:layout_marginLeft="550dp">
+           <ImageButton
+               android:id="@+id/button1"
+               android:layout_width="80dp"
+               android:layout_height="90dp"
+               android:background="#FFFFFF"
+               android:onClick="click_GuardarEditarsalud"
+               android:src="@drawable/save" />
+        </LinearLayout>
+</RelativeLayout>
+</ScrollView>

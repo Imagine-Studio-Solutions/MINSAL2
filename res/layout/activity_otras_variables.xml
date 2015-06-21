@@ -1,0 +1,165 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="670dp"
+        tools:context=".Ficha_familia_activity_01" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner"/>
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="217dp"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="400dp"
+                    android:layout_marginTop="40dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/otras_variables"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="80dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/menor_14_trabaja"
+                    android:textColor="#011254" />
+
+                <Spinner
+                    android:id="@+id/SpnMenor14Trabaja"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="130dp"
+                    android:layout_marginTop="70dp" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="325dp"
+                    android:layout_marginTop="80dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/forma_trabajo_infantil"
+                    android:textColor="#011254" />
+
+                <Spinner
+                    android:id="@+id/SpnMenores18BajoCuidadoDe"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="805dp"
+                    android:layout_marginTop="65dp" />
+
+                <Spinner
+                    android:id="@+id/SpnEsquemaVacunacion"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="130dp"
+                    android:layout_marginTop="175dp" />
+
+                <Spinner
+                    android:id="@+id/SpnEvaluacionDispensarizacion"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="805dp"
+                    android:layout_marginTop="175dp" />
+
+                <TextView
+                    android:layout_width="110dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:background="#FFFFFF"
+                    android:text="@string/esquema_vacunacion"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_alignLeft="@+id/textView1"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFFFFF"
+                    android:text="@string/cuando_enferma_acude_a"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_alignLeft="@+id/textView2"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FFFFFF"
+                    android:text="@string/evaluacion_dispensarizacion"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_alignBaseline="@+id/textView1"
+                    android:layout_alignBottom="@+id/textView1"
+                    android:layout_marginLeft="32dp"
+                    android:layout_toRightOf="@+id/SpnFormaTrabajoInfantil"
+                    android:background="#FFFFFF"
+                    android:text="@string/menores_18_bajo_cuidado_de"
+                    android:textColor="#011254" />
+
+                <Spinner
+                    android:id="@+id/SpnFormaTrabajoInfantil"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/textView3"
+                    android:layout_toRightOf="@+id/textView1" />
+
+                <Spinner
+                    android:id="@+id/SpnCuandoEnfermaAcudeA"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_alignTop="@+id/SpnEvaluacionDispensarizacion"
+                    android:layout_toLeftOf="@+id/textView2" />
+
+            </RelativeLayout>
+
+        </ScrollView>
+       <LinearLayout 
+			   android:layout_width="80dp"
+           	   android:layout_height="90dp"
+           	   android:layout_marginTop="425dp"
+           	   android:layout_marginLeft="550dp">
+           <ImageButton
+               android:id="@+id/button1"
+               android:layout_width="80dp"
+               android:layout_height="90dp"
+               android:background="#FFFFFF"
+               android:onClick="click_otras_variables"
+               android:src="@drawable/save" />
+        </LinearLayout>
+</RelativeLayout>
+</ScrollView>

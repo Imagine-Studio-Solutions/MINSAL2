@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/android-query-full.0.24.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/itextg-5.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/poi-3.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-core-0.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-map-0.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-map-android-0.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-map-awt-0.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-map-reader-0.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/mapsforge-map-writer-0.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Eve/Documents/Tesis/FichaFamiliar/libs/SwingMapViewer-0.5.0.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

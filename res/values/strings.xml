@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ficha Familiar</string>
+    
+    <string name="manual_app">Manual de la App</string>
+    <string name="instructivo_ff">Instructivo de la FF</string>
+    <string name="acerca_de">Acerca de</string>
+
+    <!-- activity_main -->
+    <string name="informacion">Gestiona la información de las Fichas Familiares pertenecientes a las áreas intervenidas en el nuevo modelo de salud familiar</string>
+
+    <!-- login_activity -->
+    <string name="title_activity_login_">Inicio de sesion</string>
+    <string name="txt_user">Usuario:</string>
+    <string name="txt_pass">Password:</string>
+    <string name="title_activity_menu">Menu</string>
+
+    <!-- menu_activity -->
+    <string name="txt_user_menu">Usuario:</string>
+    <string name="entrar">Entrar:</string>
+
+    <!-- Encabezado ficha -->
+    <string name="title_activity_ficha_familia_activity">Información de la vivienda</string>
+    <string name="title_1">Viceministerio de Servicios de Salud</string>
+    <string name="title_2">Dirección de Primer Nivel</string>
+    <string name="nombre_ficha_anio">Ficha Familiar 20xx</string>
+
+    <!-- ficha_familia_activity -->
+    <string name="nombre_establecimiento">(1) Nombre del establecimiento:</string>
+    <string name="codigo_ecosf">(2) Código de ECOSF:</string>
+    <string name="num_expediente_familiar">(3) Número de expediente familiar:</string>
+    <string name="depto">Depto</string>
+    <string name="municipio">Municipio</string>
+    <string name="area">Area</string>
+    <string name="canton_barrio_colonia">Canton /Barrio o Colonia</string>
+    <string name="zona">Zona</string>
+    <string name="n_vivienda">N° Vivienda</string>
+    <string name="n_familia">N° Familia</string>
+    <string name="fecha_llenado">(4) Fecha de llenado:</string>
+    <string name="direccion_vivienda">(5) Dirección de la vivienda:</string>
+    <string name="situacion_vivienda">(6) Situación de la vivienda:</string>
+    <string name="religion_familia">(7) Religión a la que pertenece la familia:</string>
+    <string name="pueblo_indigena_familia">(8) Pueblo indígena de la familia:</string>
+    <string name="tipo_familia">(9) Tipo de familia:</string>
+    <string name="btn_guardar_familia">Guardar información</string>
+    <string name="title_activity_ficha_familia_ativity_01">Información de la familia</string>
+    <!-- ficha_familia_activity_01 -->
+
+    <string name="caract_vivienda">Características de la vivienda</string>
+    <string name="tipo_vivienda">(10) Tipo de vivienda:</string> <!-- 83 -->
+    <string name="tipo_tenencia_vivienda">(11) Tipo de tenencia de vivienda:</string> <!-- 91 -->
+    <string name="material_paredes">(12) Material predominante de las paredes:</string> <!-- 92 -->
+    <string name="material_piso">(13) Material predominante del piso:</string> <!-- 93 -->
+    <string name="material_techo">(14) Material predominante del techo:</string> <!-- 94 -->
+    <string name="patrimonio_vivienda">Patrimonio</string>
+    <string name="num_habitaciones">(15) Numero de habitaciones (dormitorios):</string> <!-- 57 -->
+    <string name="otros_espacios">(16) Número de espacios de la vivienda (no dormitorios) utilizados para dormir habitualmente:</string> <!-- 95 -->
+    <string name="bienes_familia">(17) Bienes de la familia:</string> <!-- 96 -->
+    <string name="cultivo_agricola_propio">Cultivo agrícola propio</string>
+    <string name="aves_corral">Aves de corral</string>
+    <string name="ganado_vacuno">Ganado vacuno</string>
+    <string name="ganado_porcino">Ganado porcino</string>
+    <string name="negocio_propio">Negocio propio</string>
+    <string name="ninguno">Ninguno</string>
+    <string name="bienes_hogar">(18) Bienes basicos en el hogar:</string> <!-- 97 -->
+    <string name="radio">Radio</string>
+    <string name="equipo_sonido">Equipo de sonido</string>
+    <string name="televisor">Televisor</string>
+    <string name="refrigeradora">Refrigeradora</string>
+    <string name="lavadora">Lavadora</string>
+    <string name="computadora">Computadora</string>
+    <string name="vehiculo">(19) Vehículo para uso del hogar:</string> <!-- 67 -->
+    <string name="amenazas">Amenazas</string>
+    <string name="riesgo_ambiental">(20) Por exposición a riesgo ambiental:</string> <!-- 98 -->
+    <string name="sinriesgo">Sin riesgo</string>
+    <string name="deslaves">Deslaves</string>
+    <string name="inundaciones">Inundaciones</string>
+    <string name="desechos">Contaminación por disposición inadecuada de desechos sólidos, químicos</string>
+    <string name="erupcion">Erupción</string>
+    <string name="otros_riesgos">Otros riesgos</string>
+    <string name="combustible_cocinar">(21) Predominantemente que tipo de combustible utiliza para cocinar:</string> <!-- 99 -->
+    <string name="servicios_basicos">Servicios Básicos</string>
+    <string name="alumbradoPrincipalmente">(22) Alumbrado utilizado principalmente:</string> <!-- 100 -->
+    <string name="medios_comunicacion">(23) Medio de comunicación con que cuenta el hogar:</string> <!-- 101 -->
+    <string name="telefono_fijo">Teléfono fijo</string>
+    <string name="telefono_celular">Teléfono celular</string>
+    <string name="internet">Internet</string>
+    <string name="cable">Cable</string>
+    <string name="no_tiene">No tiene</string>
+    <string name="abastecimiento_agua">(24) Abastecimiento de agua:</string> <!-- 102 -->
+    <string name="tratamiento_agua_consumo_humano">(25) Tratamiento de agua para consumo humano que realiza la familia:</string> <!-- 55 -->
+    <string name="tiene_servicio_sanitario">(26) Tiene servicio sanitario:</string> <!-- 103 -->
+    <string name="tipo_servicio_sanitario">(27) Tipo de servicio sanitario en la vivienda:</string> <!-- 104 -->
+    <string name="colaborador_hogar">(28) Colaborador(a) para servicios del hogar:</string> <!-- 105 -->
+    <string name="manejo_desechos">Manejo de desechos</string>
+    <string name="manejo_aguas_grises">(29) Manejo de aguas grises:</string> <!-- 38 -->
+    <string name="manejo_aguas_negras">(30) Manejo aguas negras:</string> <!-- 39 -->
+    <string name="manejo_basura">(31) Manejo de basura:</string> <!-- 106 -->
+    <string name="vectores">Vectores</string>
+    <string name="presencia_vectores">(32) Presencia de Vectores:</string> <!-- 107 -->
+    <string name="zancudos">Zancudos</string>
+    <string name="chinches_picudas">Chinches Picudas:</string>
+    <string name="moscas">Moscas</string>
+    <string name="cucarachas">Cucarachas</string>
+    <string name="roedores">Roedores</string>
+    <string name="otros">Otros</string>
+    <string name="no_vectores">No hay presencia de vectores</string>
+    <string name="tenencia_mascotas">Tenencias de Mascotas</string>
+    <string name="num_perros">(33) N° de peros:</string> <!-- 43 -->
+    <string name="num_gatos">(34) N° de gatos:</string> <!-- 45 -->
+    <string name="num_otras_mascotas">(35) N° de otras mascotas:</string> <!-- 62 -->
+    <string name="title_activity_ficha_familia_activity_02">Información de la familia</string>
+    <!-- ficha_familia_activity_02 -->
+    <string name="presencia_vectoresFFFFFF">Presencia de Vectores</string>
+    <string name="zancudosFFFF">(26) Zancudos:</string> <!--  -->
+    <string name="moscasFFFF">(27) Moscas:</string> <!--  -->
+    <string name="chinches_picudasFFF">(28) Chinches Picudas:</string> <!--  -->
+    <string name="cucarachasFFFF">(29) Cucarachas:</string> <!--  -->
+    <string name="roedoresFFFF">(30) Roedores:</string> <!--  -->
+    <string name="tenencia_mascotasFFF">Tenencias de Mascotas</string>
+    <string name="num_perrosFF">(31) N°Peros:</string> <!--  -->
+    <string name="num_perros_vacunadosFF">(32) N° Perros vacunados:</string> <!--  -->
+    <string name="num_gatosFF">(33) N° Gatos:</string> <!--  -->
+    <string name="num_gatos_vacunados">(34) N° Gatos vacunados:</string> <!--  -->
+    <string name="num_otras_mascotasFFF">(35) N° Otras mascotas:</string> <!--  -->
+    <string name="patrimonio_familiar">Patrimonio Familiar</string>
+    <string name="bono">(41) Bono de CSR o CSU:</string> <!--  -->
+    <string name="vehiculo_automotor">(42) Vehículo automotor:</string> <!--  -->
+    <string name="observaciones_02"> Observaciones:</string>
+    <string name="ubicacion_vivienda">Ubicación GPS de la vivienda</string>
+
+    <!-- Datos generales -->
+    <string name="datos_generales"> Datos Generales</string>
+    <string name="correlativo_miembro_familia">(36) N° correlativo</string>
+    <string name="primer_nombre">Primer nombre</string>
+    <string name="segundo_nombre">Segundo nombre</string>
+    <string name="tercer_nombre">Tercer nombre</string>
+    <string name="primer_apellido">Primer apellido</string>
+    <string name="segundo_apellido">Segundo apellido</string>
+    <string name="apellido_casada">Apellido casada</string>
+    <string name="nacionalidad">(40) Nacionalidad</string>
+    <string name="sexo">(41) Sexo biológico:</string>
+    <string name="fecha_nacimiento">(42) Fecha de nacimiento</string>
+    <string name="edad">(43) Edad actual</string>
+    <string name="edad_anios">Años</string>
+    <string name="edad_meses">Meses</string>
+    <string name="edad_dias">Días</string>
+    <string name="parentesco_con_jefe_familia">(44) Parentesco con el/la jefe de familia</string>
+    <string name="institucion_cotizante_beneficiario">(50) Institución de la que es cotizante o beneficiario</string>
+
+    <!-- de salud -->
+    <string name="tipo_discapacidad">(60) Tipo de discapacidad</string>
+    <string name="intelectual">Intelectual</string>
+    <string name="sensorial">Sensorial</string>
+    <string name="fisica">Física</string>
+    <string name="mental_psiquiatrica">Mental o Psiquiatrica</string>
+    <string name="organica">Orgánica</string>
+    <string name="sindiscapacidad">Sin discapacidad</string>
+    <string name="causa_discapacidad">(61) Causa de discapacidad</string>
+    <string name="congenita_hereditaria">Congénita o Hereditaria</string>
+    <string name="accidentes_tramautismo">Accidente o traumatismo</string>
+    <string name="minas">Por minas</string>
+    <string name="otros_artefactos">Otros artefactos del conflicto armado</string>
+    <string name="secuela_enfermedad">Secuela enfermedad o causa degenerativa</string>
+    <string name="no_aplica">No aplica</string>
+    <string name="actividades_asistencia">(62) Actividades que requiere asistencia</string>
+    <string name="aseo_personal">Aseo personal</string>
+    <string name="necesidades_fisiologicas">Necesidades fisiologicas</string>
+    <string name="caminar_correr">Caminar, correr</string>
+    <string name="asistir_consulta">Asistir a consulta y tratamientos</string>
+    <string name="ninguna_actividad">Ninguna</string>
+    <string name="otras_actividades">Otras actividades</string>
+    <string name="enfermedades_cronicas">(63) Padece enfermedad(es) crónica(s)</string>
+    <string name="nopresenta">No presenta enfermedad crónica</string>
+    <string name="hipertencion_arterial">Hipertención arterial</string>
+    <string name="diabetes_mellitus">Diabetes mellitus</string>
+    <string name="respiratorias_epoc">Respiratorias EPOC</string>
+    <string name="asma_bronquial">Asma bronquial</string>
+    <string name="alguna_cancer">Algun tipo de cancer</string>
+    <string name="accidente_cerebrovascular">Accidente cerebro vascular</string>
+    <string name="enfermedad_renal_cronica">Enfermedad renal crónica</string>
+    <string name="epilepsia">Epilepsia</string>
+    <string name="otra_cronica">Otra enfermedad crónica</string>
+    <string name="medicamentos_enfermedad_cronica">(64) Medicamento(s) para enfermedad crónica:</string>
+    <string name="situacion_salud">Situacion de salud</string>
+    <string name="causa_discapacidad2">(57) Causa de discapacidad</string>
+    <string name="padece_enfermedad_cronica">(58) Padece alguna(s) enfermedad crónica</string>
+    <string name="toma_medicamentos">(59) Toma medicamento(s) para enfermedad cronica</string>
+    <string name="estado_nutricional2">(60) Estado nutricional</string>
+    <string name="fuma2">(61) Fuma</string>
+    <string name="frecuencia_consumo_bebida_embriagantes">(62) Frecuencia de consumo de bebidas embriagantes</string>
+    <string name="cantidad_bebida_embriagante_dia">(63) Cantidad de consumo de bebida embriagante por dia</string>
+    <string name="citologia_ultimo_anio">(64) Se ha tomado la citologia en el ultimo año</string>
+    <string name="examen_manual_mamas">(65) Se ha realizado el examen manual de mamas en el ultimo año</string>
+
+    <!-- ya no va esta pregunta  <string name="mas3_abortos_espontaneos">(67) Ha tenido mas de 3 abortos espontáneos</string> -->
+
+    <string name="ninos_menores_1_anio_condiciones">(68) Tiene niños menores de 1 año que hayan nacido con una de las siguientes  condiciones</string>
+    <string name="utiliza_metodo_planificacion_familiar">(69) Utiliza algún método de planificación familiar</string>
+    <string name="menor_14_trabaja2">(70) Si el/la niño/a menor de 14 años trabaja</string>
+    <string name="menores_18_bajo_cuidado_de2">(71) Los/as niños/as menores de 18 años quedan bajo el cuidado de:</string>
+    <string name="esquema_vacunacion2">(72) Esquema de vacunación</string>
+    <string name="riesgo_familiar">(78) Riesgo Familiar</string>
+    <string name="riesgo_familiar_title">RIESGO FAMILIAR</string>
+    <string name="title_activity_datos_generales_activity_01">Datos generales</string>
+    <string name="miembros_familia">INTEGRANTES DE LA FAMILIA:</string>
+    <string name="fallecidos_familia">INTEGRANTES FALLECIDOS EN LA FAMILIA:</string>
+    <string name="title_activity_miembros_familia">Miembros de familia</string>
+    <string name="title_activity_edit_delete_miembro_fam">Seleccione una opción</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_add_new_miembro_familia">Miembro de la familia</string>
+    <string name="title_activity_prueba">Prueba</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_busqueda_ficha">Buscar Familias:</string>
+    <string name="busqueda_familia">RESULTADO DE LA BUSQUEDA:</string>
+    <string name="num_familia">No Familia:</string>
+    <string name="title_activity_result_busqueda_familia">Result_busqueda_familia</string>
+    <string name="expediente_familiar">Número de expediente familiar:</string>
+    <string name="jefe">Nombre del jefe de la familia:</string>
+    <string name="desc">Banner</string>
+    <string name="title_activity_buscar_por">Buscar por:</string>
+    <string name="title_activity_buscar_miembro">Buscar por jefe de la familia:</string>
+    <string name="primer_nombre1">Primer nombre</string>
+    <string name="title_activity_jefes_familia">Jefes de familias</string>
+    <string name="jefes_familias">JEFES DE FAMILIAS:</string>
+    <string name="title_activity_ver_detalle_ficha">Detalles de la familia</string>
+    <string name="direccion_vivienda_">DIRECCIÓN DE LA VIVIENDA:</string>
+    <string name="view_longitud">Longitud:</string>
+    <string name="view_latidud">Latitud:</string>
+    <string name="title_activity_patrimonio">Patrimonio</string>
+    <string name="title_activity_amenazas">Amenazas</string>
+    <string name="title_activity_servicios_basicos">Servicios Basicos</string>
+    <string name="title_activity_manejo_desechos">Manejo desechos</string>
+    <string name="title_activity_vectores">Vectores</string>
+    <string name="title_activity_macotas">Macotas</string>
+    <string name="title_activity_caracteristicas_vivienda">Caracteristicas vivienda</string>
+    <string name="title_activity_ubicacion_vivienda">Ubicación vivienda</string>
+
+    <!-- String 1 -->
+    <string name="title_activity_mantenimiento__usuario">Mantenimiento_Usuario</string>
+    <string name="title_activity_ver__acciones__usuario">Acciones Sobre el Usuario</string>
+    <string name="title_activity_editar__usuario">Editar_Usuario</string>
+    <string name="title_activity_eliminar__usuario">Eliminar_Usuario</string>
+    <string name="title_activity_crear__usuario">Crear_Usuario</string>
+    <string name="nuevo_usuario_titulo">Crear Un Nuevo Usuario</string>
+    <string name="codigo_nuevo_usuario">Código del Usuario</string>
+    <string name="codigo_perfil_usuario">Perfil del Usuario</string>
+    <string name="nombre_usuario_nuevo">Nombre del Usuario</string>
+    <string name="clave_usuario_nuevo">Clave del Usuario</string>
+    <string name="_confirmacion_clave_usuario_nuevo">Confirme la Clave</string>
+    <string name="esta_activo">Esta Activo</string>
+    <string name="id_region">Region</string>
+    <string name="id_sibasi">Sibasi</string>
+    <string name="id_estasib">Establecimiento</string>
+    <string name="correlativo_tablet">Correlativo de la Tablet</string>
+    <string name="usuarioactivo">Activo</string>
+    <string name="usuarioinactivo">Inactivo</string>
+    <string name="title_activity_cambio_password">Cambio de Password</string>
+    <string name="cambiar_password">Cambio de Password</string>
+
+    <!-- String 2 -->
+    <string name="password_antigua">Digite su Password Actual</string>
+    <string name="password_nuevo">Digite su Nuevo Password</string>
+    <string name="password_confirme_nuevo">Confirme su Nuevo Password</string>
+    <string name="title_activity_integrantes">Integrantes</string>
+    <!-- String 3 -->
+    <string name="integrante">INTEGRANTE DE LA FAMILIA:</string>
+    <string name="fechaNacIntegrante">FECHA DE NACIMIENTO:</string>
+    <string name="title_activity_salud">Salud</string>
+    <string name="salud">Salud</string>
+    <string name="title_activity_educacion">Educación</string>
+    <string name="educacion">Educación</string>
+    <string name="sabe_leer_escribir">(51) Sabe leer y escribir</string>
+    <string name="estudia_actualmente">(52) Estudia actualmente</string>
+    <string name="ultimo_grado">(53) Ultimo grado aprobado</string>
+    <string name="title_activity_economico">Económico</string>
+    <string name="economico">Económico</string>
+    <string name="tiene_trabajo_remunerado">(54) Tiene trabajo remunerado</string>
+    <string name="ocupacion">(55) Ocupación</string>
+    <string name="integrante_en_extranjero">(56) Integrante en el extranjero</string>
+    <string name="extranjero_padre">Padre</string>
+    <string name="extranjero_madre">Madre</string>
+    <string name="extranjero_hijo_a">Hijo(a)</string>
+    <string name="extranjero_esposo_a">Esposo(a)</string>
+    <string name="extranjero_otros">Otros</string>
+    <string name="extranjero_ninguno">Ninguno</string>
+    <string name="ayuda_economica_familiar">(57) Ayuda económida de familiar</string>
+    <string name="ayuda_gobierno">(58) Recibe Apoyo del gobierno</string>
+    <string name="subsidio_gas">Subsidio al gas</string>
+    <string name="subsidio_energia_electrica">Subsidio energía eléctrica</string>
+    <string name="bonos_comunidades_rurales">Bonos comunidades rurales</string>
+    <string name="bonos_comunidades_urbanas">Bonos comunidades urbanas</string>
+    <string name="pension_basica_universal">Pensión básica universal</string>
+    <string name="otro_tipo_apoyo">Otro tipo de apoyo</string>
+    <string name="ningunapoyo">Ningun apoyo</string>
+    <string name="pro_memoria_historica">(59) Sector social pro-memoria histórica</string>
+    <string name="title_activity_habitos">Hábitos</string>
+    <string name="habitos">Hábitos</string>
+    <string name="estado_nutricional">(65) Estado nutricional</string>
+    <string name="fuma">(66) Fuma</string>
+    <string name="bebidas_embriagantes">(67) Consume bebidas embriagantes</string>
+    <string name="title_activity_salud_sexual">Salud sexual</string>
+    <string name="salud_sexual">Salud sexual</string>
+    <string name="toma_citologia">(68) Toma citología</string>
+    <string name="examen_mamas">(69) Examen manual de mamas en el ultimo año</string>
+    <string name="embarazada_actualmente">(70)Está embarazada actualmente</string>
+    <string name="metodo_planificacion_familiar">(71) Metodo planificacion familiar</string>
+    <string name="title_activity_otras_variables">Otras variables</string>
+    <string name="otras_variables">Otras variables</string>
+    <string name="menor_14_trabaja">(72) Menor de 14 años trabaja</string>
+    <string name="forma_trabajo_infantil">(73) Forma de trabajo infantil</string>
+    <string name="menores_18_bajo_cuidado_de">(74) Menores de 18 años queda bajo cuidado de</string>
+    <string name="esquema_vacunacion">(75) Esquema de vacunación</string>
+    <string name="cuando_enferma_acude_a">(76) Cuando se enferma a dónde acude</string>
+    <string name="evaluacion_dispensarizacion">(77) Evaluacion de la dispensarización individual</string>
+
+    <!-- String noche charlie -->
+    <string name="nombresyapellidos">(37) Nombres y apellidos de las personas que conforman la familia</string>
+    <string name="tienedocumentodeidentidad">(38) Tiene documento de identidad</string>
+    <string name="numerodui">(39) Número de DUI</string>
+    <string name="Si">Si</string>
+    <string name="No">No</string>
+    <string name="nombre_madre">(45) Nombre de la Madre</string>
+    <string name="nombre_padre">(46) Nombre del Padre</string>
+    <string name="nombre_responsable">(47) Nombre del Responsable</string>
+    <string name="estado_familiar">(48) Estado Familiar</string>
+    <string name="aseguradobeneficiario">(49) Asegurado o Beneficiario</string>
+
+    <!-- String 3 -->
+    <string name="edad2">EDAD:</string>
+    <string name="title_activity_riesgo_familiar">RiesgoFamiliar</string>
+    <string name="title_activity_pruebaaa">Pruebaaa</string>
+    <string name="title_activity_integrantes_fallecidos">INTEGRANTES FALLECIDOS DE LA FAMILIA</string>
+    <string name="title_activity_prueba_sincronizar">Prueba_sincronizar</string>
+    <string name="title_activity_sincronizar">Sincronizar</string>
+    <string name="title_activity_menu_">Menu</string>
+     
+</resources>

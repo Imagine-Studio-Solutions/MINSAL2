@@ -1,0 +1,266 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   
+
+    <LinearLayout   
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"       
+    tools:context=".Ficha_familia_activity" >
+              <ImageButton
+                    android:id="@+id/close"
+                    android:layout_width="1000dp"
+                    android:layout_height="97dp"
+                    android:layout_gravity="center"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/ficha_banner"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/desc" />
+    <LinearLayout
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content">
+                            <LinearLayout
+                                  android:orientation="horizontal"
+                                  android:layout_width="fill_parent"
+                                  android:layout_height="fill_parent"
+                                  android:layout_gravity="center">
+
+                                          <LinearLayout
+                                              android:layout_width="1100dp"
+                                              android:layout_height="125dp"
+                                              android:orientation="vertical" >
+
+                                              <TextView
+                                                  android:id="@+id/txtDireccionTitle"
+                                                  android:layout_width="fill_parent"
+                                                  android:layout_height="wrap_content"
+                                                  android:layout_gravity="center"
+                                                  android:layout_marginTop="30dp"
+                                                  android:gravity="center"
+                                                  android:text="@string/direccion_vivienda_"
+                                                  android:textColor="#040657"
+                                                  android:textSize="20sp"
+                                                  android:textStyle="bold" >
+                                              </TextView>
+
+                                              <TextView
+                                                  android:id="@+id/txtDireccion"
+                                                  android:layout_width="648dp"
+                                                  android:layout_height="match_parent"
+                                                  android:layout_gravity="center"
+                                                  android:layout_marginTop="0dp"
+                                                  android:layout_weight="0.65"
+                                                  android:gravity="center|top"
+                                                  android:textColor="#040657"
+                                                  android:textSize="11sp"
+                                                  android:textStyle="bold" >
+                                              </TextView>
+                                          </LinearLayout>
+
+                                                <LinearLayout
+                                                      android:orientation="vertical"
+                                                        android:layout_width="140dp"
+                                                        android:layout_height="125dp"
+                                                        android:layout_gravity="center"
+                                                        android:gravity="center">
+                                                        <ImageButton
+                                                                  android:id="@+id/return_home"
+                                                                  android:layout_width="100dp"
+                                                                  android:layout_height="110dp"
+                                                                  android:background="#FFFFFF"
+                                                                  android:onClick="retur_home_click"
+                                                                  android:src="@drawable/menu_principal"
+                                                                  />
+                                                       
+                                                                   
+                                          </LinearLayout>
+                            </LinearLayout>   
+                </LinearLayout>
+                <LinearLayout
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content">
+                            <LinearLayout
+                                  android:orientation="horizontal"
+                                  android:layout_width="fill_parent"
+                                  android:layout_height="fill_parent"
+                                  android:layout_gravity="center">
+                                          <LinearLayout
+                                                  android:orientation="vertical"
+                                                  android:layout_width="1000dp"
+                                                  android:layout_height="250dp"
+                                                  android:layout_marginLeft="100dp"
+                                                  >   
+                                                <TextView
+                                                    android:id="@+id/txtMienbros"
+                                                    android:layout_width="fill_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_gravity="center"
+                                                    android:gravity="center"
+                                                    android:text="@string/miembros_familia"
+                                                    android:textColor="#040657"
+                                                    android:textSize="20sp"
+                                                    android:textStyle="bold">
+                                                </TextView>
+                                                   <ScrollView
+                                                        android:id="@+id/scrollView1"
+                                                        android:layout_width="900dp"
+                                                        android:layout_height="225dp"
+                                                        android:scrollbars="none">
+                                                    <LinearLayout
+                                                        android:layout_width="900dp"
+                                                        android:layout_height="225dp">
+
+                                                    <ListView
+                                                        android:id="@+id/listaMiembros"
+                                                        android:layout_width="900dp"
+                                                        android:layout_height="225dp"
+                                                        android:textSize="10px" >
+
+                                                    </ListView>
+                                            </LinearLayout>
+                                                  </ScrollView>
+                                          </LinearLayout>
+                                          <LinearLayout
+                                                     	android:orientation="vertical"
+                                                        android:layout_width="140dp"
+                                                        android:layout_height="250dp"
+                                                        android:layout_gravity="center"
+                                                        android:gravity="center">
+                       
+                                                    <ImageButton
+                                                                  android:id="@+id/borrar_ficha"
+                                                                  android:layout_width="100dp"
+                                                                  android:layout_height="110dp"
+                                                                  android:background="#FFFFFF"
+                                                                  android:onClick="click_delete_ficha"
+                                                                  android:src="@drawable/delete_ficha"
+                                                                  />   
+                                                    <ImageButton
+                                                        android:id="@+id/imgButonMiembroFamilia"
+                                                        android:layout_width="110dp"
+                                                        android:layout_height="110dp"
+                                                        android:background="#FFFFFF"
+                                                        android:onClick="click_miembros"
+                                                        android:src="@drawable/nuevo_integrante"/>               
+                                          </LinearLayout>
+                            </LinearLayout>   
+                </LinearLayout>
+        <LinearLayout
+                                                        android:layout_width="225dp"
+                                                        android:layout_height="50dp"
+                                                        android:gravity="center"
+                                                        android:layout_marginLeft="500sp">
+                                                   <ImageButton
+                                                                  android:id="@+id/go_fallecidos_icon"
+                                                                  android:layout_width="225dp"
+                                                                  android:layout_height="50dp"
+                                                                  android:background="#FFFFFF"
+                                                                  android:onClick="go_fallecidos"
+                                                                  android:src="@drawable/fallecidos_icon"
+                                                                 /> 
+      			</LinearLayout>        
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="120dp"
+          android:orientation="horizontal" >
+                 <ImageButton
+                    android:id="@+id/imgButonFicha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="ficha_infGeneral"
+                    android:src="@drawable/add_ficha_on" />
+                <ImageButton
+                    android:id="@+id/imgButonvienda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="caracteristicas_vivienda"
+                    android:src="@drawable/vivienda_on" />
+                <ImageButton
+                    android:id="@+id/imgButonGps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="ubicacion_vivienda"
+                    android:src="@drawable/gps_on" />
+                     
+                <ImageButton
+                    android:id="@+id/imgButonPatrimonio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="patrimonio"
+                    android:src="@drawable/patrimonio_on" />
+                <ImageButton
+                    android:id="@+id/imgButonAmenazas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="amenazas"
+                    android:src="@drawable/amenazas_on" />
+               <ImageButton
+                    android:id="@+id/imgButonServiciosBasicos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="servicios_basicos"
+                    android:src="@drawable/servicios_basicos_on" />
+                <ImageButton
+                    android:id="@+id/imgButonDesechos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="desechos"
+                    android:src="@drawable/desechos_on" />
+                <ImageButton
+                    android:id="@+id/imgButonVectores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="vectores"
+                    android:src="@drawable/vectores_on" />
+                <ImageButton
+                    android:id="@+id/imgButonMascotas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="mascotas"
+                    android:src="@drawable/mascotas_on"/>
+                <ImageButton
+                    android:id="@+id/imgButonRiesgoFam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="05dp"
+                    android:layout_weight="0.13"
+                    android:background="#FFFFFF"
+                    android:onClick="click_riesgoFamiliar"
+                    android:src="@drawable/riesgo_familiar_on"/>	
+                </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,77 @@
+ <RelativeLayout  
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+    tools:context=".Ficha_familia_activity"
+    xmlns:tools="http://schemas.android.com/tools">
+ <LinearLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+          <ImageButton
+              android:id="@+id/close"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#FFFFFF"
+              android:contentDescription="@string/desc"
+              android:src="@drawable/ficha_banner" />
+    </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:gravity="center"
+                android:layout_marginLeft="400dp" >
+                <TextView
+                    android:id="@+id/txtTitleMienbros"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/jefes_familias"
+                    android:textColor="#040657"
+                    android:textSize="20sp"
+                    android:textStyle="bold" >
+                </TextView>
+            </LinearLayout>
+
+ <ScrollView
+     android:id="@+id/scrollView1"
+     android:layout_width="910dp"
+     android:layout_height="400dp"
+     android:layout_marginLeft="175dp"
+     android:layout_marginTop="190dp"
+     android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="910dp"
+                android:layout_height="300dp"
+                android:gravity="center">
+                <ListView
+                    android:id="@+id/listaJefesFamilia"
+                    android:layout_width="910dp"
+                    android:layout_height="400dp"
+                    android:padding="5dip" >
+                </ListView>
+            </LinearLayout>
+    </ScrollView>    
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1100dp"
+                android:layout_marginTop="150dp"
+                android:gravity="center" >
+                <ImageButton
+                    android:id="@+id/return_home"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:onClick="retur_home"
+                    android:src="@drawable/menu_principal" />
+            </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,79 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+         	 android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".Ficha_familia_activity" >
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+          <ImageButton
+            android:id="@+id/close"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="#FFFFFF"
+            android:src="@drawable/ficha_banner"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/desc" />
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="450dp"
+            android:layout_marginTop="120dp" >
+
+  			<LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/riesgo_familiar_title"
+                    android:textColor="#011254" 
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                     android:layout_marginLeft="75dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/riesgo_familiar"
+                    android:textColor="#011254"
+                    android:textSize="20dp"/>
+
+                <Spinner
+                    android:id="@+id/sp_riesgo_familiar"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"/>
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/IBGuardarRiesgo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="250dp"
+                android:background="#FFFFFF"
+                android:onClick="click_riesgo_familiar"
+                android:src="@drawable/save"/>
+        </RelativeLayout>
+    </ScrollView>  
+			</RelativeLayout> 
+</ScrollView>
+<!-- Generalidades de la ficha familair 
+	 Activity para agregar y editar las 
+	 generalidades de la ficha-->

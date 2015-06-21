@@ -1,0 +1,185 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".Ficha_familia_activity_01" >
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" >
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner" />
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1.04"
+                    android:background="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/vectores"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/presencia_vectores"
+                    android:textColor="#011254"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="420dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp" >
+                <CheckBox
+                    android:id="@+id/CheckZancudos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="425dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/zancudos"
+                    android:onClick="click_zancudos"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+                <CheckBox
+                    android:id="@+id/CheckChinches_picudas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/chinches_picudas"
+                    android:onClick="click_chincesPicudas"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp" >
+                <CheckBox
+                    android:id="@+id/CheckMoscas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="425dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/moscas"
+                    android:onClick="click_moscas"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+                <CheckBox
+                    android:id="@+id/CheckCucarachas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/cucarachas"
+                    android:onClick="click_cucarachas"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="65dp" >
+                <CheckBox
+                    android:id="@+id/CheckRoedores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="425dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/roedores"
+                    android:onClick="click_roedores"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+                <CheckBox
+                    android:id="@+id/CheckOtrosVectores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/otros"
+                    android:onClick="click_otrosVectores"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="90dp" >
+                <CheckBox
+                    android:id="@+id/Checknohayvectores"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="425dp"
+                    android:layout_marginTop="75dp"
+                    android:text="@string/no_vectores"
+                    android:onClick="click_NoHayVectores"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+            </LinearLayout>      
+            </RelativeLayout>
+        </ScrollView>
+       <LinearLayout 
+				android:layout_width="80dp"
+           		android:layout_height="90dp"
+           		android:layout_marginTop="450dp"
+           		android:layout_marginLeft="600dp">
+           <ImageButton
+               android:id="@+id/button1"
+               android:layout_width="80dp"
+               android:layout_height="90dp"
+               android:background="#FFFFFF"
+               android:onClick="click_vectores"
+               android:src="@drawable/save" />
+           
+        </LinearLayout>
+
+       
+
+</RelativeLayout>
+</ScrollView>

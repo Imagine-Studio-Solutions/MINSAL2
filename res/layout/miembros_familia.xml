@@ -1,0 +1,89 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+         	 android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     xmlns:tools="http://schemas.android.com/tools" >
+<RelativeLayout  
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".Ficha_familia_activity">
+ <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+          <ImageButton
+            android:id="@+id/close"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="#FFFFFF"
+            android:src="@drawable/ficha_banner"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/desc" />
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="125dp"
+             android:gravity="center" >           
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:layout_marginLeft="400dp" >
+            <TextView
+                android:id="@+id/txtTitleMienbros"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="@string/miembros_familia"
+                android:textColor="#040657"
+                android:textSize="20sp"
+                android:textStyle="bold" >
+		  </TextView>
+		  </LinearLayout>  
+          <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:gravity="center"
+                android:layout_marginLeft="270dp" >
+		  <ListView
+			    android:id="@+id/listaMiembrosFamilia"
+			    android:layout_width="524dp"
+			    android:layout_height="303dp"
+			    android:padding="5dip" >
+		  </ListView>
+          </LinearLayout>            
+          <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="380dp"
+             android:gravity="center"
+             android:layout_marginLeft="500dp">      
+        <ImageButton
+	        android:id="@+id/edit_miembro_familia"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:src="@drawable/add_miembro_familia"
+	        android:background="#FFFFFF"
+	        android:onClick="add_new_miembro_familia"/>
+        <ImageButton
+            android:id="@+id/return_home"
+            android:layout_width="115dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:onClick="retur_home_click"
+            android:src="@drawable/menu_principal" />      
+            </LinearLayout>  
+        </RelativeLayout>
+    </ScrollView>          
+</RelativeLayout>
+</ScrollView>

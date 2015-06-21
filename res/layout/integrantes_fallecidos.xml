@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="800dp"
+    android:layout_height="215dp"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    tools:context=".Menu_Activity_" >
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <TableRow>
+            <ScrollView
+                android:id="@+id/scrollView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none" >
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+                    <ListView
+                        android:id="@+id/listaMiembrosFallecidos"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+                    </ListView>
+                </LinearLayout>
+            </ScrollView>
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>

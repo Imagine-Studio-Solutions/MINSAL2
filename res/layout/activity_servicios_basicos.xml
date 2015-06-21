@@ -1,0 +1,280 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".Ficha_familia_activity_01" >
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" >
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner" />
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1.04"
+                    android:background="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/servicios_basicos"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="70dp" >
+                 <TextView
+                     android:layout_width="165dp"
+                     android:layout_height="40dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/alumbradoPrincipalmente"
+                     android:textColor="#011254" />
+                 <TextView
+                     android:layout_width="241dp"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="185dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/medios_comunicacion"
+                     android:textColor="#011254" />
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="50dp"
+                     android:layout_marginLeft="120dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/abastecimiento_agua"
+                     android:textColor="#011254" />
+            </LinearLayout>
+            <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="55dp" >
+                  <Spinner
+                    android:id="@+id/SpnAlumbradoPrincipalmente"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="170dp"
+                    android:layout_marginTop="10dp"/>
+             </LinearLayout>
+			  <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="50dp" >
+                  <Spinner
+                    android:id="@+id/SpnAbastecimiento_agua"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="900dp"
+                    android:layout_marginTop="10dp"/>
+              </LinearLayout>
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="105dp" >
+                <CheckBox
+          			android:id="@+id/Checktelefono_fijo"
+          			android:layout_width="wrap_content"
+          			android:layout_height="wrap_content"
+          			android:text="@string/telefono_fijo"
+          			android:onClick="click_TelFijo"
+          			android:layout_marginLeft="350dp"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+                	
+                <CheckBox
+          			android:id="@+id/Checktelefono_celular"
+          			android:layout_width="wrap_content"
+          			android:layout_height="wrap_content"
+          			android:text="@string/telefono_celular"
+          			android:onClick="clic_TelCelular"
+          			android:layout_marginLeft="10dp"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+             </LinearLayout>
+             <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="130dp" >
+                
+             </LinearLayout>
+             <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="130dp" >
+                <CheckBox
+          			android:id="@+id/Checkinternet"
+          			android:layout_width="wrap_content"
+          			android:layout_height="wrap_content"
+          			android:text="@string/internet"
+          			android:onClick="click_Internet"
+          			android:layout_marginLeft="350dp"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+               <CheckBox
+          			android:id="@+id/Checkcable"
+          			android:layout_width="wrap_content"
+          			android:layout_height="wrap_content"
+          			android:text="@string/cable"
+          			android:onClick="click_Cable"
+          			android:layout_marginLeft="40dp"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+             </LinearLayout>   
+             <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignParentRight="true"
+                  android:layout_marginTop="155dp" >
+                <CheckBox
+          			android:id="@+id/Checkno_tiene"
+          			android:layout_width="wrap_content"
+          			android:layout_height="wrap_content"
+          			android:text="@string/no_tiene"
+          			android:onClick="click_NoTiene"
+          			android:layout_marginLeft="350dp"
+                    android:textColor="#004B0F"
+                    android:textSize="14sp" />
+             </LinearLayout>
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="150dp" >
+
+                 <TextView
+                     android:layout_width="165dp"
+                     android:layout_height="73dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/tratamiento_agua_consumo_humano"
+                     android:textColor="#011254" />
+                
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="50dp"
+                     android:layout_marginLeft="550dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/tiene_servicio_sanitario"
+                     android:textColor="#011254" />
+            </LinearLayout>
+			<LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="230dp" >
+                 <TextView
+                     android:layout_width="165dp"
+                     android:layout_height="40dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/tipo_servicio_sanitario"
+                     android:textColor="#011254" />
+                 <TextView
+                     android:layout_width="200dp"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="550dp"
+                     android:background="#FFFFFF"
+                     android:text="@string/colaborador_hogar"
+                     android:textColor="#011254" />
+            </LinearLayout>
+            <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="215dp" >
+                 <Spinner
+                    android:id="@+id/Spntipo_servicio_sanitario"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="170dp"
+                    android:layout_marginTop="10dp"/>
+                 <Spinner
+                    android:id="@+id/SpnColaborador_hogar"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="630dp"
+                    android:layout_marginTop="10dp"/>
+              </LinearLayout>
+              <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_marginTop="130dp" >
+                 <Spinner
+                    android:id="@+id/SpnTratamiento_agua_consumo_humano"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="170dp"
+                    android:layout_marginTop="10dp"/>
+                 <Spinner
+                    android:id="@+id/Spntiene_servicio_sanitario"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="630dp"
+                    android:layout_marginTop="10dp"/>
+              </LinearLayout>   
+            </RelativeLayout>
+        </ScrollView>
+       <LinearLayout 
+				    
+				    android:layout_width="80dp"
+           			android:layout_height="90dp"
+           			android:layout_marginTop="450dp"
+				    android:layout_marginLeft="550dp">
+           <ImageButton
+               
+               android:id="@+id/button1"
+               android:layout_width="80dp"
+               android:layout_height="90dp"
+               android:background="#FFFFFF"
+               android:onClick="click_servicios_basicos"
+               android:src="@drawable/save" />
+           
+        </LinearLayout>
+
+       
+
+</RelativeLayout>
+</ScrollView>

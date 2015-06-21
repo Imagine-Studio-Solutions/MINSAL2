@@ -1,0 +1,300 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+         	 android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".Ficha_familia_activity" >
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+    <ImageButton
+            android:id="@+id/close"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:background="#FFFFFF"
+            android:src="@drawable/ficha_banner"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/desc" />
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100sp"
+            android:layout_marginTop="120sp" >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/nombre_establecimiento"
+                    android:textColor="#011254"
+                    android:textSize="20sp" />
+                <EditText
+                    android:id="@+id/txt_nombre_establecimiento"
+                    android:layout_width="519dp"
+                    android:layout_height="40dp"
+                    android:inputType="text" />
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:text="@string/codigo_ecosf"
+                    android:textColor="#011254"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="15sp" />
+                <EditText
+                    android:id="@+id/txt_codigo_ecosf"
+                    android:layout_width="100dp"
+                    android:inputType="text"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="140dp" >
+                <Spinner
+                    android:id="@+id/sp_depto"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#011254" />
+                <Spinner
+                    android:id="@+id/sp_municipio"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp" />
+                <Spinner
+                    android:id="@+id/sp_area"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp" />
+                <Spinner
+                    android:id="@+id/sp_canton_barrio_colonia"
+                    android:layout_width="275dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp" />
+                <Spinner
+                    android:id="@+id/sp_zona"
+                    android:layout_width="65dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="25dp" />
+                <EditText
+                    android:id="@+id/txt_num_vivienda"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:maxLength="3" >
+                </EditText>
+                <EditText
+                    android:id="@+id/txt_num_familia"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:inputType="number"
+                    android:maxLength="3" >
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="110dp" >
+                <TextView
+                    android:layout_width="345dp"
+                    android:layout_height="40dp"
+                    android:text="@string/num_expediente_familiar"
+                    android:textColor="#011254"
+                    android:textSize="20sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="180dp" >
+                <TextView
+                    android:layout_width="75dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:text="@string/depto"
+                    android:textColor="#011254"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="83dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/municipio"
+                    android:textColor="#011254"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="100sp" />
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/area"
+                    android:textColor="#011254"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="100sp" />
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/canton_barrio_colonia"
+                    android:textColor="#011254"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="83sp" />
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zona"
+                    android:textColor="#011254"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="60sp" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="33sp"
+                    android:text="@string/n_vivienda"
+                    android:textColor="#011254"
+                    android:textSize="15sp" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:text="@string/n_familia"
+                    android:textColor="#011254"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="240dp" >
+                <TextView
+                    android:layout_width="206dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fecha_llenado"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <EditText
+                    android:id="@+id/txt_fecha_llenado"
+                    android:layout_width="125dp"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="date" >
+                </EditText>
+                <ImageButton
+                    android:id="@+id/imageButton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:src="@drawable/calendar" />
+                <TextView
+                    android:layout_width="268dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="135dp"
+                    android:text="@string/direccion_vivienda"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <EditText
+                    android:id="@+id/txt_direcion_vivienda"
+                    android:layout_width="350dp"
+                    android:layout_height="40dp"
+                    android:ems="10"
+                    android:inputType="textCapCharacters" >
+                </EditText>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="310dp" >
+                <TextView
+                    android:layout_width="268dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/situacion_vivienda"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <Spinner
+                    android:id="@+id/sp_situacion_vivienda"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_weight="0.45" />
+                <TextView
+                    android:id="@+id/TextViewReligionFamilia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="47dp"
+                    android:text="@string/religion_familia"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <Spinner
+                    android:id="@+id/sp_religion_familia"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="375dp" >
+                <TextView
+                    android:id="@+id/TextViewPuebloIndigenaFamilia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pueblo_indigena_familia"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <Spinner
+                    android:id="@+id/sp_pueblo_indigena_familia"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/TextViewTipoFamilia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="47dp"
+                    android:text="@string/tipo_familia"
+                    android:textColor="#011254"
+                    android:textSize="20dp" />
+                <Spinner
+                    android:id="@+id/sp_tipo_familia"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp" />
+                <!--
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/riesgo_familiar"
+                    android:textColor="#011254"
+                    android:textSize="20dp"/>
+ 			
+                <Spinner
+                    android:id="@+id/sp_riesgo_familiar"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"/>
+                -->
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/IBGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="500dp"
+                android:layout_marginTop="450dp"
+                android:background="#FFFFFF"
+                android:onClick="new_ficha_1"
+                android:src="@drawable/save" />
+        </RelativeLayout>
+    </ScrollView>  
+			</RelativeLayout> 
+</ScrollView>
+<!-- Generalidades de la ficha familair 
+	 Activity para agregar y editar las 
+	 generalidades de la ficha-->

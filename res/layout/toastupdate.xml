@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+		<LinearLayout
+		    android:id="@+id/Linear_Update_Ficha"
+		    android:layout_width="300dp"
+		    android:layout_height="75dp"
+		    android:layout_marginTop="80dp"
+		    android:background="#F3FEF8"
+		    android:gravity="center_vertical"
+		    android:orientation="horizontal"
+		    android:padding="8dp" >
+
+				<ImageView
+				 android:src="@drawable/check"
+				 android:layout_width="40dp"
+				 android:layout_height="40dp"
+				 android:layout_marginRight="8dp" />
+				 <TextView
+				 android:id="@+id/text_Update_Ficha"
+				 android:layout_width="wrap_content"
+				 android:layout_height="wrap_content"
+				 android:text="Mensaje"
+				 android:textColor="#044416"
+				 android:textSize="20sp"/>
+		</LinearLayout>
+</RelativeLayout>

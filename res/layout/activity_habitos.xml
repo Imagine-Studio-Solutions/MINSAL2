@@ -1,0 +1,106 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="670dp"
+        tools:context=".Ficha_familia_activity_01" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp">
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner"/>
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="217dp"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp" >
+
+               <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:text="@string/habitos"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="400dp"
+                    android:layout_marginTop="40dp" />
+             <TextView
+                 android:layout_width="160dp"
+                 android:layout_height="35dp"
+                 android:layout_marginTop="80dp"
+                 android:background="#FFFFFF"
+                 android:text="@string/estado_nutricional"
+                 android:textColor="#011254" />
+             <Spinner
+                android:id="@+id/SpnEstadoNutricional"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="150dp" 
+                android:layout_marginTop="70dp"/>
+              <TextView
+                 android:layout_width="80dp"
+                 android:layout_height="35dp"
+                 android:layout_marginTop="80dp"
+                 android:layout_marginLeft="375dp" 
+                 android:background="#FFFFFF"
+                 android:text="@string/fuma"
+                 android:textColor="#011254" />
+              <Spinner
+                android:id="@+id/SpnFuma"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="445dp" 
+                android:layout_marginTop="65dp"/>
+      
+                <TextView
+                 android:layout_width="150dp"
+                 android:layout_height="35dp"
+                 android:layout_marginTop="80dp"
+                 android:layout_marginLeft="675dp" 
+                 android:background="#FFFFFF"
+                 android:text="@string/bebidas_embriagantes"
+                 android:textColor="#011254" />  
+                <Spinner
+                android:id="@+id/SpnBebidasEmbriagantes"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="835dp" 
+                android:layout_marginTop="65dp"/> 
+                
+            </RelativeLayout>
+        </ScrollView>
+       <LinearLayout 
+			   android:layout_width="80dp"
+           	   android:layout_height="90dp"
+           	   android:layout_marginTop="400dp"
+           	   android:layout_marginLeft="550dp">
+           <ImageButton
+               android:id="@+id/button1"
+               android:layout_width="80dp"
+               android:layout_height="90dp"
+               android:background="#FFFFFF"
+               android:onClick="click_Habitos"
+               android:src="@drawable/save" />
+        </LinearLayout>
+</RelativeLayout>
+</ScrollView>

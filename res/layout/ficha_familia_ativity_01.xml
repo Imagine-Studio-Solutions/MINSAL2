@@ -1,0 +1,181 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:context=".Ficha_familia_activity_01" >
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" >
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner" />
+        </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp">
+ 				<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="33dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1.04"
+                    android:background="#FFFFFF"
+                    android:gravity="center_horizontal"
+                    android:text="@string/caract_vivienda"
+                    android:textColor="#011254"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_margin="1dip"
+                    android:layout_marginLeft="10dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/tipo_vivienda"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="210dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/tipo_tenencia_vivienda"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:layout_width="190dp"
+                    android:layout_height="43dp"
+                    android:layout_marginLeft="170dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/material_paredes"
+                    android:textColor="#011254" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="55dp" >
+
+                <Spinner
+                    android:id="@+id/SpnTipoVivienda"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="155dp"
+                    android:textColor="#011254" />
+
+                <Spinner
+                    android:id="@+id/SpnTenenciaVivienda"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="305dp"/>
+
+                <Spinner
+                    android:id="@+id/SpnMaterialParedes"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="245dp" />
+
+            </LinearLayout>
+
+   			<LinearLayout
+   			    android:layout_width="wrap_content"
+   			    android:layout_height="wrap_content"
+   			    android:layout_alignParentLeft="true"
+   			    android:layout_alignParentRight="true"
+   			    android:layout_marginTop="115dp" >
+
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="40dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/material_piso"
+                    android:textColor="#011254" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="175dp"
+                    android:background="#FFFFFF"
+                    android:text="@string/material_techo"
+                    android:textColor="#011254" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="100dp" >
+
+                <Spinner
+                    android:id="@+id/SpnMaterialPiso"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#011254" />
+                <Spinner
+                    android:id="@+id/SpnMaterialTecho"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="310dp" />            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="180dp">
+            </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+       <LinearLayout 
+				    android:layout_width="match_parent" 
+				    android:layout_height="match_parent"
+				    android:layout_marginRight="60dp"
+				    android:layout_marginTop="1050dp">
+           <ImageButton
+               android:id="@+id/button1"
+               android:layout_width="210dp"
+               android:layout_height="151dp"
+               android:layout_marginTop="10dp"
+               android:layout_weight="3.79"
+               android:background="#FFFFFF"
+               android:onClick="new_ficha_2"
+               android:src="@drawable/save" />
+           
+        </LinearLayout>
+
+       
+
+</RelativeLayout>
+</ScrollView>

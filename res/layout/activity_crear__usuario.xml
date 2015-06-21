@@ -1,0 +1,380 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:context=".Ficha_familia_activity_01" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" >
+
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/desc"
+                android:src="@drawable/ficha_banner" />
+        </RelativeLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <RelativeLayout
+                android:layout_width="1014dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="125dp"
+                android:layout_marginTop="160dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp" >
+
+                    <TextView
+                        android:id="@+id/titulo_accion_usuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dip"
+                        android:layout_weight="1.04"
+                        android:background="#FFFFFF"
+                        android:gravity="center_horizontal"
+                        android:text="@string/nuevo_usuario_titulo"
+                        android:textColor="#011254"
+                        android:textSize="21sp"
+                        android:textStyle="bold" 
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="70dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/codigo_nuevo_usuario"
+                        android:textColor="#011254" />
+
+                    <EditText
+                        android:id="@+id/codigousuarionuevo"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="53dp"
+                        android:maxLength="20"
+                        android:width="140dp" 
+                        android:singleLine="true"
+                        android:lines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="130dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/codigo_perfil_usuario"
+                        android:textColor="#011254" />
+
+                    <Spinner
+                        android:id="@+id/spn_tipo_usuario"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="62dp"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="190dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/nombre_usuario_nuevo"
+                        android:textColor="#011254" />
+
+                    <EditText
+                        android:id="@+id/nombreusuarionuevo"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="46dp" 
+                        android:singleLine="true"
+                        android:maxLength="200"
+                        android:lines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_clave_usuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="250dp" >
+
+                    <TextView
+                        android:id="@+id/titulo_clave_usuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/clave_usuario_nuevo"
+                        android:textColor="#011254" />
+
+                    <EditText
+                        android:id="@+id/claveusuarionuevo"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="60dp"
+                        android:maxLength="20"
+                        android:password="true" 
+                        android:singleLine="true"
+                        android:lines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearlayout_confirmacion_clave_usuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="310dp" >
+
+                    <TextView
+                        android:id="@+id/titulo_confirmacion_clave_usuario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/_confirmacion_clave_usuario_nuevo"
+                        android:textColor="#011254" />
+
+                    <EditText
+                        android:id="@+id/confirmacion_clave"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="57dp"
+                        android:maxLength="20"
+                        android:password="true" 
+                        android:singleLine="true"
+                        android:lines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="370dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/esta_activo"
+                        android:textColor="#011254" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" 
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="97dp">
+
+                        <RadioButton
+                            android:id="@+id/rdactivo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/usuarioactivo" />
+
+                        <RadioButton
+                            android:id="@+id/rdinactivo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/usuarioinactivo" />
+                        
+                    </RadioGroup>
+					<!-- 
+                    <EditText
+                        android:id="@+id/esta_activo"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="97dp" />
+                         -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="430dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/id_region"
+                        android:textColor="#011254" />
+                    
+                    
+                    <Spinner
+                        android:id="@+id/spn_region"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="125dp"
+                        android:layout_weight="1" />
+					<!-- 
+                    <EditText
+                        android:id="@+id/id_region"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="125dp" />
+                    -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="490dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/id_sibasi"
+                        android:textColor="#011254" />
+                    <Spinner
+                        android:id="@+id/spn_sibasi"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="130dp"
+                        android:layout_weight="1" />
+					<!-- 
+                    <EditText
+                        android:id="@+id/id_sibasi"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="130dp" />
+                         -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="550dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/id_estasib"
+                        android:textColor="#011254" />
+                    <Spinner
+                        android:id="@+id/spn_establecimiento"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="66dp"
+                        android:layout_weight="1" />
+					<!-- 
+                    <EditText
+                        android:id="@+id/id_estasib"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="66dp" />
+                        -->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="610dp" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="#FFFFFF"
+                        android:text="@string/correlativo_tablet"
+                        android:textColor="#011254" />
+
+                    <EditText
+                        android:id="@+id/correlativo_tablet"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="20dp"
+                        android:maxLength="20" 
+                        android:singleLine="true"
+                        android:lines="1"
+                        android:inputType="number"
+                        />
+                </LinearLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="850dp" 
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/imgbutton1"
+                android:layout_width="120dp"
+                android:layout_height="130dp"                
+                android:background="#FFFFFF"
+                android:layout_gravity="right"
+                android:onClick="new_usuario"
+                android:src="@drawable/save" />
+            <ImageButton
+                android:id="@+id/imgbutton2"
+                android:layout_width="120dp"
+                android:layout_height="130dp"                
+                android:background="#FFFFFF"
+                android:onClick="reset_pass"
+                android:layout_gravity="right"
+                android:src="@drawable/rekey" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>

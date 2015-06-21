@@ -1,0 +1,66 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+         	 android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="624dp"
+    android:background="#FFFFFF"
+    tools:context=".Ficha_familia_activity_01" >
+<RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF">  
+        <ImageView
+              android:id="@+id/close"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:layout_alignParentLeft="true"
+              android:src="@drawable/ficha_banner"
+              android:layout_marginTop="10dp" 
+              android:background="#FFFFFF"/> 
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="1100dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="125dp"
+            android:layout_marginTop="120dp"
+            android:background="#FFFFFF">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp">
+			    <ImageButton
+			        android:id="@+id/button1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginLeft="400dp"
+			        android:src="@drawable/fichas"
+			        android:background="#FFFFFF"
+			        android:onClick="go_Login"/>  
+                 </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="320dp">
+				<TextView
+				         android:id="@+id/textView1"
+				         android:layout_width="wrap_content"
+				         android:layout_height="wrap_content"
+				         android:text="@string/informacion"
+				         android:textColor="#011254"
+				         android:layout_marginLeft="80dp"
+				         android:textSize="15sp"
+				         android:background="#FFFFFF" />
+              </LinearLayout>
+           		</RelativeLayout>
+        </ScrollView>
+</RelativeLayout>
+</ScrollView>

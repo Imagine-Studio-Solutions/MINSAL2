@@ -1,0 +1,67 @@
+
+	<RelativeLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    
+	    android:layout_width="660dp"
+	    android:layout_height="150dp"
+	    android:layout_gravity="center"
+	    android:layout_marginTop="10dp"
+	    
+	    
+	    android:background="#FFFFFF"
+	    
+	    tools:context=".Menu_Activity_" >
+        <TableLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"> 
+		<TableRow
+		    android:layout_marginTop="25sp">
+		<ImageButton
+        android:id="@+id/variables_integrante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:src="@drawable/variable_integrante"
+        android:background="#FFFFFF"
+        android:onClick="load_chibolografo"/>    		
+		<ImageButton
+        android:id="@+id/delete_integrante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:src="@drawable/delete_miembro_familia"
+        android:background="#FFFFFF"
+        android:onClick="load_view_del_miembro_fam"/>
+        <!--android:onClick="edit_miembro"  -->
+        	<!-- 
+		<ImageButton
+        android:id="@+id/edit_miembro_familia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:src="@drawable/edit_miembro_familia"
+        android:background="#FFFFFF"
+        android:onClick="load_view_edit_miembro_fam"/>
+        -->
+		<!-- 
+		<ImageButton
+        android:id="@+id/edit_miembro_familia2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:src="@drawable/camera_icon"
+        android:background="#FFFFFF"/>
+        -->
+		<ImageButton
+        android:id="@+id/edit_miembro_familia3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="75dp"
+        android:src="@drawable/logodefuncicion"
+        android:background="#FFFFFF"
+        android:onClick="load_defuncion"/>
+		<!--android:onClick="tomar_foto_miembro"-->				
+		</TableRow>
+        </TableLayout>
+</RelativeLayout>
