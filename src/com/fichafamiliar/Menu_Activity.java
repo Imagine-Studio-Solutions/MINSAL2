@@ -54,6 +54,8 @@ public class Menu_Activity extends Activity {
 	private ProgressDialog progressDialog;
 	ImageButton btnImage_new_ficha;
 	private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
+	
+	int id_estasib;// id establecimiento
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,9 @@ public class Menu_Activity extends Activity {
 		 {
 			 mantenimiento_usuarios.setVisibility(View.INVISIBLE);
 		 }
+		 
+		 id_estasib = preferencias.getInt("id_estasib_user_sp", 0); // id establecimiento
+		 
 		 /*BaseDeDatos db2 = new BaseDeDatos(this);
 			try {
 				db2.createDataBase();*/
@@ -325,9 +330,9 @@ public class sincronizarDatos extends AsyncTask<String, Void, String> {
         }	
 	}
 
-public void lanzar(View view){
-	Intent i = new Intent(this, MainActivityMapa.class);
-	startActivity(i);
-	
-}
+	public void lanzar(View view){
+		Intent i = new Intent(this, MainActivityMapa.class);
+		i.putExtra("id_estasib_user_sp",id_estasib_user_sp);
+		startActivity(i);
+	}
 }

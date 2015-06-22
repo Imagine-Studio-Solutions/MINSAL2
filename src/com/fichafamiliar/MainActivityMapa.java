@@ -37,6 +37,7 @@ import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 //import android.location.LocationListener;
 import android.location.LocationManager;
@@ -66,6 +67,9 @@ public class MainActivityMapa extends Activity {
 	//----------------------------------------------------------
 	
 	private static final String MAPFILE = "file:///android_asset/elsalvador.map";
+    
+	private int id_estasib_user_sp; 
+	private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
  
 	@SuppressLint("NewApi")
 	@Override
@@ -74,6 +78,10 @@ public class MainActivityMapa extends Activity {
 		AndroidGraphicFactory.createInstance(getApplication());
 		setContentView(R.layout.main_activity_mapa);
 		
+		//===============================================================================================
+		SharedPreferences preferencias = getSharedPreferences(PREFRENCES_NAME,Context.MODE_PRIVATE);
+		id_estasib_user_sp = preferencias.getInt("id_estasib_user_sp", 0);
+		//===============================================================================================
 		
 		mapView = (MapView)findViewById(R.id.mapView);
 		mapView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
@@ -119,6 +127,7 @@ public class MainActivityMapa extends Activity {
 		mapView.getModel().mapViewPosition.setCenter(new LatLong(13.6801783,-89.231388));//punto inical del mapa
  
 		MyMarker marker = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)), 0, 0, mapView, "Posicion actual del equipo", true);
+		marker.setIdEstasib(id_estasib_user_sp);
 		mapView.getLayerManager().getLayers().add(marker);
 		
 		//------------------------------------------------------------------------------------
