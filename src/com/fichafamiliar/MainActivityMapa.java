@@ -173,8 +173,8 @@ public class MainActivityMapa extends Activity {
 					cod_sit_viv = c.getString(3);
 					depto = c.getInt (4);
 					municipio = c.getInt(5);
-				    ctn_bar_col = c.getInt (6);
-				    area = c.getString(7);
+					area = c.getString(6);
+				    ctn_bar_col = c.getInt (7);				    
 				    zona = c.getString(8);
 				    num_vivienda = c.getString(9);
 				    num_familia = c.getString(10);
