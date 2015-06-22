@@ -69,17 +69,17 @@ public class Handler_sqlite extends SQLiteOpenHelper{
 		ilong = c.getColumnIndex("longitud");
 		
 		int contador=0;
-		for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
-		{
-			
-			result[contador] = c.getString(id)+ "  " + c.getString(ilat)+ "  " + c.getString(ilong) + "\n";
-			Bitmap pointer = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.green_house));
-			String bubbleContent = "Id de ficha: 097896-456-12\nJefe de Familia: Pedro Perez";
-			MyMarker marker = new MyMarker(ctx, new LatLong(Double.parseDouble(c.getString(ilat)),Double.parseDouble(c.getString(ilong))), pointer, 0, 0, mapView, bubbleContent, false);
-			mapView.getLayerManager().getLayers().add(marker);
-		}
-		
-		//result = c.getString(id)+ "  " + c.getString(ilat)+ "  " + c.getString(ilong) + "\n";
+//		for(c.moveToFirst();!c.isAfterLast();c.moveToNext())
+//		{
+//			
+//			result[contador] = c.getString(id)+ "  " + c.getString(ilat)+ "  " + c.getString(ilong) + "\n";
+//			Bitmap pointer = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.green_house));
+//			String bubbleContent = "Id de ficha: 097896-456-12\nJefe de Familia: Pedro Perez";
+//			//MyMarker marker = new MyMarker(ctx, new LatLong(Double.parseDouble(c.getString(ilat)),Double.parseDouble(c.getString(ilong))), pointer, 0, 0, mapView, bubbleContent, false, false, depto,municipio,area + ctn_bar_col + zona + num_vivienda + num_familia);
+//			//mapView.getLayerManager().getLayers().add(marker);
+//		}
+//		
+//		result = c.getString(id)+ "  " + c.getString(ilat)+ "  " + c.getString(ilong) + "\n";
 		return result;
 				
 	}
@@ -93,7 +93,7 @@ public class Handler_sqlite extends SQLiteOpenHelper{
 		//Extrayendo la información de la BD
 		Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, " +
 				"familia.tipo_riesgofamiliar, situacionvivienda.codigosituacion,  " +
-				"(familia.codigo_departamento || familia.codigo_municipio || familia.codigo_area || familia.codigo_zona || familia.numerovivienda || familia.numerofamilia) AS CodigoFamilia,  " +
+				"(familia.codigo_departamento || familia.codigo_municipio || familia.codigo_area || familia.codigo_canton || familia.codigo_zona || familia.numerovivienda || familia.numerofamilia) AS CodigoFamilia,  " +
 				"(integrante.primernombre || \" \" || integrante.segundonombre || \" \" || integrante.primerapellido || \" \" || integrante.segundoapellido) AS JefeFamilia " +
 				"FROM	familia, situacionvivienda, integrante " +
 				"WHERE familia.codigo_sit_vivienda = situacionvivienda.codigosituacion " +
@@ -105,6 +105,61 @@ public class Handler_sqlite extends SQLiteOpenHelper{
 		return c;
 		
 	}
+	
+public Cursor numExpediente(){
+		
+		BD = new DBHelper(ctx);
+		BD.open();		
+		
+		//Extrayendo la información de la BD
+		Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, " +
+				"familia.tipo_riesgofamiliar, situacionvivienda.codigosituacion, " +
+				"familia.codigo_departamento, familia.codigo_municipio, familia.codigo_area, familia.codigo_canton," +
+				"familia.codigo_zona, familia.numerovivienda, familia.numerofamilia, " +
+				"(integrante.primernombre || \" \" || integrante.segundonombre || \" \" || integrante.primerapellido || \" \" ||integrante.segundoapellido) AS JefeFamilia " +
+				"FROM familia, situacionvivienda, integrante " +
+				"WHERE familia.codigo_sit_vivienda = situacionvivienda.codigosituacion " +
+				"AND familia.longitud_vivienda NOTNULL " +
+				"AND familia.latitud_vivienda NOTNULL " +
+				"AND familia.tipo_riesgofamiliar NOTNULL " +
+				"AND familia.idfamilia = integrante.id_familia " +
+				"AND integrante.numerocorrelativo = \"01\"" +
+				"AND familia.codigo_canton NOTNULL",null);
+		
+		return c;
+		
+	}
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public Cursor viviendasDeshabitadas(){
 		BD = new DBHelper(ctx);

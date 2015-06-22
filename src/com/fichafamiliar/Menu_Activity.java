@@ -7,8 +7,6 @@ import java.io.OutputStream;
 
 import sincro.Sincronizar;
  
-
-
 import db_gestion.BaseDeDatos;
 import db_gestion.GestionDB;
 import android.net.Uri;

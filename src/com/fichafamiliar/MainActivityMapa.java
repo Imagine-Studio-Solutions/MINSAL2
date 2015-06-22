@@ -66,7 +66,7 @@ public class MainActivityMapa extends Activity {
 
 	//----------------------------------------------------------
 	
-	private static final String MAPFILE = "file:///android_asset/elsalvador.map";
+	//private static final String MAPFILE = "file:///android_asset/elsalvador.map";
     
 	private int id_estasib_user_sp; 
 	private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
@@ -126,7 +126,8 @@ public class MainActivityMapa extends Activity {
  
 		mapView.getModel().mapViewPosition.setCenter(new LatLong(13.6801783,-89.231388));//punto inical del mapa
  
-		MyMarker marker = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)), 0, 0, mapView, "Posicion actual del equipo", true);
+		MyMarker marker = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)),
+				0, 0, mapView, "Posicion actual del equipo", true, false,0, 0, "", 0,"", "", "");
 		marker.setIdEstasib(id_estasib_user_sp);
 		mapView.getLayerManager().getLayers().add(marker);
 		
@@ -150,12 +151,12 @@ public class MainActivityMapa extends Activity {
 		
 		//Sacando longitud, latitud, tipo de riesgo, código situación, número de expediente y nombre de jefe de familia
 		//infoFicha() está en la clase Handler_sqlite y devuelve el resultado del query 
-		Cursor c = manejador.infoFicha();
+		Cursor c = manejador.numExpediente();
 		
 		//Para almacenar los campos extraídos
 		double lon, lat;
-		String cod_sit_viv, num_exp, jefe;
-		int tipo_riesgo;
+		String cod_sit_viv, num_exp, jefe, area, zona, num_vivienda, num_familia;
+		int tipo_riesgo, depto, municipio,ctn_bar_col;
 		
 		//Pointer y MyMarket
 		Bitmap pointer;
@@ -170,39 +171,49 @@ public class MainActivityMapa extends Activity {
 					lat = c.getDouble(1);
 					tipo_riesgo = c.getInt(2);
 					cod_sit_viv = c.getString(3);
-					num_exp = c.getString(4);
-					jefe = c.getString(5);
+					depto = c.getInt (4);
+					municipio = c.getInt(5);
+				    ctn_bar_col = c.getInt (6);
+				    area = c.getString(7);
+				    zona = c.getString(8);
+				    num_vivienda = c.getString(9);
+				    num_familia = c.getString(10);
+					//num_exp = c.getString(11);
+					jefe = c.getString(11);
+					
+					num_exp = depto + municipio + area + ctn_bar_col + zona + num_vivienda + num_familia;
 					
 					switch(tipo_riesgo){
 					
 						//Riesgo Alto--> Rojo
 						case 1:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.red_house));
-								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(marker2);
 								break;
 								
 						//Riesgo Medio--> Amarillo
 						case 2:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.yellow_house));
-								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(marker2);
 								break;		
 						
 						//Riesgo Bajo--> Verde
 						case 3:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.green_house));
-								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false);
+								marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(marker2);
 								break;
 										
 					}												
 										
 				}while (c.moveToNext());
-				manejador.cerrar();
+				//manejador.cerrar();
 			}
 		}
 		catch(Exception e){		
 			
 		}
 
+		c = manejador.viviendasDeshabitadas();
 		//Viviendas Deshabitadas
 		try{
 			if(c.moveToFirst()){
@@ -211,9 +222,10 @@ public class MainActivityMapa extends Activity {
 					lon = c.getDouble(0);
 					lat = c.getDouble(1);
 					pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.lightblue_house));
-					marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada", false);
+					marker2 = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada", false, false, 0, 0, "", 0,"", "", "");
 					mapView.getLayerManager().getLayers().add(marker2);
-				}while(c2.moveToNext());
+				}while(c.moveToNext());
+				manejador.cerrar();
 			}
 		}
 		catch (Exception e){

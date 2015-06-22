@@ -25,18 +25,20 @@ import android.widget.TextView;
 public class MyMarker extends Marker{
 	private MapView mapView;
 	private Bitmap bubble;
-	private Boolean tapped = false;
+	private boolean tapped = false;
 	private Marker markerBubble;
 	private String content;
 	private Button crearFicha;
 	private Button verFicha;
 	private LatLong pointerPosition;
+	
 	private int id_estasib_user_sp;// id establecimiento
 
 	public MyMarker(final Context ctx, LatLong latLong, Bitmap bitmap, int horizontalOffset,
-			int verticalOffset, MapView mapView, String bubbleContent, boolean gpsPointer) {
+			int verticalOffset, MapView mapView, String bubbleContent, boolean gpsPointer, boolean tieneExp, 
+			int depto, int municipio, String area, int ctn_bar_col, String zona, String num_vivienda, String  num_familia) {
 		super(latLong, bitmap, horizontalOffset, verticalOffset);
-		this.mapView = mapView;
+		this.mapView = mapView; 
 		content = bubbleContent; 
 		pointerPosition = latLong;
 		
@@ -65,7 +67,8 @@ public class MyMarker extends Marker{
 		textArea.setText(content);
 		bubble = viewToBitmap(ctx, bubbleView);
 		bubble.incrementRefCount();
-		markerBubble = new InfoMarker(ctx, pointerPosition, bubble, 0, -bubble.getHeight()/2, infoType);
+		markerBubble = new InfoMarker(ctx, pointerPosition, bubble, 0, -bubble.getHeight()/2, infoType, tieneExp, depto, 
+				municipio, area, ctn_bar_col, zona, num_vivienda, num_familia);
 		((InfoMarker) markerBubble).setIdEstasib(id_estasib_user_sp);
 	}
 	@Override
