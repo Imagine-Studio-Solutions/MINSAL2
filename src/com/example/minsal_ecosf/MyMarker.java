@@ -31,6 +31,14 @@ public class MyMarker extends Marker{
 	private Button crearFicha;
 	private Button verFicha;
 	private LatLong pointerPosition;
+	private int infoType;
+	private boolean tieneExp;
+	private int depto; 
+	private int municipio;
+	private String area;
+	private int ctn_bar_col;
+	private String zona, num_vivienda, num_familia;
+	private Context ctx;
 	
 	private int id_estasib_user_sp;// id establecimiento
 
@@ -39,6 +47,15 @@ public class MyMarker extends Marker{
 			int depto, int municipio, String area, int ctn_bar_col, String zona, String num_vivienda, String  num_familia) {
 		super(latLong, bitmap, horizontalOffset, verticalOffset);
 		this.mapView = mapView; 
+		this.tieneExp = tieneExp;
+		this.depto = depto; 
+		this.municipio = municipio;
+		this.area = area;
+		this.ctn_bar_col = ctn_bar_col;
+		this.zona = zona; 
+		this.num_vivienda = num_vivienda; 
+		this.num_familia = num_familia;
+		this.ctx = ctx;
 		content = bubbleContent; 
 		pointerPosition = latLong;
 		
@@ -46,8 +63,6 @@ public class MyMarker extends Marker{
 		View bubbleView = inflater.inflate(R.drawable.info_window, null);
 		crearFicha = (Button) bubbleView.findViewById(R.id.bCrearFicha); 
 		verFicha = (Button) bubbleView.findViewById(R.id.bVerFicha);
-		
-		int infoType;
 		
 		if (gpsPointer){
 			crearFicha.setVisibility(View.VISIBLE);
@@ -67,13 +82,13 @@ public class MyMarker extends Marker{
 		textArea.setText(content);
 		bubble = viewToBitmap(ctx, bubbleView);
 		bubble.incrementRefCount();
-		markerBubble = new InfoMarker(ctx, pointerPosition, bubble, 0, -bubble.getHeight()/2, infoType, tieneExp, depto, 
-				municipio, area, ctn_bar_col, zona, num_vivienda, num_familia);
-		((InfoMarker) markerBubble).setIdEstasib(id_estasib_user_sp);
 	}
 	@Override
 	public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
 		if (this.contains(layerXY, tapXY) && !tapped) {
+			markerBubble = new InfoMarker(ctx, tapLatLong, bubble, 0, -bubble.getHeight()/2, infoType, tieneExp, depto, 
+					municipio, area, ctn_bar_col, zona, num_vivienda, num_familia);
+			((InfoMarker) markerBubble).setIdEstasib(id_estasib_user_sp);
 			mapView.getLayerManager().getLayers().add(markerBubble);
 			tapped = !tapped;
 			super.onTap(tapLatLong, layerXY, tapXY);

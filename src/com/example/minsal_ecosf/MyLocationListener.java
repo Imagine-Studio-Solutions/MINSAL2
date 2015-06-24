@@ -185,7 +185,7 @@ public class MyLocationListener implements LocationListener{
 		//latitud = getLatitude();
 		//longitud = getLongitude();
 		mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
-		Toast.makeText(ctx, "GPS actualizado", Toast.LENGTH_SHORT).show();
+		//Toast.makeText(ctx, "GPS actualizado", Toast.LENGTH_SHORT).show();
 		mapView.getLayerManager().redrawLayers(); 
 	}
 
