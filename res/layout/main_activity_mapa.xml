@@ -63,7 +63,7 @@
         android:tint="@android:color/white"/>
 </RelativeLayout>
     
-    <ExpandableListView
+    <ListView
         android:id="@+id/drawer"
         android:layout_width="240dp"
         android:layout_height="match_parent"

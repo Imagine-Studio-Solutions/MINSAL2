@@ -1,5 +1,6 @@
 package com.example.minsal_ecosf;
 
+import org.apache.http.impl.cookie.BasicDomainHandler;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
@@ -130,7 +131,32 @@ public Cursor numExpediente(){
 		
 	}
 
+public Cursor menuNivel1(){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT descripciondescriptor, iddescriptor " +
+			"FROM descriptor, variable " +
+			"WHERE variable.tipo_referente ='c'  AND variable.fechafin IS NULL " +
+			"AND descriptor.iddescriptor = variable.id_descriptor " +
+			"AND descriptor.descripciondescriptor IS NOT \"Valores Si y No\"	" +
+			"ORDER BY descriptor.descripciondescriptor ASC", null);
+	return c;
+}
 
+public Cursor menuNivel2(String id){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT descripcion " +
+			"FROM descriptor, valordescriptor, variable " +
+			"WHERE descriptor.iddescriptor = valordescriptor.id_descriptor " +
+			"AND variable.tipo_referente ='c' " +
+			"AND descriptor.iddescriptor = variable.id_descriptor " +
+			"AND descriptor.iddescriptor = " + id +
+			" ORDER BY descriptor.descripciondescriptor ASC", null);
+	return c;
+}
 
 
 	

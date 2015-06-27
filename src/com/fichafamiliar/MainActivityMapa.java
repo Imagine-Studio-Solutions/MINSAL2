@@ -2,6 +2,8 @@ package com.fichafamiliar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -13,8 +15,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 //import menuLateral.NewAdapter;
+
+//import menuLateral.MainActivity;
 
 import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.model.LatLong;
@@ -29,41 +34,60 @@ import com.example.minsal_ecosf.DBHelper;
 import com.example.minsal_ecosf.Handler_sqlite;
 import com.example.minsal_ecosf.MyLocationListener;
 import com.example.minsal_ecosf.MyMarker;
-import com.example.minsal_ecosf.NewAdapter;
 import com.fichafamiliar.R;
  
 import android.view.View;
-import android.widget.ExpandableListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+//import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 //import android.location.LocationListener;
 import android.location.LocationManager;
 
 import android.widget.ImageButton;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivityMapa extends Activity {
- 
+	
 	private MapView mapView;
 	private TileCache tileCache;
 	private TileRendererLayer tileRendererLayer;
 	
 	//---------------------Menu lateral-------------------------
 	private DrawerLayout drawerLayout;
-	private ExpandableListView drawerList;
+	private ListView drawer;
+	//private ExpandableListView drawerList;
 	private ActionBarDrawerToggle toggle;
-	ArrayList<String> groupItem = new ArrayList<String>();
-	ArrayList<Object> childItem = new ArrayList<Object>();
-	ArrayList<String> child;
+	//ArrayList<String> groupItem = new ArrayList<String>();
+	//ArrayList<Object> childItem = new ArrayList<Object>();
+	//ArrayList<String> child;
+	//Menú Nivel 1
+	private String opciones[], idMenu[]; 
+	//Menú nivel 2
+	private List<String> listItems = new ArrayList<String>();
+	int band=0;
+	//private String items[];
+	//private CharSequence[] items = {"Manchester united", "Juventus", "Real Madrid", "Barcelona FC", "alianza", "fas", "ajax" };
+	//private CharSequence [] items;			
+	//private static final String[] opciones = {"Datos Generales", "Infomación de Vivienda", "Riesgo o Vulnerabilidad","BBLB"};
 	//Para el menú usando BD
 	private DBHelper BD;
 	//Para nivel 1
 	private Cursor c;
+	private Cursor cMenu;
 	//Para subítems
 	private Cursor c2;	
-
+	private Cursor cSubmenu;
+	//Para el submenú 
+	//boolean[] itemsChecked = new boolean[items.length];
+	
 	//----------------------------------------------------------
 	
 	//private static final String MAPFILE = "file:///android_asset/elsalvador.map";
@@ -77,6 +101,7 @@ public class MainActivityMapa extends Activity {
 		super.onCreate(savedInstanceState);
 		AndroidGraphicFactory.createInstance(getApplication());
 		setContentView(R.layout.main_activity_mapa);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
 		//===============================================================================================
 		SharedPreferences preferencias = getSharedPreferences(PREFRENCES_NAME,Context.MODE_PRIVATE);
@@ -134,7 +159,7 @@ public class MainActivityMapa extends Activity {
 		//------------------------------------------------------------------------------------
 		
 		//Instancio la clase del manejador de la BASE DE DATOS.
-		Handler_sqlite manejador = new Handler_sqlite(this, mapView);
+		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
         
 		manejador.abrir();
 		manejador.insertarFicha(1,13.6801783,-89.136031);
@@ -181,7 +206,7 @@ public class MainActivityMapa extends Activity {
 					//num_exp = c.getString(11);
 					jefe = c.getString(11);
 					
-					num_exp = depto + municipio + area + ctn_bar_col + zona + num_vivienda + num_familia;
+					num_exp = c.getString(4) + c.getString(5) + area + ctn_bar_col + c.getString(8) + num_vivienda + num_familia;
 					
 					switch(tipo_riesgo){
 					
@@ -240,16 +265,70 @@ public class MainActivityMapa extends Activity {
 
 		// Declarar e inicializar componentes para el Navigation Drawer
 		//setGroupData();
-		creaMenu();
-		crearSubmenu();
+		//creaMenu();
+		//crearSubmenu();
 		//setChildGroupData();	
 				
-		//drawer = (ListView) findViewById(R.id.drawer);
+		drawer = (ListView) findViewById(R.id.drawer);
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		
+		cMenu = manejador.menuNivel1();		
+		int cant = cMenu.getCount(); 
+		//Toast.makeText(MainActivityMapa.this, "Cantidad de opciones = "+cant, Toast.LENGTH_SHORT).show();
+		opciones = new String[cant];
+		idMenu = new String [cant];
+		try{
+			if(cMenu.moveToFirst()){
+				int i=0;
+				do{
+					opciones[i]=cMenu.getString(0);
+					idMenu[i] = cMenu.getString(1);
+					i++;
+				}while(cMenu.moveToNext());
+			}
+		}catch (Exception e){
+			
+		}
+			
+
+		// Declarar adapter y eventos al hacer click
 		
-		drawerList = (ExpandableListView) findViewById(R.id.drawer);
-		drawerList.setAdapter(new NewAdapter(this, groupItem, childItem));
+		drawer.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, opciones));
+		
+		
+		drawer.setOnItemClickListener(new OnItemClickListener() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				//Toast.makeText(MainActivityMapa.this, "Seleccionó: " + opciones[arg2], Toast.LENGTH_SHORT).show();
+				
+				cSubmenu = manejador.menuNivel2(idMenu[arg2]);
+				
+				try{
+					//items = new CharSequence();
+					if(cSubmenu.moveToFirst()){
+						//int j=0;
+						
+						listItems.clear();
+						do{
+							listItems.add(cSubmenu.getString(0));
+						}while(cSubmenu.moveToNext());
+						//Toast.makeText(MainActivityMapa.this, "entrando a la funcion", Toast.LENGTH_SHORT).show();
+						showDialog(band);
+						band++;
+					}
+				}catch (Exception e){
+					Toast.makeText(MainActivityMapa.this, (CharSequence) e, Toast.LENGTH_SHORT).show();
+				}
+				
+				
+				drawerLayout.closeDrawers();
+
+			}
+		});
+		
+		//drawerList = (ExpandableListView) findViewById(R.id.drawer);
+		//drawerList.setAdapter(new NewAdapter(this, groupItem, childItem));
 		
 		//Esto queda pendiente porque me está dando problemas cuando se da click ¬¬
 		
@@ -294,6 +373,7 @@ public class MainActivityMapa extends Activity {
 				};
 
 		drawerLayout.setDrawerListener(toggle);
+		
 		//---------------------------------GPS----------------------------------
 		/* usando la clase LocationManager para obtener informacion GPS*/
 		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
@@ -331,10 +411,52 @@ public class MainActivityMapa extends Activity {
 	}
  
 	// Activamos el toggle con el icono
+	// Activamos el toggle con el icono
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		toggle.syncState();
+	}
+	
+	//para menu emergente
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		final CharSequence[] items;
+		items = listItems.toArray(new CharSequence[listItems.size()]);
+		int i;
+
+		switch (id) {
+		case 0:
+			return new AlertDialog.Builder(this)
+					.setIcon(R.drawable.ic_launcher)
+					.setTitle("Cuales son tus equipos favoritos")//Cambiar después
+					.setItems(items, new DialogInterface.OnClickListener() {
+
+					    public void onClick(DialogInterface dialog, int which) {
+					    	Toast.makeText(
+									getBaseContext(),
+									items[which],
+									Toast.LENGTH_SHORT).show();
+					    }
+					
+					})
+							.create();			
+		default:				
+					return new AlertDialog.Builder(this)
+					.setIcon(R.drawable.ic_launcher)
+					.setTitle("Cuales son tus equipos favoritos")//Cambiar después
+					.setItems(items, new DialogInterface.OnClickListener() {
+			
+					    public void onClick(DialogInterface dialog, int which) {
+					    	Toast.makeText(
+									getBaseContext(),
+									items[which],
+									Toast.LENGTH_SHORT).show();
+					    }
+					
+					})
+							.create();
+					}
 	}
 	
 //	private File getMapFile() {
@@ -345,7 +467,7 @@ public class MainActivityMapa extends Activity {
 	//---------------------------Menu lateral---------------------------
 	
 	//Para el menú
-	public void creaMenu(){
+	/*public void creaMenu(){
 		BD=new DBHelper(this);
 		BD.open();		
 		
@@ -375,9 +497,9 @@ public class MainActivityMapa extends Activity {
 		}
 			
 }
+	*/
 	
-	
-public void crearSubmenu(){
+/*public void crearSubmenu(){
 	BD=new DBHelper(this);
 	BD.open();
 	
@@ -422,7 +544,8 @@ public void crearSubmenu(){
 	
 	
 }
-	
+*/
+
 	
 //	public void setGroupData() {
 //		groupItem.add("Familia");
@@ -461,13 +584,13 @@ public void crearSubmenu(){
 //		childItem.add(child);
 //	}
 	
-	public boolean onChildClick(ExpandableListView parent, View v,
+	/*public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
 				Toast.makeText(this, "Seleccionó:" + v.getTag(),
 				Toast.LENGTH_SHORT).show();
 		return true;
 	}
-	
+	*/
 
 
 }
