@@ -159,7 +159,22 @@ public Cursor menuNivel2(String id){
 }
 
 
+public Cursor manejoDeAguasGrises (){
+	BD = new DBHelper(ctx);
+	BD.open();
 	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL", null);
+	
+	return c;
+			
+			
+}
 	
 	
 	
