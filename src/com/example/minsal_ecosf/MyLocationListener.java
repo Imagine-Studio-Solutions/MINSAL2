@@ -2,7 +2,9 @@ package com.example.minsal_ecosf;
 
 import org.mapsforge.core.model.LatLong;
 
+import android.app.ProgressDialog;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,9 +17,12 @@ import android.util.Log;
 import android.widget.Toast;
 import org.mapsforge.map.android.view.MapView;
 
+import com.fichafamiliar.R;
+
 
 /* Clase My Location Listener */
 public class MyLocationListener implements LocationListener{
+	
 	
 	private Context ctx;
 	private MyMarker mrk;
@@ -25,6 +30,10 @@ public class MyLocationListener implements LocationListener{
 	//private double latitud;
 	//private double longitud;
 	
+	ProgressDialog PD;
+	
+	
+	boolean band = true;
 	boolean isGPSEnabled = false;
 	boolean isNetworkEnabled = false;
 	boolean canGetLocation = false;
@@ -33,7 +42,7 @@ public class MyLocationListener implements LocationListener{
 	double longitude; // longitude
 	
 	// The minimum distance to change Updates in meters
-	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 2; // 2 metros
+	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 3; // 3 metros
 	// The minimum time between updates in milliseconds
 	private static final long MIN_TIME_BW_UPDATES = 1000 * 3 * 1; // 3 segundos
 	// Declaring a Location Manager
@@ -45,6 +54,12 @@ public class MyLocationListener implements LocationListener{
 		this.mapView = mapView;
 		this.locationManager = mlocManager;
 		getLocation();
+		if(canGetLocation()){
+			showLoadingAlert();
+		}
+		else{
+			showSettingsAlert();
+		}
 	}
 	
 	public Location getLocation() {
@@ -147,6 +162,13 @@ public class MyLocationListener implements LocationListener{
 		return this.canGetLocation;
 	}
 	
+	public void showLoadingAlert(){
+		PD = new ProgressDialog(ctx);
+		//PD.setTitle("Por favor espere...");
+		PD.setMessage("Por favor espere, Cargando GPS del dispositivo...");
+		PD.setCancelable(false);
+		PD.show();	
+	}
 	/**
 	 * Function to show settings alert dialog
 	 * On pressing Settings button will lauch Settings Options
@@ -155,38 +177,57 @@ public class MyLocationListener implements LocationListener{
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(ctx);
    	 
         // Setting Dialog Title
-        alertDialog.setTitle("GPS is settings");
+        alertDialog.setTitle("Advertencia:");
  
         // Setting Dialog Message
         alertDialog.setMessage("Se ha detectado que el sistema GPS esta desactivado, por favor habilitar GPS.");
  
         // On pressing Settings button
-        alertDialog.setPositiveButton("ir a ajustes", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
-            	Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            	ctx.startActivity(intent);
+            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            	//ctx.startActivity(intent);
+            	dialog.cancel();
             }
         });
- 
+        /*
         // on pressing cancel button
         alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
             dialog.cancel();
             }
-        });
+        });*/
  
         // Showing Alert Message
         alertDialog.show();
 	}
 	
+	
 	@Override
 	public void onLocationChanged(Location loc){
-		getLocation();
+		/*getLocation();
 		//latitud = getLatitude();
 		//longitud = getLongitude();
-		mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
-		//Toast.makeText(ctx, "GPS actualizado", Toast.LENGTH_SHORT).show();
-		mapView.getLayerManager().redrawLayers(); 
+		mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));*/
+		if (band){
+			PD.dismiss();
+			//Toast.makeText(ctx, "GPS activado", Toast.LENGTH_SHORT).show();
+			getLocation();
+			mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
+			mapView.getLayerManager().redrawLayers();
+			onFocusMapPosition ();
+			band=false;
+		}
+		//mapView.getLayerManager().redrawLayers(); 
+	}
+	
+	public void actualizarPosicion(){
+		if(!band){
+			getLocation();
+			mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
+			mapView.getLayerManager().redrawLayers();
+			onFocusMapPosition ();
+		}
 	}
 
 	@Override

@@ -148,13 +148,13 @@ public Cursor menuNivel2(String id){
 	BD = new DBHelper(ctx);
 	BD.open();
 	
-	Cursor c = BD.getReadableDatabase().rawQuery("SELECT descripcion " +
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT descripcion, idvalor  " +
 			"FROM descriptor, valordescriptor, variable " +
 			"WHERE descriptor.iddescriptor = valordescriptor.id_descriptor " +
 			"AND variable.tipo_referente ='c' " +
 			"AND descriptor.iddescriptor = variable.id_descriptor " +
 			"AND descriptor.iddescriptor = " + id +
-			" ORDER BY descriptor.descripciondescriptor ASC", null);
+			" ORDER BY valordescriptor.descripcion ASC", null);
 	return c;
 }
 
@@ -173,34 +173,92 @@ public Cursor manejoDeAguasGrises (){
 	
 	return c;
 			
+		
+	
+}
+	
+public Cursor aCieloAbiertoAlSolar (){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL AND familia_variable.valor = 3", null);
+	
+	return c;
 			
+		
+	
 }
 	
 	
+public Cursor aLaCalle (){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL AND familia_variable.valor = 4", null);
+	
+	return c;		
+	
+}
 	
 	
+public Cursor eliminacionAAlcantarillado(){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL AND familia_variable.valor = 1", null);
+	
+	return c;		
+}	
+
+public Cursor porPozoResumidero(){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL AND familia_variable.valor = 2", null);
+	
+	return c;	
+}	
 	
 	
+public Cursor quebradasORios(){
+	BD = new DBHelper(ctx);
+	BD.open();
 	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda, familia_variable.valor " +
+			"FROM familia, familia_variable, descriptor, variable " +
+			"WHERE familia.idfamilia = familia_variable.id_familia " +
+			"AND familia_variable.id_variable = variable.idvariable " +
+			"AND variable.id_descriptor = descriptor.iddescriptor " +
+			"AND descriptor.iddescriptor =22 AND familia.longitud_vivienda NOTNULL " +
+			"AND familia.latitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL AND familia_variable.valor = 5", null);
 	
+	return c;		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}
 	
 	public Cursor viviendasDeshabitadas(){
 		BD = new DBHelper(ctx);
@@ -211,6 +269,33 @@ public Cursor manejoDeAguasGrises (){
 				"FROM familia " +
 				"WHERE familia.codigo_sit_vivienda = \"02\" " +
 				"AND familia.longitud_vivienda NOTNULL AND familia.latitud_vivienda NOTNULL",null);
+		return c;
+	}
+	
+	
+	public Cursor informacionFamilia(double lon, double lat){
+
+		BD = new DBHelper(ctx);
+		BD.open();		
+		
+		String longitud = Double.toString(lon);
+		String latitud = Double.toString(lat);
+		
+		//Extrayendo la información de la BD
+		Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.codigo_departamento, familia.codigo_municipio, " +
+				"familia.codigo_area, familia.codigo_canton," +
+				"familia.codigo_zona, familia.numerovivienda, familia.numerofamilia, " +
+				"(integrante.primernombre || \" \" || integrante.segundonombre || \" \" || integrante.primerapellido || \" \" ||integrante.segundoapellido) AS JefeFamilia " +
+				"FROM familia, situacionvivienda, integrante " +
+				"WHERE familia.codigo_sit_vivienda = situacionvivienda.codigosituacion " +
+				"AND familia.longitud_vivienda NOTNULL " +
+				"AND familia.latitud_vivienda NOTNULL " +
+				"AND familia.tipo_riesgofamiliar NOTNULL " +
+				"AND familia.idfamilia = integrante.id_familia " +
+				"AND integrante.numerocorrelativo = \"01\"" +
+				"AND familia.codigo_canton NOTNULL AND familia.longitud_vivienda = \"" +longitud+ "\""+
+				" AND familia.latitud_vivienda = \""+latitud+"\"",null);
+		
 		return c;
 	}
 	
@@ -227,7 +312,6 @@ public Cursor manejoDeAguasGrises (){
 		this.close();
 		
 	}
-	
 	
 	
 	

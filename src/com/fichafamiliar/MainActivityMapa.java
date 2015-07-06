@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
@@ -26,10 +27,7 @@ import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
-import com.example.minsal_ecosf.DBHelper;
-import com.example.minsal_ecosf.Handler_sqlite;
-import com.example.minsal_ecosf.MyLocationListener;
-import com.example.minsal_ecosf.MyMarker;
+import com.example.minsal_ecosf.*;
 import com.fichafamiliar.R;
  
 import android.view.View;
@@ -68,14 +66,13 @@ public class MainActivityMapa extends Activity {
 	private List<String> listItems = new ArrayList<String>();
 	int band=0;
 	//Para el menú usando BD
-	private DBHelper BD; //<-------------------------------------Revisar
 	//Para nivel 1
-	private Cursor c;//<-------------------------------------Revisar
 	private Cursor cMenu;
 	//Para subítems
-	private Cursor c2;//<-------------------------------------Revisar
 	private Cursor cSubmenu;
+	private String idSubMenu[];
 	//Para el submenú 
+	private String encabezado; 
 	private int idNivel1;
 	
 	//para los markers
@@ -246,8 +243,6 @@ public class MainActivityMapa extends Activity {
 		catch (Exception e){
 			
 		}
-		
-		
 		//-------------------------------------Menu lateral-----------------------------------
 		// Rescatamos el Action Bar y activamos el boton Home
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -272,39 +267,36 @@ public class MainActivityMapa extends Activity {
 		}catch (Exception e){
 			
 		}
-			
-
 		// Declarar adapter y eventos al hacer click
 		
 		drawer.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, opciones));
-		
-		
+
 		drawer.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("deprecation")
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
 				cSubmenu = manejador.menuNivel2(idMenu[arg2]);
 				idNivel1 = Integer.parseInt(idMenu[arg2]);
+				encabezado = opciones[arg2];
+				int lon = cSubmenu.getCount();
+				idSubMenu = new String [lon];
 				
 				try{
 					if(cSubmenu.moveToFirst()){
-						
+						int i=0;
 						listItems.clear();
 						do{
 							listItems.add(cSubmenu.getString(0));
+							idSubMenu[i]=cSubmenu.getString(1);
+							i++;
 						}while(cSubmenu.moveToNext());
-						//Toast.makeText(MainActivityMapa.this, "entrando a la funcion", Toast.LENGTH_SHORT).show();
 						showDialog(band);
 						band++;
 					}
 				}catch (Exception e){
 					Toast.makeText(MainActivityMapa.this, (CharSequence) e, Toast.LENGTH_SHORT).show();
 				}
-				
-				
 				drawerLayout.closeDrawers();
-
 			}
 		});
 
@@ -340,16 +332,19 @@ public class MainActivityMapa extends Activity {
 		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		final MyLocationListener mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
 		//----------------------------------------------------------------------
-		 if(!mlocListener.canGetLocation()){
-			 mlocListener.showSettingsAlert();
-		 }
 		//para click del boton FAB
 		ImageButton fabImageButton = (ImageButton) findViewById(R.id.fab_image_button);
-		
+
 	    fabImageButton.setOnClickListener(new View.OnClickListener() {
 	        @Override
 	        public void onClick(View v) {
-	        	mlocListener.onFocusMapPosition ();
+	        	//mlocListener.onFocusMapPosition ();
+	        	if(!mlocListener.canGetLocation()){
+	        		mlocListener.showSettingsAlert();
+	        	}
+	        	else{
+	        		mlocListener.actualizarPosicion();
+	        	}
 	        }
 	    });
 	}
@@ -370,7 +365,6 @@ public class MainActivityMapa extends Activity {
 	}
  
 	// Activamos el toggle con el icono
-	// Activamos el toggle con el icono
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
@@ -381,6 +375,7 @@ public class MainActivityMapa extends Activity {
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		final CharSequence[] items;
+		
 		items = listItems.toArray(new CharSequence[listItems.size()]);
 		
 		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
@@ -392,7 +387,7 @@ public class MainActivityMapa extends Activity {
 		default:				
 					return new AlertDialog.Builder(this)
 					.setIcon(R.drawable.ic_launcher)
-					.setTitle("Cuales son tus equipos favoritos")//Cambiar después
+					.setTitle(encabezado)//Cambiar después
 					.setItems(items, new DialogInterface.OnClickListener() {
 			
 					    public void onClick(DialogInterface dialog, int which) {
@@ -400,33 +395,17 @@ public class MainActivityMapa extends Activity {
 									getBaseContext(),
 									items[which],
 									Toast.LENGTH_SHORT).show();
-					    	switch(idNivel1){
-					    	case 22:
-					    			Cursor c = manejador.manejoDeAguasGrises();
-					    			try{
-					    				if(c.moveToFirst()){
-					    					do{
-					    						double lon = c.getDouble(0);
-					    						double lat = c.getDouble(1);
-					    						p = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.lightblue_house));
-					    						fichaFiltro = new MyMarker(getApplicationContext(), new LatLong(lat,lon), p, 0, 0, mapView, "Vivienda Deshabitada", false, false, 0, 0, "", 0,"", "", "");
-					    						mapView.getLayerManager().getLayers().add(fichaFiltro);
-					    						markerList.add(fichaFiltro);
-					    					}while(c.moveToNext());
-					    				}
-					    			}
-					    			catch(Exception e){
-					    				
-					    			}
-					    			
-					    	}
+					    	
+					    	int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
+					    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada);
+					    	markerList.addAll(sv.getVariablesDibujadas());
 					    }
 					
 					})
-							.create();
-					}
+			.create();
+			}
 	}
-	
+
 	void removeOldMarkers (){
 		for (int i = 0; i < markerList.size(); i++) {
 			mapView.getLayerManager().getLayers().remove(markerList.get(i));
