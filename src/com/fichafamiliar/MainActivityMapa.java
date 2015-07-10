@@ -253,11 +253,21 @@ public class MainActivityMapa extends Activity {
 		
 		cMenu = manejador.menuNivel1();		
 		int cant = cMenu.getCount(); 
-		opciones = new String[cant];
-		idMenu = new String [cant];
+		opciones = new String[cant+3];
+		idMenu = new String [cant+3];
+		
+		//Para filtros de catálogos
+		opciones[0]="Pueblo indígena";
+		opciones[1]="Religión";
+		opciones[2]="Tipo de Familia";
+		
+		idMenu[0]="1";
+		idMenu[1]="2";
+		idMenu[2] = "3";
+		
 		try{
 			if(cMenu.moveToFirst()){
-				int i=0;
+				int i=3;
 				do{
 					opciones[i]=cMenu.getString(0);
 					idMenu[i] = cMenu.getString(1);

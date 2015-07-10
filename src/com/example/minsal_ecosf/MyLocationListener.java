@@ -163,11 +163,11 @@ public class MyLocationListener implements LocationListener{
 	}
 	
 	public void showLoadingAlert(){
-		PD = new ProgressDialog(ctx);
+		/*PD = new ProgressDialog(ctx);
 		//PD.setTitle("Por favor espere...");
 		PD.setMessage("Por favor espere, Cargando GPS del dispositivo...");
 		PD.setCancelable(false);
-		PD.show();	
+		PD.show();	*/
 	}
 	/**
 	 * Function to show settings alert dialog
