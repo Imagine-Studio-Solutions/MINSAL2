@@ -153,9 +153,212 @@ public class MainActivityMapa extends Activity {
 		
 		
 		String[] x = manejador.leer();
-		Toast.makeText(this, "Datos:" + x[0],
-				Toast.LENGTH_SHORT).show();
+		
+		dibujarCasitas();	
+		
+		
+		
+		//-------------------------------------Menu lateral-----------------------------------
+		// Rescatamos el Action Bar y activamos el boton Home
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);	
+				
+		drawer = (ListView) findViewById(R.id.drawer);
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		
+		cMenu = manejador.menuNivel1();		
+		int cant = cMenu.getCount(); 
+		opciones = new String[cant+3];
+		idMenu = new String [cant+3];
+		
+		//Para filtros de catálogos
+		opciones[0]= "Riesgo o Vulnerabilidad";
+		opciones[1]="Pueblo indígena";
+		opciones[2]="Religión";
+		opciones[3]="Tipo de Familia";
+		
+		idMenu[0]="4";
+		idMenu[1]="1";
+		idMenu[2]="2";
+		idMenu[3]="3";
+		
+		try{
+			if(cMenu.moveToFirst()){
+				int i=4;
+				do{
+					opciones[i]=cMenu.getString(0);
+					idMenu[i] = cMenu.getString(1);
+					i++;
+				}while(cMenu.moveToNext());
+			}
+		}catch (Exception e){
+			
+		}
+		// Declarar adapter y eventos al hacer click
+		
+		drawer.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, opciones));
 
+		drawer.setOnItemClickListener(new OnItemClickListener() {
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
+				if(idMenu[arg2].equals("4")){
+					removeOldMarkers();
+					/*idNivel1 = Integer.parseInt(idMenu[arg2]);
+			    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,0);
+			    	markerList.addAll(sv.getVariablesDibujadas());*/
+					dibujarCasitas();
+				}
+				else{
+					//Para filtros
+					cSubmenu = manejador.menuNivel2(idMenu[arg2]);
+					idNivel1 = Integer.parseInt(idMenu[arg2]);
+					encabezado = opciones[arg2];
+					int lon = cSubmenu.getCount();
+					idSubMenu = new String [lon];
+					
+					try{
+						if(cSubmenu.moveToFirst()){
+							int i=0;
+							listItems.clear();
+							do{
+								listItems.add(cSubmenu.getString(0));
+								idSubMenu[i]=cSubmenu.getString(1);
+								i++;
+							}while(cSubmenu.moveToNext());
+							showDialog(band);
+							band++;
+						}
+					}catch (Exception e){
+						Toast.makeText(MainActivityMapa.this, (CharSequence) e, Toast.LENGTH_SHORT).show();
+					}
+				}
+				
+				
+				drawerLayout.closeDrawers();
+			}
+		});
+
+		// Sombra del panel Navigation Drawer
+		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+
+		// Integracion boton oficial
+		toggle = new ActionBarDrawerToggle(
+				this, // Activity
+				drawerLayout, // Panel del Navigation Drawer
+				R.drawable.ic_drawer, // Icono que va a utilizar
+				R.string.app_name, // Descripcion al abrir el drawer
+				R.string.hello_world // Descripcion al cerrar el drawer
+				){
+			
+					public void onDrawerClosed(View view) {
+						// Drawer cerrado
+						getActionBar().setTitle("Bienvenido");					
+						invalidateOptionsMenu();
+					}
+		
+					public void onDrawerOpened(View drawerView) {
+						// Drawer abierto
+						getActionBar().setTitle("Menu");
+						invalidateOptionsMenu(); 
+					}
+				};
+
+		drawerLayout.setDrawerListener(toggle);
+		
+		//---------------------------------GPS----------------------------------
+		/* usando la clase LocationManager para obtener informacion GPS*/
+		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+		final MyLocationListener mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
+		//----------------------------------------------------------------------
+		//para click del boton FAB
+		ImageButton fabImageButton = (ImageButton) findViewById(R.id.fab_image_button);
+
+	    fabImageButton.setOnClickListener(new View.OnClickListener() {
+	        @Override
+	        public void onClick(View v) {
+	        	//mlocListener.onFocusMapPosition ();
+	        	if(!mlocListener.canGetLocation()){
+	        		mlocListener.showSettingsAlert();
+	        	}
+	        	else{
+	        		mlocListener.actualizarPosicion();
+	        	}
+	        }
+	    });
+	}
+	
+	@Override
+	protected void onDestroy() {
+		mapView.destroy();
+		super.onDestroy();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		//getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (toggle.onOptionsItemSelected(item)) {
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+ 
+	// Activamos el toggle con el icono
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		toggle.syncState();
+	}
+	
+	//para menu emergente
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		final CharSequence[] items;
+		
+		items = listItems.toArray(new CharSequence[listItems.size()]);
+		
+		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
+        
+		removeOldMarkers();
+		manejador.abrir();
+		
+		switch (id) {			
+		default:				
+					return new AlertDialog.Builder(this)
+					.setIcon(R.drawable.ic_launcher)
+					.setTitle(encabezado)//Cambiar después
+					.setItems(items, new DialogInterface.OnClickListener() {
+			
+					    public void onClick(DialogInterface dialog, int which) {
+					    	int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
+					    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada);
+					    	markerList.addAll(sv.getVariablesDibujadas());
+					    }
+					
+					})
+			.create();
+			}
+	}
+
+	void removeOldMarkers (){
+		for (int i = 0; i < markerList.size(); i++) {
+			mapView.getLayerManager().getLayers().remove(markerList.get(i));
+		}
+		markerList.clear();
+	}
+	
+	
+	void dibujarCasitas(){
+		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
+		//Handler_sqlite manejador;
+		manejador.abrir();
 		/*******************************************************************************************************************
 		 *********************************** PARA MOSTRAR CASITAS POR RIESGO ***********************************************
 		 *****************************************************************************************************************/
@@ -243,184 +446,6 @@ public class MainActivityMapa extends Activity {
 		catch (Exception e){
 			
 		}
-		//-------------------------------------Menu lateral-----------------------------------
-		// Rescatamos el Action Bar y activamos el boton Home
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);	
-				
-		drawer = (ListView) findViewById(R.id.drawer);
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		
-		cMenu = manejador.menuNivel1();		
-		int cant = cMenu.getCount(); 
-		opciones = new String[cant+3];
-		idMenu = new String [cant+3];
-		
-		//Para filtros de catálogos
-		opciones[0]="Pueblo indígena";
-		opciones[1]="Religión";
-		opciones[2]="Tipo de Familia";
-		
-		idMenu[0]="1";
-		idMenu[1]="2";
-		idMenu[2] = "3";
-		
-		try{
-			if(cMenu.moveToFirst()){
-				int i=3;
-				do{
-					opciones[i]=cMenu.getString(0);
-					idMenu[i] = cMenu.getString(1);
-					i++;
-				}while(cMenu.moveToNext());
-			}
-		}catch (Exception e){
-			
-		}
-		// Declarar adapter y eventos al hacer click
-		
-		drawer.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, opciones));
-
-		drawer.setOnItemClickListener(new OnItemClickListener() {
-			@SuppressWarnings("deprecation")
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				cSubmenu = manejador.menuNivel2(idMenu[arg2]);
-				idNivel1 = Integer.parseInt(idMenu[arg2]);
-				encabezado = opciones[arg2];
-				int lon = cSubmenu.getCount();
-				idSubMenu = new String [lon];
-				
-				try{
-					if(cSubmenu.moveToFirst()){
-						int i=0;
-						listItems.clear();
-						do{
-							listItems.add(cSubmenu.getString(0));
-							idSubMenu[i]=cSubmenu.getString(1);
-							i++;
-						}while(cSubmenu.moveToNext());
-						showDialog(band);
-						band++;
-					}
-				}catch (Exception e){
-					Toast.makeText(MainActivityMapa.this, (CharSequence) e, Toast.LENGTH_SHORT).show();
-				}
-				drawerLayout.closeDrawers();
-			}
-		});
-
-		// Sombra del panel Navigation Drawer
-		drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-
-		// Integracion boton oficial
-		toggle = new ActionBarDrawerToggle(
-				this, // Activity
-				drawerLayout, // Panel del Navigation Drawer
-				R.drawable.ic_drawer, // Icono que va a utilizar
-				R.string.app_name, // Descripcion al abrir el drawer
-				R.string.hello_world // Descripcion al cerrar el drawer
-				){
-			
-					public void onDrawerClosed(View view) {
-						// Drawer cerrado
-						getActionBar().setTitle("Bienvenido");					
-						invalidateOptionsMenu();
-					}
-		
-					public void onDrawerOpened(View drawerView) {
-						// Drawer abierto
-						getActionBar().setTitle("Menu");
-						invalidateOptionsMenu(); 
-					}
-				};
-
-		drawerLayout.setDrawerListener(toggle);
-		
-		//---------------------------------GPS----------------------------------
-		/* usando la clase LocationManager para obtener informacion GPS*/
-		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		final MyLocationListener mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
-		//----------------------------------------------------------------------
-		//para click del boton FAB
-		ImageButton fabImageButton = (ImageButton) findViewById(R.id.fab_image_button);
-
-	    fabImageButton.setOnClickListener(new View.OnClickListener() {
-	        @Override
-	        public void onClick(View v) {
-	        	//mlocListener.onFocusMapPosition ();
-	        	if(!mlocListener.canGetLocation()){
-	        		mlocListener.showSettingsAlert();
-	        	}
-	        	else{
-	        		mlocListener.actualizarPosicion();
-	        	}
-	        }
-	    });
-	}
- 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-	
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (toggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
- 
-	// Activamos el toggle con el icono
-	@Override
-	protected void onPostCreate(Bundle savedInstanceState) {
-		super.onPostCreate(savedInstanceState);
-		toggle.syncState();
-	}
-	
-	//para menu emergente
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		final CharSequence[] items;
-		
-		items = listItems.toArray(new CharSequence[listItems.size()]);
-		
-		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
-        
-		removeOldMarkers();
-		manejador.abrir();
-		
-		switch (id) {			
-		default:				
-					return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.ic_launcher)
-					.setTitle(encabezado)//Cambiar después
-					.setItems(items, new DialogInterface.OnClickListener() {
-			
-					    public void onClick(DialogInterface dialog, int which) {
-					    	Toast.makeText(
-									getBaseContext(),
-									items[which],
-									Toast.LENGTH_SHORT).show();
-					    	
-					    	int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
-					    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada);
-					    	markerList.addAll(sv.getVariablesDibujadas());
-					    }
-					
-					})
-			.create();
-			}
-	}
-
-	void removeOldMarkers (){
-		for (int i = 0; i < markerList.size(); i++) {
-			mapView.getLayerManager().getLayers().remove(markerList.get(i));
-		}
-		markerList.clear();
 	}
 }
 
