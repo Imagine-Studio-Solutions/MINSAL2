@@ -314,28 +314,31 @@ public class MainActivityMapa extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-	switch (item.getItemId()) {
-    case R.id.action_posicion:
-    	//mostar_archivo_pdf("manualAppSiff.pdf"); 
-    	if(modoSeguimiento){
-    		Toast.makeText(this, "activando modo de seguimiento constante",
-    				Toast.LENGTH_SHORT).show();
-    		modoSeguimiento = false;
-    		mlocListener.setModoSeguimiento(false);
-    	}
-    	else{
-    		Toast.makeText(this, "activando modo de seguimiento discreto",
-    				Toast.LENGTH_SHORT).show();
-    		modoSeguimiento = true;
-    		mlocListener.setModoSeguimiento(true);
-    	}
-    	
-        break;       
-	}
-	return true; 
+	    if (toggle.onOptionsItemSelected(item)) {
+	    	// Handle action bar item clicks here. The action bar will
+			// automatically handle clicks on the Home/Up button, so long
+			// as you specify a parent activity in AndroidManifest.xml.
+	    	switch (item.getItemId()) {
+	        case R.id.action_posicion:
+	        	//mostar_archivo_pdf("manualAppSiff.pdf"); 
+	        	if(modoSeguimiento){
+	        		Toast.makeText(this, "activando modo de seguimiento constante",
+	        				Toast.LENGTH_SHORT).show();
+	        		modoSeguimiento = false;
+	        		mlocListener.setModoSeguimiento(false);
+	        	}
+	        	else{
+	        		Toast.makeText(this, "activando modo de seguimiento discreto",
+	        				Toast.LENGTH_SHORT).show();
+	        		modoSeguimiento = true;
+	        		mlocListener.setModoSeguimiento(true);
+	        	}
+	        	
+	            break;       
+	    	}
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
 	}
  
 	// Activamos el toggle con el icono
