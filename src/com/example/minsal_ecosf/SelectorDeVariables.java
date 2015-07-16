@@ -7,6 +7,7 @@ import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
 
+import com.fichafamiliar.MainActivityMapa;
 import com.fichafamiliar.R;
 
 import android.app.AlertDialog;
@@ -36,6 +37,33 @@ public class SelectorDeVariables {
         Cursor c;
         
 		switch(idNivel1){
+		
+		case 0://Riesgo
+			switch (idOpcion2Seleccionada) {
+			case 0:
+				//riesgoAlto();
+				Toast.makeText(ctx, "Agregar llamada a función R. Alto", Toast.LENGTH_SHORT).show();
+				break;
+			case 1:
+				//riesgoMedio();
+				Toast.makeText(ctx, "Agregar llamada a función R. Medio", Toast.LENGTH_SHORT).show();
+				break;
+			case 2:
+				//riesgoBajo();
+				Toast.makeText(ctx, "Agregar llamada a función R. Bajo", Toast.LENGTH_SHORT).show();
+				break;
+			case 3:
+				//viviendasDeshabitadas();
+				Toast.makeText(ctx, "Agregar llamada a función Viviendas Desabitadas", Toast.LENGTH_SHORT).show();
+				break;
+			case 4:
+				//dibujarCasitas();
+				Toast.makeText(ctx, "Agregar llamada a función Todas las casas", Toast.LENGTH_SHORT).show();
+				break;
+			
+			}
+			break;
+		
 		
     	//Opciones para Opciones de Menú que son tablas catálogos		
 		case 1:
@@ -935,7 +963,7 @@ public class SelectorDeVariables {
 	    			c= manejador.laminaMetalicaEnMalEstado();
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar icono
-		    			p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.adobe));
+		    			p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_mal_estado));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con material de paredes \"Lámina metálica en mal estado\" son: "+ c.getCount());
@@ -1245,7 +1273,7 @@ public class SelectorDeVariables {
 	    			c= manejador.madera();
 	    			
 	    			if(c.getCount()!=0){
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.madera));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_buen_estado));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con material de paredes \"Lámina metálica en buen estado\" son: "+ c.getCount());
@@ -1636,7 +1664,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_buen_estado));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con material de techo \"Lámina metálica en buen estado\" son: "+c.getCount());
@@ -1675,7 +1703,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_mal_estado));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con material de techo \"Lámina metálica en mal estado\" son: "+c.getCount());
@@ -2114,8 +2142,8 @@ public class SelectorDeVariables {
 	    			c= manejador.canieriaDentroAnda();
 	    			
 	    			if(c.getCount()!=0){
-	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.canieria_dentro_de_la_vivienda_anda));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Por cañería dentro de la vivienda con abastecimiento público (ANDA)\" son: "+c.getCount());
@@ -2153,8 +2181,8 @@ public class SelectorDeVariables {
 	    			c= manejador.canieriaDentroOtroAbastecimiento();
 	    			
 	    			if(c.getCount()!=0){
-	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.canieria_dentro_de_la_vivienda_otro));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Por cañería dentro de la vivienda con otro tipo de abastecimiento\" son: "+c.getCount());
@@ -2193,7 +2221,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.canieria_fuera_de_la_propiedad));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Por cañería fuera de la propiedad\" son: "+c.getCount());
@@ -2232,7 +2260,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.pozo_dentro_de_la_propiedad));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Por pozo dentro de la propiedad\" son: "+c.getCount());
@@ -2271,7 +2299,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.camion_carreta_pipa));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Camión, carreta o pipa\" son: "+c.getCount());
@@ -2310,7 +2338,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.agua_lluvia));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Agua lluvia\" son: "+c.getCount());
@@ -2349,7 +2377,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.rio_quebrada_ojo_de_agua_manantial));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Río, quebrada, lago, ojo de agua o manantial\" son: "+c.getCount());
@@ -2388,7 +2416,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.pozo_fuera_uso_comunitario));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Pozo fuera de la propiedad (De uso comunitario)\" son: "+c.getCount());
@@ -2427,7 +2455,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.canieria_fuera_de_la_propiedad));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con abastecimiento de agua \"Por cañería fuera de la propiedad\" son: "+c.getCount());
@@ -2470,8 +2498,8 @@ public class SelectorDeVariables {
 	    			c= manejador.electricidad();
 	    			
 	    			if(c.getCount()!=0){
-	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.electricidad));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Electricidad\" son: "+c.getCount());
@@ -2510,7 +2538,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.conexion_electrica_del_vecino));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Conexión eléctrica del vecino\" son: "+c.getCount());
@@ -2549,7 +2577,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.kerosene));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Kerosene\" son: "+c.getCount());
@@ -2588,7 +2616,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.candela));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Candela\" son: "+c.getCount());
@@ -2627,7 +2655,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.panel_solar));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Panel solar\" son: "+c.getCount());
@@ -2666,7 +2694,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.generador_electrico));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Generador eléctrico\" son: "+c.getCount());
@@ -2705,7 +2733,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otra_clase_alumbradoi));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con alumbrado por \"Otra clase\" son: "+c.getCount());
@@ -2749,7 +2777,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cultivo_agricola_propio));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Cultivo agrícola propio\" son: "+c.getCount());
@@ -2788,7 +2816,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.aves_de_corral));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Aves de corral\" son: "+c.getCount());
@@ -2827,7 +2855,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ganado_vacuno));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Ganado vacuno\" son: "+c.getCount());
@@ -2866,7 +2894,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ganado_porcino));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Ganado porcino\" son: "+c.getCount());
@@ -2906,7 +2934,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.negocio_propio));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Negocio propio\" son: "+c.getCount());
@@ -2945,7 +2973,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ninguno));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia\"Ningún bien\" son: "+c.getCount());
@@ -2991,7 +3019,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.radio));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes del hogar \"Radio\" son: "+c.getCount());
@@ -3030,7 +3058,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.equipo_de_sonido));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes del hogar \"Equipo de sonido\" son: "+c.getCount());
@@ -3069,7 +3097,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.televisor));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes del hogar \"Telvisor\" son: "+c.getCount());
@@ -3108,7 +3136,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.refrigeradora));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes del hogar \"Refrigeradora\" son: "+c.getCount());
@@ -3148,7 +3176,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lavadora));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes del hogar \"Lavadora\" son: "+c.getCount());
@@ -3187,7 +3215,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.computadora));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia \"Computadora\" son: "+c.getCount());
@@ -3226,7 +3254,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ninguno));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con bienes de familia \"Ningún bien\" son: "+c.getCount());
@@ -3270,7 +3298,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.electricidad));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Electricidad\" como combustible para cocinar son: "+c.getCount());
@@ -3309,7 +3337,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.kerosen_gas));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Kerosen (gas)\" como combustible para cocinar son: "+c.getCount());
@@ -3348,7 +3376,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.gas_propano));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Gas propano\" como combustible para cocinar son: "+c.getCount());
@@ -3387,7 +3415,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lenia));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Leña\" como combustible para cocinar son: "+c.getCount());
@@ -3426,7 +3454,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.carbon));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Carbón\" como combustible para cocinar son: "+c.getCount());
@@ -3464,7 +3492,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.estopa_de_coco));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Estopa de coco\" como combustible para cocinar son: "+c.getCount());
@@ -3503,7 +3531,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_cocina));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Otras\" como combustible para cocinar son: "+c.getCount());
@@ -3542,7 +3570,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ninguno));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que utilizan \"Ninguna\" como combustible para cocinar son: "+c.getCount());
@@ -3586,7 +3614,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.recoleccion_domiciliaria_publica));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"Recolección domiciliaria pública\" son: "+c.getCount());
@@ -3625,7 +3653,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.recoleccion_domiciliaria_privada));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"Recolección domiciliaria privada\" son: "+c.getCount());
@@ -3664,7 +3692,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.la_depositan_en_contenedores));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"La depositan en contenedores\" son: "+c.getCount());
@@ -3703,7 +3731,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.la_entierran));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"La entierran\" son: "+c.getCount());
@@ -3742,7 +3770,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.la_quman));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"La queman\" son: "+c.getCount());
@@ -3781,7 +3809,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.la_depositan_en_cualquier_lugar));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"La depositan en cualquier lugar\" son: "+c.getCount());
@@ -3820,7 +3848,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otras_formas_basura));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con manejo de basura \"Otras formas\" son: "+c.getCount());
@@ -3864,7 +3892,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.telefono_fijo));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que tienen medio de comunicación \"Teléfono fijo\" son: "+c.getCount());
@@ -3903,7 +3931,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.telefono_celular));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que tienen medio de comunicación \"Teléfono celular\" son: "+c.getCount());
@@ -3942,7 +3970,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.internet));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que tienen medio de comunicación \"Internet\" son: "+c.getCount());
@@ -4020,7 +4048,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.no_tiene_medio_comunicacion));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas que tienen medio de comunicación \"No tiene\" son: "+c.getCount());
@@ -4064,7 +4092,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.zancudos));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Zancudos\" son: "+c.getCount());
@@ -4103,7 +4131,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.chinche_picuda));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Chinche picuda\" son: "+c.getCount());
@@ -4142,7 +4170,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.moscas));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Moscas\" son: "+c.getCount());
@@ -4181,7 +4209,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cucarachas));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Cucarachas\" son: "+c.getCount());
@@ -4220,7 +4248,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.roedores));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Roedores\" son: "+c.getCount());
@@ -4259,7 +4287,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_vectores));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"Otros\" son: "+c.getCount());
@@ -4298,7 +4326,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ninguno));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con presencia de vectores \"No hay presencia de vectores\" son: "+c.getCount());
@@ -5656,9 +5684,9 @@ public class SelectorDeVariables {
 				do{
 					double lon = c.getDouble(0);
 					double lat = c.getDouble(1);
-					Toast.makeText(ctx, "Lat: "+lat+"| Lon: "+lon, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(ctx, "Lat: "+lat+"| Lon: "+lon, Toast.LENGTH_SHORT).show();
 					Cursor info = manejador.informacionFamilia(lon, lat);
-					Toast.makeText(ctx, "Total info: "+ info.getCount(), Toast.LENGTH_SHORT).show();
+					//Toast.makeText(ctx, "Total info: "+ info.getCount(), Toast.LENGTH_SHORT).show();
 					if(info.moveToFirst()){
 						do{
 							int depto = info.getInt (0);
@@ -5670,7 +5698,7 @@ public class SelectorDeVariables {
     					    String num_familia = info.getString(6);
     					    			
     					    String num_exp = info.getString(0)+ info.getString(1)+ info.getString(2)+info.getString(3)+info.getString(4)+info.getString(5)+info.getString(6);
-    					    Toast.makeText(ctx, "Antes de dibujar punto", Toast.LENGTH_SHORT).show();
+    					    //Toast.makeText(ctx, "Antes de dibujar punto", Toast.LENGTH_SHORT).show();
     						MyMarker fichaFiltro = new MyMarker(ctx, new LatLong(lat,lon), p, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+info.getString(7), false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
     						mapView.getLayerManager().getLayers().add(fichaFiltro);
     						markerList.add(fichaFiltro);

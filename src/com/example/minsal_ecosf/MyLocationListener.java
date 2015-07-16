@@ -32,7 +32,7 @@ public class MyLocationListener implements LocationListener{
 	
 	ProgressDialog PD;
 	
-	
+	boolean modoSeguimiento;
 	boolean band = true;
 	boolean isGPSEnabled = false;
 	boolean isNetworkEnabled = false;
@@ -53,6 +53,7 @@ public class MyLocationListener implements LocationListener{
 		this.mrk = mrk;
 		this.mapView = mapView;
 		this.locationManager = mlocManager;
+		this.modoSeguimiento = true;
 		getLocation();
 		if(canGetLocation()){
 			showLoadingAlert();
@@ -163,11 +164,11 @@ public class MyLocationListener implements LocationListener{
 	}
 	
 	public void showLoadingAlert(){
-		/*PD = new ProgressDialog(ctx);
-		//PD.setTitle("Por favor espere...");
+		PD = new ProgressDialog(ctx);
+		PD.setTitle("Por favor espere...");
 		PD.setMessage("Por favor espere, Cargando GPS del dispositivo...");
 		PD.setCancelable(false);
-		PD.show();	*/
+		PD.show();	
 	}
 	/**
 	 * Function to show settings alert dialog
@@ -218,7 +219,19 @@ public class MyLocationListener implements LocationListener{
 			onFocusMapPosition ();
 			band=false;
 		}
+		if(!modoSeguimiento){
+			getLocation();
+			//latitud = getLatitude();
+			//longitud = getLongitude();
+			mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
+			//Toast.makeText(ctx, "GPS actualizado", Toast.LENGTH_SHORT).show();
+			mapView.getLayerManager().redrawLayers(); 
+		}
 		//mapView.getLayerManager().redrawLayers(); 
+	}
+	
+	public void setModoSeguimiento(boolean modoSeguimiento){
+		this.modoSeguimiento = modoSeguimiento;
 	}
 	
 	public void actualizarPosicion(){

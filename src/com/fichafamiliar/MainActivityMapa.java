@@ -82,6 +82,10 @@ public class MainActivityMapa extends Activity {
 	private int id_estasib_user_sp; 
 	private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
  
+	//para listener...
+	private MyLocationListener mlocListener;
+	private boolean modoSeguimiento = true;
+		
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -270,7 +274,7 @@ public class MainActivityMapa extends Activity {
 		//---------------------------------GPS----------------------------------
 		/* usando la clase LocationManager para obtener informacion GPS*/
 		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		final MyLocationListener mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
+		mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
 		//----------------------------------------------------------------------
 		//para click del boton FAB
 		ImageButton fabImageButton = (ImageButton) findViewById(R.id.fab_image_button);
@@ -278,13 +282,19 @@ public class MainActivityMapa extends Activity {
 	    fabImageButton.setOnClickListener(new View.OnClickListener() {
 	        @Override
 	        public void onClick(View v) {
-	        	//mlocListener.onFocusMapPosition ();
-	        	if(!mlocListener.canGetLocation()){
-	        		mlocListener.showSettingsAlert();
+	        	if(modoSeguimiento){
+		        	//mlocListener.onFocusMapPosition ();
+		        	if(!mlocListener.canGetLocation()){
+		        		mlocListener.showSettingsAlert();
+		        	}
+		        	else{
+		        		mlocListener.actualizarPosicion();
+		        	}
 	        	}
 	        	else{
-	        		mlocListener.actualizarPosicion();
+	        		mlocListener.onFocusMapPosition ();
 	        	}
+	        	//mlocListener.onFocusMapPosition ();
 	        }
 	    });
 	}
@@ -298,16 +308,34 @@ public class MainActivityMapa extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.menu_mapa, menu);
 		return true;
 	}
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (toggle.onOptionsItemSelected(item)) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+	switch (item.getItemId()) {
+    case R.id.action_posicion:
+    	//mostar_archivo_pdf("manualAppSiff.pdf"); 
+    	if(modoSeguimiento){
+    		Toast.makeText(this, "activando modo de seguimiento constante",
+    				Toast.LENGTH_SHORT).show();
+    		modoSeguimiento = false;
+    		mlocListener.setModoSeguimiento(false);
+    	}
+    	else{
+    		Toast.makeText(this, "activando modo de seguimiento discreto",
+    				Toast.LENGTH_SHORT).show();
+    		modoSeguimiento = true;
+    		mlocListener.setModoSeguimiento(true);
+    	}
+    	
+        break;       
+	}
+	return true; 
 	}
  
 	// Activamos el toggle con el icono
