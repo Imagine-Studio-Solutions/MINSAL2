@@ -12,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
@@ -165,10 +166,25 @@ public class MyLocationListener implements LocationListener{
 	
 	public void showLoadingAlert(){
 		PD = new ProgressDialog(ctx);
-		PD.setTitle("Por favor espere...");
 		PD.setMessage("Por favor espere, Cargando GPS del dispositivo...");
 		PD.setCancelable(false);
-		PD.show();	
+		PD.show();
+		CountDownTimer CD = new CountDownTimer(30000, 1000) {
+			@Override
+			public void onFinish() {
+				if (band){
+					PD.dismiss();
+					showSettingsAlert();
+					band=false;
+				}
+		    }
+
+			@Override
+			public void onTick(long millisUntilFinished) {
+				// TODO Auto-generated method stub
+				
+			}
+		}.start();
 	}
 	/**
 	 * Function to show settings alert dialog
@@ -181,24 +197,14 @@ public class MyLocationListener implements LocationListener{
         alertDialog.setTitle("Advertencia:");
  
         // Setting Dialog Message
-        alertDialog.setMessage("Se ha detectado que el sistema GPS esta desactivado, por favor habilitar GPS.");
+        alertDialog.setMessage("El sistema GPS esta desactivado o no es posible calcular su posicion en este momento.");
  
         // On pressing Settings button
         alertDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
-            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-            	//ctx.startActivity(intent);
             	dialog.cancel();
             }
         });
-        /*
-        // on pressing cancel button
-        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            dialog.cancel();
-            }
-        });*/
- 
         // Showing Alert Message
         alertDialog.show();
 	}
@@ -206,13 +212,8 @@ public class MyLocationListener implements LocationListener{
 	
 	@Override
 	public void onLocationChanged(Location loc){
-		/*getLocation();
-		//latitud = getLatitude();
-		//longitud = getLongitude();
-		mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));*/
 		if (band){
 			PD.dismiss();
-			//Toast.makeText(ctx, "GPS activado", Toast.LENGTH_SHORT).show();
 			getLocation();
 			mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
 			mapView.getLayerManager().redrawLayers();
@@ -221,13 +222,9 @@ public class MyLocationListener implements LocationListener{
 		}
 		if(!modoSeguimiento){
 			getLocation();
-			//latitud = getLatitude();
-			//longitud = getLongitude();
 			mrk.setLatLong(new LatLong(getLatitude(), getLongitude()));
-			//Toast.makeText(ctx, "GPS actualizado", Toast.LENGTH_SHORT).show();
 			mapView.getLayerManager().redrawLayers(); 
 		}
-		//mapView.getLayerManager().redrawLayers(); 
 	}
 	
 	public void setModoSeguimiento(boolean modoSeguimiento){

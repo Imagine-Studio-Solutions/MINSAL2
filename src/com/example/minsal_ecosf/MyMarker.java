@@ -86,19 +86,23 @@ public class MyMarker extends Marker{
 	@Override
 	public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
 		if (this.contains(layerXY, tapXY) && !tapped) {
+			
 			markerBubble = new InfoMarker(ctx, tapLatLong, bubble, 0, -bubble.getHeight()/2, infoType, tieneExp, depto, 
 					municipio, area, ctn_bar_col, zona, num_vivienda, num_familia);
 			((InfoMarker) markerBubble).setIdEstasib(id_estasib_user_sp);
 			mapView.getLayerManager().getLayers().add(markerBubble);
-			tapped = !tapped;
+			tapped = true;
 			super.onTap(tapLatLong, layerXY, tapXY);
 			return true;
-		}else if (!this.contains(layerXY, tapXY) && tapped) {
-			mapView.getLayerManager().getLayers().remove(markerBubble);
-			tapped = !tapped;
-			return true;
-		}else
+		}else{
+			try{
+				mapView.getLayerManager().getLayers().remove(markerBubble);
+				tapped = false;
+			}catch (Exception e){
+				
+			}
 			return false;
+		}
 	}
 	
 	@SuppressWarnings("deprecation")

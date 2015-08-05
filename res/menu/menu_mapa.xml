@@ -6,5 +6,10 @@
     <item
         android:id="@+id/action_posicion"
         android:orderInCategory="100"
-        android:title="Activar seguimiento posicion"/>
+        android:title="Configurar modo seguimiento"/>
+    
+        <item
+        android:id="@+id/action_creditos"
+        android:orderInCategory="100"
+        android:title="Creditos"/>
 </menu>

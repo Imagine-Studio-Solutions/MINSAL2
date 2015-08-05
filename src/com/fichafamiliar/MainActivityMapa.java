@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,12 +24,16 @@ import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
+import org.mapsforge.map.layer.Layer;
+import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
+import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
 import com.example.minsal_ecosf.*;
 import com.fichafamiliar.R;
+import com.fichafamiliar.R.string;
  
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,6 +56,7 @@ public class MainActivityMapa extends Activity {
 	private MapView mapView;
 	private TileCache tileCache;
 	private TileRendererLayer tileRendererLayer;
+	private MyMarker gpsPointer;
 	
 	//---------------------Menu lateral-------------------------
 	private DrawerLayout drawerLayout;
@@ -71,13 +77,11 @@ public class MainActivityMapa extends Activity {
 	//Para subítems
 	private Cursor cSubmenu;
 	private String idSubMenu[];
+	private String valores[];
+	private String valor;
 	//Para el submenú 
 	private String encabezado; 
 	private int idNivel1;
-	
-	//para los markers
-	private ArrayList<MyMarker> markerList = new ArrayList<MyMarker>();
-	//----------------------------------------------------------
     
 	private int id_estasib_user_sp; 
 	private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
@@ -142,10 +146,10 @@ public class MainActivityMapa extends Activity {
  
 		mapView.getModel().mapViewPosition.setCenter(new LatLong(13.6801783,-89.231388));//punto inical del mapa
  
-		MyMarker marker = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)),
+		gpsPointer = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)),
 				0, 0, mapView, "Posicion actual del equipo", true, false,0, 0, "", 0,"", "", "");
-		marker.setIdEstasib(id_estasib_user_sp);
-		mapView.getLayerManager().getLayers().add(marker);
+		gpsPointer.setIdEstasib(id_estasib_user_sp);
+		mapView.getLayerManager().getLayers().add(gpsPointer);
 		
 		//------------------------------------------------------------------------------------
 		
@@ -172,8 +176,8 @@ public class MainActivityMapa extends Activity {
 		
 		cMenu = manejador.menuNivel1();		
 		int cant = cMenu.getCount(); 
-		opciones = new String[cant+3];
-		idMenu = new String [cant+3];
+		opciones = new String[cant+4];
+		idMenu = new String [cant+4];
 		
 		//Para filtros de catálogos
 		opciones[0]= "Riesgo o Vulnerabilidad";
@@ -207,11 +211,8 @@ public class MainActivityMapa extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
+				removeOldMarkers();
 				if(idMenu[arg2].equals("4")){
-					removeOldMarkers();
-					/*idNivel1 = Integer.parseInt(idMenu[arg2]);
-			    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,0);
-			    	markerList.addAll(sv.getVariablesDibujadas());*/
 					dibujarCasitas();
 				}
 				else{
@@ -220,22 +221,49 @@ public class MainActivityMapa extends Activity {
 					idNivel1 = Integer.parseInt(idMenu[arg2]);
 					encabezado = opciones[arg2];
 					int lon = cSubmenu.getCount();
-					idSubMenu = new String [lon];
+					idSubMenu = new String [lon+1];
+					valores = new String [lon+1];
 					
 					try{
 						if(cSubmenu.moveToFirst()){
-							int i=0;
+							int i=1;
 							listItems.clear();
-							do{
-								listItems.add(cSubmenu.getString(0));
-								idSubMenu[i]=cSubmenu.getString(1);
-								i++;
-							}while(cSubmenu.moveToNext());
-							showDialog(band);
-							band++;
+							
+							
+							if(idNivel1>3){
+								if(idNivel1 == 59 || idNivel1 == 60 || idNivel1 ==64 || idNivel1 == 70 || idNivel1 == 61){
+									do{
+										listItems.add(cSubmenu.getString(0));
+										idSubMenu[i]=cSubmenu.getString(1);
+										valores[i]= cSubmenu.getString(2);
+										i++;
+									}while(cSubmenu.moveToNext());
+									showDialog(band);
+									band++;
+								}else{
+									listItems.add("Ver totales por descriptor");
+									do{
+										listItems.add(cSubmenu.getString(0));
+										idSubMenu[i]=cSubmenu.getString(1);
+										valores[i]= cSubmenu.getString(2);
+										i++;
+									}while(cSubmenu.moveToNext());
+									showDialog(band);
+									band++;
+								}
+							}else{
+								do{
+									listItems.add(cSubmenu.getString(0));
+									idSubMenu[i]=cSubmenu.getString(1);
+									valor = "0";
+									i++;
+								}while(cSubmenu.moveToNext());
+								showDialog(band);
+								band++;
+							}
 						}
 					}catch (Exception e){
-						Toast.makeText(MainActivityMapa.this, (CharSequence) e, Toast.LENGTH_SHORT).show();
+						Toast.makeText(MainActivityMapa.this, "Error: "+e, Toast.LENGTH_SHORT).show();
 					}
 				}
 				
@@ -271,10 +299,10 @@ public class MainActivityMapa extends Activity {
 
 		drawerLayout.setDrawerListener(toggle);
 		
-		//---------------------------------GPS----------------------------------
-		/* usando la clase LocationManager para obtener informacion GPS*/
+			//---------------------------------GPS----------------------------------
+			/* usando la clase LocationManager para obtener informacion GPS*/
 		LocationManager mlocManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		mlocListener = new MyLocationListener(this, marker, mapView, mlocManager);
+		mlocListener = new MyLocationListener(this, gpsPointer, mapView, mlocManager);
 		//----------------------------------------------------------------------
 		//para click del boton FAB
 		ImageButton fabImageButton = (ImageButton) findViewById(R.id.fab_image_button);
@@ -283,7 +311,6 @@ public class MainActivityMapa extends Activity {
 	        @Override
 	        public void onClick(View v) {
 	        	if(modoSeguimiento){
-		        	//mlocListener.onFocusMapPosition ();
 		        	if(!mlocListener.canGetLocation()){
 		        		mlocListener.showSettingsAlert();
 		        	}
@@ -294,15 +321,16 @@ public class MainActivityMapa extends Activity {
 	        	else{
 	        		mlocListener.onFocusMapPosition ();
 	        	}
-	        	//mlocListener.onFocusMapPosition ();
 	        }
 	    });
 	}
 	
 	@Override
 	protected void onDestroy() {
+		removeOldMarkers();
 		mapView.destroy();
 		super.onDestroy();
+		this.finish();
 	}
 
 	@Override
@@ -314,32 +342,43 @@ public class MainActivityMapa extends Activity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    if (toggle.onOptionsItemSelected(item)) {
-	    	// Handle action bar item clicks here. The action bar will
-			// automatically handle clicks on the Home/Up button, so long
-			// as you specify a parent activity in AndroidManifest.xml.
-	    	switch (item.getItemId()) {
-	        case R.id.action_posicion:
-	        	//mostar_archivo_pdf("manualAppSiff.pdf"); 
-	        	if(modoSeguimiento){
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+    	switch (item.getItemId()) {
+        case R.id.action_posicion:
+        	if(modoSeguimiento){
+	        	if(!mlocListener.canGetLocation()){
+	        		mlocListener.showSettingsAlert();
+	        	}
+	        	else{
 	        		Toast.makeText(this, "activando modo de seguimiento constante",
 	        				Toast.LENGTH_SHORT).show();
 	        		modoSeguimiento = false;
 	        		mlocListener.setModoSeguimiento(false);
 	        	}
-	        	else{
-	        		Toast.makeText(this, "activando modo de seguimiento discreto",
-	        				Toast.LENGTH_SHORT).show();
-	        		modoSeguimiento = true;
-	        		mlocListener.setModoSeguimiento(true);
-	        	}
-	        	
-	            break;       
-	    	}
-	        return true;
-	    }
-	    return super.onOptionsItemSelected(item);
+        	}
+        	else{
+        		if(!mlocListener.canGetLocation()){
+        			mlocListener.showSettingsAlert();
+        		}
+        		else{
+            		Toast.makeText(this, "activando modo de seguimiento discreto",
+            				Toast.LENGTH_SHORT).show();
+            		modoSeguimiento = true;
+            		mlocListener.setModoSeguimiento(true);
+        		}
+        	}
+        	
+            break;
+        case R.id.action_creditos:
+        	showCredits();
+        	break;
+    	}
+		return toggle != null && toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 	}
+	
+
  
 	// Activamos el toggle con el icono
 	@Override
@@ -352,43 +391,83 @@ public class MainActivityMapa extends Activity {
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		final CharSequence[] items;
-		
+
 		items = listItems.toArray(new CharSequence[listItems.size()]);
-		
+
 		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
-        
+
 		removeOldMarkers();
 		manejador.abrir();
-		
+
 		switch (id) {			
 		default:				
-					return new AlertDialog.Builder(this)
-					.setIcon(R.drawable.ic_launcher)
-					.setTitle(encabezado)//Cambiar después
-					.setItems(items, new DialogInterface.OnClickListener() {
-			
-					    public void onClick(DialogInterface dialog, int which) {
-					    	int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
-					    	SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada);
-					    	markerList.addAll(sv.getVariablesDibujadas());
-					    }
-					
-					})
+			return new AlertDialog.Builder(this)
+			.setIcon(R.drawable.ic_launcher)
+			.setTitle(encabezado)//Cambiar después
+			.setItems(items, new DialogInterface.OnClickListener() {
+
+				public void onClick(DialogInterface dialog, int which) {
+
+					if(idNivel1>3){
+						if (which == 0 && idNivel1 != 59 && idNivel1 != 60 && idNivel1 !=64 && idNivel1 != 70 && idNivel1 != 61){
+							int cant = cSubmenu.getCount();
+							int i=0;
+							Cursor t;
+							String mensaje = "El total por descriptor es:\n";
+							for (i=1; i<=cant ; i++){
+								String valor = valores[i];
+								t = manejador.filtrar(idNivel1,Integer.parseInt(idSubMenu[i]),valor);
+								String descriptor = items[i] + ": ";	
+								String total = Integer.toString(t.getCount());
+								mensaje = mensaje + descriptor + total + "\n";
+							}
+							AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivityMapa.this);
+							// Setting Dialog Title
+							alertDialog.setTitle("Información");  
+							alertDialog.setMessage(mensaje);
+							// On pressing Settings button
+							alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,int which) {							            	
+									dialog.cancel();
+								}
+							});
+							alertDialog.show();
+						}
+						else{
+							if (idNivel1 != 59 && idNivel1 != 60 && idNivel1 !=64 && idNivel1 != 70 && idNivel1 != 61){
+								int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
+								valor = valores[which];
+								SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+							}else{
+								int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which+1]);
+								valor = valores[which];
+								SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+							}
+
+
+						}																											
+
+					}
+					else{
+						int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which+1]);
+						SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+					}
+				}
+
+			})
 			.create();
-			}
+		}
 	}
 
 	void removeOldMarkers (){
-		for (int i = 0; i < markerList.size(); i++) {
-			mapView.getLayerManager().getLayers().remove(markerList.get(i));
-		}
-		markerList.clear();
+		mapView.getLayerManager().getLayers().clear();
+		mapView.getLayerManager().getLayers().add(tileRendererLayer);
+		mapView.getLayerManager().getLayers().add(gpsPointer);
 	}
 	
 	
 	void dibujarCasitas(){
 		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
-		//Handler_sqlite manejador;
 		manejador.abrir();
 		/*******************************************************************************************************************
 		 *********************************** PARA MOSTRAR CASITAS POR RIESGO ***********************************************
@@ -425,7 +504,14 @@ public class MainActivityMapa extends Activity {
 				    num_familia = c.getString(10);
 					jefe = c.getString(11);
 					
-					num_exp = c.getString(4) + c.getString(5) + area + ctn_bar_col + c.getString(8) + num_vivienda + num_familia;
+					num_exp = "";
+					
+					if (area.equals("R")){
+						num_exp = manejador.numeroDeExpedienteRural(c.getString(0), c.getString(1));
+					}
+					else{
+						num_exp = manejador.numeroDeExpedienteUrbano(c.getString(0), c.getString(1));
+					}
 					
 					switch(tipo_riesgo){
 					
@@ -433,21 +519,18 @@ public class MainActivityMapa extends Activity {
 						case 1:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.red_house));
 								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
-								markerList.add(fichasDefault);
 								break;
 								
 						//Riesgo Medio--> Amarillo
 						case 2:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.yellow_house));
 								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
-								markerList.add(fichasDefault);
 								break;		
 						
 						//Riesgo Bajo--> Verde
 						case 3:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.green_house));
 								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
-								markerList.add(fichasDefault);
 								break;
 										
 					}					
@@ -469,7 +552,6 @@ public class MainActivityMapa extends Activity {
 					pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.lightblue_house));
 					fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada", false, false, 0, 0, "", 0,"", "", "");
 					mapView.getLayerManager().getLayers().add(fichasDefault);
-					markerList.add(fichasDefault);
 				}while(c.moveToNext());
 				manejador.cerrar();
 			}
@@ -477,6 +559,23 @@ public class MainActivityMapa extends Activity {
 		catch (Exception e){
 			
 		}
+	}
+	
+	public void showCredits(){
+		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+   	 
+		LayoutInflater factory = LayoutInflater.from(this);
+		final View view = factory.inflate(R.layout.mapa_about, null);
+		alertDialog.setView(view);
+		
+        // On pressing Settings button
+        alertDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog,int which) {
+            	dialog.cancel();
+            }
+        });
+        // Showing Alert Message
+        alertDialog.show();
 	}
 }
 

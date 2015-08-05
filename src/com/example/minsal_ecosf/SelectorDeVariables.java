@@ -11,6 +11,7 @@ import com.fichafamiliar.MainActivityMapa;
 import com.fichafamiliar.R;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -18,13 +19,14 @@ import android.widget.Toast;
 
 public class SelectorDeVariables {
 	
-	private ArrayList<MyMarker> markerList = new ArrayList<MyMarker>();
+	//private ArrayList<MyMarker> markerList = new ArrayList<MyMarker>();
 	private Context ctx;
 	private Handler_sqlite manejador;
 	private MapView mapView;
 	private Bitmap p;
+	private Cursor cd; //cursor dibujo
 	
-	public SelectorDeVariables(Context ctx, Handler_sqlite manejador, MapView mapView, int idNivel1,int idOpcion2Seleccionada) {
+	public SelectorDeVariables(Context ctx, Handler_sqlite manejador, MapView mapView, int idNivel1,int idOpcion2Seleccionada, String valor) {
 		this.ctx = ctx;
 		this.manejador = manejador;
 		this.mapView = mapView;
@@ -70,6 +72,7 @@ public class SelectorDeVariables {
 			switch(idOpcion2Seleccionada){
 			case 1:
 				c= manejador.noPerteneceAPueblosIndigenas();
+				
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
@@ -79,9 +82,7 @@ public class SelectorDeVariables {
 			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
-			            	dialog.cancel();
+			                    dialog.cancel();
 			            }
 			        });
 			        alertDialog.show();
@@ -90,14 +91,12 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"No pertenece a pueblos indígenas\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
+			            	
 			            	dialog.cancel();
 			            }
 			        });
@@ -109,15 +108,11 @@ public class SelectorDeVariables {
 				c= manejador.nahuatPipil();
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
-	        		 
-			        // Setting Dialog Message
+	        		
 			        alertDialog.setMessage("El número de familias que se identifican con el pueblo indígena \"Nahuat/Pipil\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -127,14 +122,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"Nahuat/Pipil\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -147,14 +139,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias que se identifican con el pueblo indígena \"Chorti\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -164,14 +152,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+				
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"Chorti\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -184,14 +169,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias que se identifican con el pueblo indígena \"Cacaopera o kakawira\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -201,14 +182,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+				
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"Cacopera o kakawira\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -221,14 +199,11 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias que se identifican con el pueblo indígena \"Lenca\" son: "+ c.getCount());
 			 
 			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -238,14 +213,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"Lenca\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -258,14 +230,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias que se identifican con el pueblo indígena \"No dato\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -275,14 +243,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias que se identifiquen con el pueblo indígena \"No dato\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -300,14 +265,12 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen a la religión \"Ninguna religión\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
+			            
+			            	
 			            	dialog.cancel();
 			            }
 			        });
@@ -317,14 +280,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Ninguna religión\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -337,14 +297,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen a la religión \"Católicos\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -354,14 +310,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+				
 			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Católicos\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -374,14 +327,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen a la religión \"Evangélicos\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -391,14 +340,71 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Evangélicos\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
+			            	dialog.cancel();
+			            }
+			        });
+			        alertDialog.show();
+				}
+				break;
+				
+			case 4:
+				c= manejador.mormones();
+				if(c.getCount()!=0){
+					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
+	        		 
+			        alertDialog.setMessage("El número de familias pertencen a la religión \"Mormones\" son: "+ c.getCount());
+			 
+			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog,int which) {
+			            	dialog.cancel();
+			            }
+			        });
+			        alertDialog.show();
+			        
+					//Dibujando los puntos en el mapa
+					dibujarPuntosFiltrados (c, p);
+				}
+				else{
+					
+			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Mormones\" ");
+			 
+			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog,int which) {
+			            	dialog.cancel();
+			            }
+			        });
+			        alertDialog.show();
+				}
+				break;
+				
+			case 5:
+				c= manejador.masDeUnaReligion();
+				if(c.getCount()!=0){
+					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
+	        		
+			        alertDialog.setMessage("El número de familias pertencen a la religión \"Más de una religión\" son: "+ c.getCount());
+			 
+			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog,int which) {
+			            	dialog.cancel();
+			            }
+			        });
+			        alertDialog.show();
+			        
+					//Dibujando los puntos en el mapa
+					dibujarPuntosFiltrados (c, p);
+				}
+				else{
+		
+			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Más de una religión\" ");
+			 
+			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			            public void onClick(DialogInterface dialog,int which) {
 			            	dialog.cancel();
 			            }
 			        });
@@ -411,14 +417,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen a la religión \"Otros\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -428,14 +430,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+				
 			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"Otros\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -448,14 +447,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen a la religión \"No dato\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -465,14 +460,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias pertenezcan a la religión \"No dato\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -491,14 +483,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen al tipo de familia \"Familia nuclear\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -508,14 +496,12 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias pertenezcan al tipo de familia \"Familia nuclear\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
+
 			            	dialog.cancel();
 			            }
 			        });
@@ -528,14 +514,10 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen al tipo de familia \"Familia mixta o ampliada\" son: "+ c.getCount());
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -545,14 +527,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+				
 			        alertDialog.setMessage("No hay familias pertenezcan al tipo de familia \"Familia mixta o ampliada\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -564,14 +543,11 @@ public class SelectorDeVariables {
 				if(c.getCount()!=0){
 					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
 	        		 
-			        // Setting Dialog Message
 			        alertDialog.setMessage("El número de familias pertencen al tipo de familia \"Familia extensa o extendida\" son: "+ c.getCount());
 			 
 			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -581,14 +557,11 @@ public class SelectorDeVariables {
 					dibujarPuntosFiltrados (c, p);
 				}
 				else{
-					// Setting Dialog Message
+					
 			        alertDialog.setMessage("No hay familias pertenezcan al tipo de familia \"Familia extensa o extendida\" ");
 			 
-			        // On pressing Settings button
 			        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			            public void onClick(DialogInterface dialog,int which) {
-			            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-			            	//ctx.startActivity(intent);
 			            	dialog.cancel();
 			            }
 			        });
@@ -607,18 +580,15 @@ public class SelectorDeVariables {
 	    			switch (idOpcion2Seleccionada){
 	    			case 119:
 	    				//A cielo abierto al solar
-	    				c= manejador.aCieloAbiertoAlSolar();
+	    				//c= manejador.aCieloAbiertoAlSolar();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    				if(c.getCount()!=0){
 	    					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cielo_abierto_al_solar));	    				 	    			   	 
    		         		 
-		    		        // Setting Dialog Message
 		    		        alertDialog.setMessage("El número de viviendas que manejan las aguas grises \"A cielo abierto al solar\" son: "+ c.getCount());
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -628,14 +598,11 @@ public class SelectorDeVariables {
 		    				dibujarPuntosFiltrados (c, p);
 	    				}
 	    				else{
-	    					// Setting Dialog Message
+	    					
 		    		        alertDialog.setMessage("No hay viviendas con manejo de aguas grises \"A cielo abierto al solar\" ");
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -645,18 +612,15 @@ public class SelectorDeVariables {
 	    				
 	    			case 120:
 	    				//A la calle
-	    				c= manejador.aLaCalle();
+	    				//c= manejador.aLaCalle();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    				if(c.getCount()!=0){
 	    					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.a_la_calle));
    				 		 
-		    		        // Setting Dialog Message
 		    		        alertDialog.setMessage("El número de viviendas que manejan las aguas grises \"A la calle\" son: "+ c.getCount());
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -666,14 +630,11 @@ public class SelectorDeVariables {
 		    				dibujarPuntosFiltrados (c, p);
 	    				}
 	    				else{
-	    					// Setting Dialog Message
+	    					
 		    		        alertDialog.setMessage("No hay viviendas con manejo de aguas grises \"A la calle\" ");
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -683,18 +644,17 @@ public class SelectorDeVariables {
 	    				
 	    			case 117:
 	    				//La eliminación es a alcantarillado
-	    				c= manejador.eliminacionAAlcantarillado();
+	    				//c= manejador.eliminacionAAlcantarillado();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    				if(c.getCount()!=0){
 	    					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.es_a_alcantarillado));
 		    				
-		    				// Setting Dialog Message
 		    		        alertDialog.setMessage("El número de viviendas que manejan las aguas grises \"Por eliminación a alcantarillado\" son: "+ c.getCount());
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
+		    		            
+		    		            	
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -704,14 +664,11 @@ public class SelectorDeVariables {
 		    				dibujarPuntosFiltrados (c, p);
 	    				}
 	    				else{
-	    					// Setting Dialog Message
+	    					
 		    		        alertDialog.setMessage("No hay viviendas con manejo de aguas grises \"Por eliminación a alcantarillado\" ");
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -721,18 +678,15 @@ public class SelectorDeVariables {
 	    				
 	    			case 118:
 	    				//Por sistema de pozo resumidero
-	    				c= manejador.porPozoResumidero();
+	    				//c= manejador.porPozoResumidero();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    				if(c.getCount()!=0){
 	    					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.pozo_resumidero));
 	    				
-		    				// Setting Dialog Message
 		    		        alertDialog.setMessage("El número de viviendas que manejan las aguas grises \"Por sistema de pozo resumidero\" son: "+ c.getCount());
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -742,14 +696,11 @@ public class SelectorDeVariables {
 		    				dibujarPuntosFiltrados (c, p);
 	    				}
 	    				else{
-	    					// Setting Dialog Message
+	    				
 		    		        alertDialog.setMessage("No hay viviendas con manejo de aguas grises \"Por sistema de pozo resumidero\" ");
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -761,17 +712,16 @@ public class SelectorDeVariables {
 	    				
 	    			case 121:
 	    				//Quebradas ríos u otro lugar
-	    				c= manejador.quebradasORios();
+	    				//c= manejador.quebradasORios();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    				if(c.getCount()!=0){
 	    					p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.quebrada_rio));
-		    				// Setting Dialog Message
+		    			
 		    		        alertDialog.setMessage("El número de viviendas que manejan las aguas grises \"Por quebrada río u otro lugar\" son: "+ c.getCount());
 		    		 
-		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
+		    		            public void onClick(DialogInterface dialog,int which) {		    		            	
+		    		            	
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -787,8 +737,8 @@ public class SelectorDeVariables {
 		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
+		    		            
+		    		            	
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -801,7 +751,8 @@ public class SelectorDeVariables {
 	    	case 23:
 	    		switch (idOpcion2Seleccionada){
 	    		case 122:
-	    			c= manejador.eliminacionDeAlcantarilladoPorPozoResumideroOCuerpoReceptor();
+	    			//c= manejador.eliminacionDeAlcantarilladoPorPozoResumideroOCuerpoReceptor();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.pozo_o_cuerpo_receptor));
     				
@@ -811,8 +762,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -828,8 +779,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -838,7 +789,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 123:
-	    			c= manejador.eliminacionDeAlcantarilladoSinTratamiento();
+	    			//c= manejador.eliminacionDeAlcantarilladoSinTratamiento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Usando el mismo ícono que para agua grises
@@ -850,8 +802,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -867,8 +819,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -878,7 +830,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 166:
-	    			c= manejador.noAplicaAguasNegras();
+	    			//c= manejador.noAplicaAguasNegras();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.no_aplica));
@@ -889,8 +842,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -907,8 +860,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -922,7 +875,8 @@ public class SelectorDeVariables {
 	    	case 55:
 	    		switch (idOpcion2Seleccionada){
 	    		case 344: //Adobe
-	    			c= manejador.adobe();
+	    			//c= manejador.adobe();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.adobe));
 	    				
@@ -932,8 +886,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -949,8 +903,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -960,7 +914,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 347:
-	    			c= manejador.laminaMetalicaEnMalEstado();
+	    			//c= manejador.laminaMetalicaEnMalEstado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar icono
 		    			p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_mal_estado));
@@ -971,8 +926,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -988,8 +943,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -998,7 +953,9 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 348:
-	    			c= manejador.pajaOPalma();
+	    			//c= manejador.pajaOPalma();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
+	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.paja_o_palma));
 	    				
@@ -1008,8 +965,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1025,8 +982,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1035,7 +992,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 349:
-	    			c= manejador.materialesDeDesecho();
+	    			//c= manejador.materialesDeDesecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar icono 
@@ -1047,8 +1005,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1064,8 +1022,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1074,7 +1032,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 350:
-	    			c= manejador.otrosMateriales();
+	    			//c= manejador.otrosMateriales();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
@@ -1085,8 +1044,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1102,8 +1061,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1113,7 +1072,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 351:
-	    			c= manejador.noTieneParedes();
+	    			//c= manejador.noTieneParedes();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar icono
@@ -1125,8 +1085,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1142,8 +1102,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1153,7 +1113,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 540:
-	    			c= manejador.concretoOMixto();
+	    			//c= manejador.concretoOMixto();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.concreto_o_mixto));
@@ -1164,8 +1125,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1181,8 +1142,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1192,7 +1153,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 541:
-	    			c= manejador.bajareque();
+	    			//c= manejador.bajareque();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.bajareque));
@@ -1203,8 +1165,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1220,8 +1182,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1231,7 +1193,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 543:
-	    			c= manejador.madera();
+	    			//c= manejador.madera();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.madera));
@@ -1242,8 +1205,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1259,8 +1222,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1270,7 +1233,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 544:
-	    			c= manejador.madera();
+	    			//c= manejador.madera();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.lamina_metalica_buen_estado));
@@ -1281,8 +1245,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1298,8 +1262,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1312,7 +1276,8 @@ public class SelectorDeVariables {
 	    		//Material predominante de piso
 	    		switch(idOpcion2Seleccionada){
 	    		case 352:
-	    			c= manejador.ladrilloCeramico();
+	    			//c= manejador.ladrilloCeramico();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ladrillo_ceramico));
@@ -1323,8 +1288,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1340,8 +1305,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1349,7 +1314,8 @@ public class SelectorDeVariables {
 	    			}
 	    			break;
 	    		case 353:
-	    			c= manejador.ladrilloCemento();
+	    			//c= manejador.ladrilloCemento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ladrillo_cemento));
@@ -1360,8 +1326,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1377,8 +1343,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1387,7 +1353,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 354:
-	    			c= manejador.ladrilloBarro();
+	    			//c= manejador.ladrilloBarro();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.ladrillo_barro));
@@ -1398,8 +1365,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1415,8 +1382,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1425,7 +1392,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 355:
-	    			c= manejador.cemento();
+	    			//c= manejador.cemento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.cemento));
@@ -1436,8 +1404,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1453,8 +1421,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1463,8 +1431,8 @@ public class SelectorDeVariables {
 	    			break;	    			
 	    			
 	    		case 356:
-	    			c= manejador.tierra();
-	    			
+	    			//c= manejador.tierra();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);	    			
 	    			if(c.getCount()!=0){
 	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.tierra));
 	    				
@@ -1474,8 +1442,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1491,8 +1459,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1501,7 +1469,8 @@ public class SelectorDeVariables {
 	    			break;
 	    		
 	    			case 357:
-	    				c= manejador.otrosMaterialesPiso();
+	    				//c= manejador.otrosMaterialesPiso();
+	    				c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 		    			
 		    			if(c.getCount()!=0){
 		    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
@@ -1512,8 +1481,8 @@ public class SelectorDeVariables {
 		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
+		    		            
+		    		            	
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -1529,8 +1498,8 @@ public class SelectorDeVariables {
 		    		        // On pressing Settings button
 		    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 		    		            public void onClick(DialogInterface dialog,int which) {
-		    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		    		            	//ctx.startActivity(intent);
+		    		            
+		    		            	
 		    		            	dialog.cancel();
 		    		            }
 		    		        });
@@ -1543,7 +1512,8 @@ public class SelectorDeVariables {
 	    	case 57:
 	    		switch (idOpcion2Seleccionada){
 	    		case 358:
-	    			c= manejador.lozaDeConcreto();
+	    			//c= manejador.lozaDeConcreto();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1555,8 +1525,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1572,8 +1542,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1582,7 +1552,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 359:
-	    			c= manejador.tejaDeBarroOCemento();
+	    			//c= manejador.tejaDeBarroOCemento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1594,8 +1565,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1611,8 +1582,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1621,7 +1592,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 360:
-	    			c= manejador.laminaDeAsbetoODuralita();
+	    			//c= manejador.laminaDeAsbetoODuralita();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1633,8 +1605,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1650,8 +1622,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1660,7 +1632,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 361:
-	    			c= manejador.laminaMetalicaEnBuenEstadoTecho();
+	    			//c= manejador.laminaMetalicaEnBuenEstadoTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1672,8 +1645,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1689,8 +1662,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1699,7 +1672,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 362:
-	    			c= manejador.laminaMetalicaEnMalEstadoTecho();
+	    			//c= manejador.laminaMetalicaEnMalEstadoTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1711,8 +1685,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1728,8 +1702,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1738,7 +1712,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 363:
-	    			c= manejador.pajaOPalmaTecho();
+	    			//c= manejador.pajaOPalmaTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -1750,8 +1725,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1767,8 +1742,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1777,7 +1752,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 364:
-	    			c= manejador.materialesDeDesechoTecho();
+	    			//c= manejador.materialesDeDesechoTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1789,8 +1765,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1806,8 +1782,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1816,7 +1792,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 365:
-	    			c= manejador.otrosMaterialesTecho();
+	    			//c= manejador.otrosMaterialesTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -1828,8 +1805,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1845,8 +1822,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1855,7 +1832,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 366:
-	    			c= manejador.noTieneTecho();
+	    			//c= manejador.noTieneTecho();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -1867,8 +1845,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1884,8 +1862,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1900,7 +1878,8 @@ public class SelectorDeVariables {
 	    		
 	    		switch(idOpcion2Seleccionada){
 	    		case 310:
-	    			c= manejador.noLeDanTratamiento();
+	    			//c= manejador.noLeDanTratamiento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -1912,8 +1891,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1929,8 +1908,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1939,7 +1918,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 311:
-	    			c= manejador.laHierven();
+	    			//c= manejador.laHierven();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -1951,8 +1931,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1968,8 +1948,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -1978,7 +1958,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 312:
-	    			c= manejador.laTratanConLejiaOPuriagua();
+	    			//c= manejador.laTratanConLejiaOPuriagua();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -1990,8 +1971,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2007,8 +1988,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2017,7 +1998,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 313:
-	    			c= manejador.usaFiltroDeAgua();
+	    			//c= manejador.usaFiltroDeAgua();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -2029,8 +2011,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2046,8 +2028,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2056,7 +2038,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 314:
-	    			c= manejador.compraAguaEnvasada();
+	    			//c= manejador.compraAguaEnvasada();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -2068,8 +2051,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2085,8 +2068,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2095,7 +2078,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 315:
-	    			c= manejador.otrosAgua();
+	    			//c= manejador.otrosAgua();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2107,8 +2091,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2124,8 +2108,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2139,7 +2123,8 @@ public class SelectorDeVariables {
 	    	case 65:
 	    		switch(idOpcion2Seleccionada){
 	    		case 401:
-	    			c= manejador.canieriaDentroAnda();
+	    			//c= manejador.canieriaDentroAnda();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -2151,8 +2136,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2168,8 +2153,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2178,7 +2163,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 402:
-	    			c= manejador.canieriaDentroOtroAbastecimiento();
+	    			//c= manejador.canieriaDentroOtroAbastecimiento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				
@@ -2190,8 +2176,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2207,8 +2193,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2217,7 +2203,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 403:
-	    			c= manejador.canieriaFueraDeLaPropiedad();
+	    			//c= manejador.canieriaFueraDeLaPropiedad();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2229,8 +2216,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2246,8 +2233,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2256,7 +2243,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 405:
-	    			c= manejador.pozoDentro();
+	    			//c= manejador.pozoDentro();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2268,8 +2256,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2285,8 +2273,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2295,7 +2283,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 406:
-	    			c= manejador.camionCarretaOPipa();
+	    			//c= manejador.camionCarretaOPipa();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2307,8 +2296,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2324,8 +2313,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2334,7 +2323,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 407:
-	    			c= manejador.aguaLluvia();
+	    			//c= manejador.aguaLluvia();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2346,8 +2336,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2363,8 +2353,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2373,7 +2363,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 408:
-	    			c= manejador.rioQuebradaLagoOjoDeAguaManantial();
+	    			//c= manejador.rioQuebradaLagoOjoDeAguaManantial();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2385,8 +2376,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2402,8 +2393,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2412,7 +2403,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 518:
-	    			c= manejador.pozoFuera();
+	    			//c= manejador.pozoFuera();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2424,8 +2416,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2441,8 +2433,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2451,7 +2443,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 519:
-	    			c= manejador.canieriaFueraDeLaPropiedad();
+	    			//c= manejador.canieriaFueraDeLaPropiedad();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2463,8 +2456,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2480,8 +2473,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2495,7 +2488,8 @@ public class SelectorDeVariables {
 	    	case 63:
 	    		switch(idOpcion2Seleccionada){
 	    		case 388:
-	    			c= manejador.electricidad();
+	    			//c= manejador.electricidad();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 
@@ -2507,8 +2501,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2524,8 +2518,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2534,7 +2528,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 389:
-	    			c= manejador.conexionElectricaDelVecino();
+	    			//c= manejador.conexionElectricaDelVecino();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2546,8 +2541,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2563,8 +2558,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2573,7 +2568,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 391:
-	    			c= manejador.keroseneAlumbrado();
+	    			//c= manejador.keroseneAlumbrado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2585,8 +2581,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2602,8 +2598,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2612,7 +2608,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 392:
-	    			c= manejador.candela();
+	    			//c= manejador.candela();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2624,8 +2621,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2641,8 +2638,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2651,7 +2648,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 393:
-	    			c= manejador.panelSolar();
+	    			//c= manejador.panelSolar();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2663,8 +2661,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2680,8 +2678,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2690,7 +2688,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 394:
-	    			c= manejador.generadorElectrico();
+	    			//c= manejador.generadorElectrico();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2702,8 +2701,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2719,8 +2718,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2729,7 +2728,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 395:
-	    			c= manejador.otraClaseAlumbrado();
+	    			//c= manejador.otraClaseAlumbrado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2741,8 +2741,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2758,8 +2758,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2774,6 +2774,7 @@ public class SelectorDeVariables {
 	    		switch (idOpcion2Seleccionada){
 				case 367:
 					c= manejador.cultivoAgricolaPropio();
+					
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -2785,8 +2786,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2802,8 +2803,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2824,8 +2825,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2841,8 +2842,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2863,8 +2864,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2880,8 +2881,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2902,8 +2903,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2919,8 +2920,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2942,8 +2943,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2959,8 +2960,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2981,8 +2982,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -2998,8 +2999,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3027,8 +3028,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3044,8 +3045,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3066,8 +3067,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3083,8 +3084,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3105,8 +3106,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3122,8 +3123,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3144,8 +3145,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3161,8 +3162,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3184,8 +3185,7 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            		    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3201,8 +3201,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3223,8 +3223,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3240,8 +3240,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3262,8 +3262,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3279,8 +3279,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3294,7 +3294,8 @@ public class SelectorDeVariables {
 	    	case 62:
 	    		switch(idOpcion2Seleccionada){
 	    		case 527:
-	    			c= manejador.electricidadParaCocina();
+	    			//c= manejador.electricidadParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3306,8 +3307,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3323,8 +3324,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3333,7 +3334,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 528:
-	    			c= manejador.kerosenParaCocina();
+	    			//c= manejador.kerosenParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3345,8 +3347,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3362,8 +3364,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3372,7 +3374,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 529:
-	    			c= manejador.gasPropanoParaCocina();
+	    			//c= manejador.gasPropanoParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3384,8 +3387,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3401,8 +3404,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3411,7 +3414,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 530:
-	    			c= manejador.leniaParaCocina();
+	    			//c= manejador.leniaParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3423,8 +3427,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3440,8 +3444,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3450,7 +3454,9 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 531: 
-	    			c= manejador.carbonParaCocina();
+	    			//c= manejador.carbonParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
+	    			//Toast.makeText(ctx, "Está en carbón con "+c.getCount()+" registros", Toast.LENGTH_SHORT).show();
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3462,8 +3468,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3479,16 +3485,20 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
 	    		        alertDialog.show();
 	    			};
+	    			break;
 	    			
 	    		case 532:
-	    			c= manejador.estopaDeCocoParaCocina();
+	    			//c= manejador.estopaDeCocoParaCocina();
+	    			
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
+	    			//Toast.makeText(ctx, "Está en estopa de coco con "+c.getCount()+" registros", Toast.LENGTH_SHORT).show();
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3500,8 +3510,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3517,8 +3527,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3527,7 +3537,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 533:
-	    			c= manejador.otrasParaCocina();
+	    			//c= manejador.otrasParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3539,8 +3550,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3556,8 +3567,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3566,7 +3577,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 534:
-	    			c= manejador.ningunaParaCocina();
+	    			//c= manejador.ningunaParaCocina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3578,8 +3590,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3595,8 +3607,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3610,7 +3622,8 @@ public class SelectorDeVariables {
 	    	case 69:
 	    		switch (idOpcion2Seleccionada){
 	    		case 419:
-	    			c= manejador.recoleccionDomiciliariaPublica();
+	    			//c= manejador.recoleccionDomiciliariaPublica();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3622,8 +3635,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3639,8 +3652,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3649,7 +3662,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 420:
-	    			c= manejador.recoleccionDomiciliariaPrivada();
+	    			//c= manejador.recoleccionDomiciliariaPrivada();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3661,8 +3675,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3678,8 +3692,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3688,7 +3702,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 421:
-	    			c= manejador.laDeopositanEnContenedores();
+	    			//c= manejador.laDeopositanEnContenedores();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3700,8 +3715,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3717,8 +3732,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3727,7 +3742,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 422:
-	    			c= manejador.laEntierran();
+	    			//c= manejador.laEntierran();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3739,8 +3755,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3756,8 +3772,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3766,7 +3782,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 423:
-	    			c= manejador.laQueman();
+	    			//c= manejador.laQueman();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3778,8 +3795,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3795,8 +3812,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3805,7 +3822,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 424:
-	    			c= manejador.laDepositanEnCualquierLugar();
+	    			//c= manejador.laDepositanEnCualquierLugar();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3817,8 +3835,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3834,8 +3852,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3844,7 +3862,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 425:
-	    			c= manejador.otrasFormasBasura();
+	    			//c= manejador.otrasFormasBasura();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -3856,8 +3875,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3873,8 +3892,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3900,8 +3919,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3917,8 +3936,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3939,8 +3958,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3956,8 +3975,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3978,8 +3997,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -3995,8 +4014,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4017,8 +4036,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4034,8 +4053,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4056,8 +4075,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4073,8 +4092,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4100,8 +4119,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4117,8 +4136,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4139,8 +4158,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4156,8 +4175,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4178,8 +4197,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4195,8 +4214,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4217,8 +4236,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4234,8 +4253,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4256,8 +4275,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4273,8 +4292,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4295,8 +4314,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4312,8 +4331,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4334,8 +4353,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4351,8 +4370,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4370,7 +4389,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.sin_riesgo_ambiental));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Sin riesgo\" son: "+c.getCount());
@@ -4378,8 +4397,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4395,8 +4414,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4409,7 +4428,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.deslave));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Deslaves\" son: "+c.getCount());
@@ -4417,8 +4436,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4434,8 +4453,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4448,7 +4467,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.inundacion));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Inundaciones\" son: "+c.getCount());
@@ -4456,8 +4475,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4473,8 +4492,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4487,7 +4506,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.contaminacion_por_disposicion_inadecuada_de_desechos_solidos_quimicos));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Contaminación por disposición no adecuada de desechos sólidos, químicos\" son: "+c.getCount());
@@ -4495,8 +4514,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4512,8 +4531,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4526,7 +4545,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.erupcion));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Erupción\" son: "+c.getCount());
@@ -4534,8 +4553,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4551,8 +4570,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4565,7 +4584,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_riesgos_ambientales));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con riesgo ambiental \"Otros riesgos\" son: "+c.getCount());
@@ -4573,8 +4592,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4590,8 +4609,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4605,11 +4624,12 @@ public class SelectorDeVariables {
 	    	case 66:
 	    		switch (idOpcion2Seleccionada){
 	    		case 409:
-	    			c= manejador.siDeUsoPrivado();	
+	    			//c= manejador.siDeUsoPrivado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.si_uso_privado));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con servicio sanitario \"Si y es de uso privado\" son: "+c.getCount());
@@ -4617,8 +4637,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4634,8 +4654,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4644,11 +4664,12 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 410:
-	    			c= manejador.siDeUsoColectivo();	
+	    			//c= manejador.siDeUsoColectivo();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.si_uso_colectivo));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con servicio sanitario \"Si y es de uso colectivo\" son: "+c.getCount());
@@ -4656,8 +4677,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4673,8 +4694,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4683,11 +4704,12 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 411:
-	    			c= manejador.noTieneServicioSanitario();	
+	    			//c= manejador.noTieneServicioSanitario();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.no_aplica));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con servicio sanitario \"No tiene\" son: "+c.getCount());
@@ -4695,8 +4717,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4712,8 +4734,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4727,7 +4749,8 @@ public class SelectorDeVariables {
 	    	case 54:
 	    		switch(idOpcion2Seleccionada){
 	    		case 332:
-	    			c= manejador.inquilina();	
+	    			//c= manejador.inquilina();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4739,8 +4762,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4756,8 +4779,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4766,7 +4789,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 333:
-	    			c= manejador.propietariaPeroPagandoAPlazos();	
+	    			//c= manejador.propietariaPeroPagandoAPlazos();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4778,8 +4802,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4795,8 +4819,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4805,7 +4829,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 334:
-	    			c= manejador.propietaria();	
+	    			//c= manejador.propietaria();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4817,8 +4842,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4834,8 +4859,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4844,7 +4869,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 335:
-	    			c= manejador.propietarioEnTerrenoPublico();	
+	    			//c= manejador.propietarioEnTerrenoPublico();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4856,8 +4882,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4873,8 +4899,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4883,7 +4909,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 336:
-	    			c= manejador.propietariaEnTerrenoPrivado();	
+	    			//c= manejador.propietariaEnTerrenoPrivado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4895,8 +4922,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4912,8 +4939,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4922,7 +4949,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 535:
-	    			c= manejador.colono();	
+	    			//c= manejador.colono();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4934,8 +4962,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4951,8 +4979,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4961,7 +4989,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 536:
-	    			c= manejador.guardianDeLaVivienda();	
+	    			//c= manejador.guardianDeLaVivienda();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -4973,8 +5002,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -4990,8 +5019,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5000,7 +5029,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 537:
-	    			c= manejador.ocupanteGratuito();	
+	    			//c= manejador.ocupanteGratuito();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5012,8 +5042,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5029,8 +5059,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5039,7 +5069,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 538:
-	    			c= manejador.otroTenenciaDeVivienda();	
+	    			//c= manejador.otroTenenciaDeVivienda();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5051,8 +5082,7 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5068,8 +5098,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5078,7 +5108,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 539:
-	    			c= manejador.noDatoTenenciaVivienda();	
+	    			//c= manejador.noDatoTenenciaVivienda();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5090,8 +5121,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5107,8 +5138,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5122,7 +5153,8 @@ public class SelectorDeVariables {
 	    	case 67:
 	    		switch(idOpcion2Seleccionada){
 	    		case 412:
-	    			c= manejador.inodoroConectadoAAlcantarillado();	
+	    			//c= manejador.inodoroConectadoAAlcantarillado();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5134,8 +5166,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5151,8 +5183,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5161,7 +5193,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 413:
-	    			c= manejador.inodoroAFosaSeptica();	
+	    			//c= manejador.inodoroAFosaSeptica();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5173,8 +5206,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5190,8 +5223,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5200,7 +5233,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 414:
-	    			c= manejador.letrinaAbonera();	
+	    			//c= manejador.letrinaAbonera();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5212,8 +5246,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5229,8 +5263,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5239,7 +5273,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 415:
-	    			c= manejador.letrinaHoyoSeco();	
+	    			//c= manejador.letrinaHoyoSeco();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5251,8 +5286,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5268,8 +5303,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5278,7 +5313,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 416:
-	    			c= manejador.letrinaSolar();	
+	    			//c= manejador.letrinaSolar();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5290,8 +5326,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5307,8 +5343,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5317,7 +5353,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 417: 
-	    		c= manejador.otroTipo_TipoSanitario();	
+	    		//c= manejador.otroTipo_TipoSanitario();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
     			
     			if(c.getCount()!=0){
     				//Queda pendiente cambiar el icono
@@ -5329,8 +5366,8 @@ public class SelectorDeVariables {
     		        // On pressing Settings button
     		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     		            public void onClick(DialogInterface dialog,int which) {
-    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-    		            	//ctx.startActivity(intent);
+    		            
+    		            	
     		            	dialog.cancel();
     		            }
     		        });
@@ -5346,8 +5383,8 @@ public class SelectorDeVariables {
     		        // On pressing Settings button
     		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
     		            public void onClick(DialogInterface dialog,int which) {
-    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-    		            	//ctx.startActivity(intent);
+    		            
+    		            	
     		            	dialog.cancel();
     		            }
     		        });
@@ -5356,7 +5393,8 @@ public class SelectorDeVariables {
     			break;
     			
 	    		case 418:
-	    			c= manejador.noAplicaTipoSanitario();	
+	    			//c= manejador.noAplicaTipoSanitario();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5368,8 +5406,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5385,8 +5423,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5400,7 +5438,8 @@ public class SelectorDeVariables {
 	    	case 47:
 	    		switch(idOpcion2Seleccionada){
 	    		case 316:
-	    			c= manejador.casaPrivadaOIndependiente();	
+	    			//c= manejador.casaPrivadaOIndependiente();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5412,8 +5451,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5429,8 +5468,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5439,7 +5478,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 317:
-	    			c= manejador.casaCompartida();	
+	    			//c= manejador.casaCompartida();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5451,8 +5491,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5468,8 +5508,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5478,7 +5518,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 318:
-	    			c= manejador.apartamento();	
+	    			//c= manejador.apartamento();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5490,8 +5531,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5507,8 +5548,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5517,7 +5558,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 319:
-	    			c= manejador.condominio();	
+	    			//c= manejador.condominio();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5529,8 +5571,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5546,8 +5588,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5556,7 +5598,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 329:
-	    			c= manejador.champa();	
+	    			//c= manejador.champa();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5568,8 +5611,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5585,8 +5628,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5595,7 +5638,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 330:
-	    			c= manejador.piezaEnCasaOMeson();	
+	    			//c= manejador.piezaEnCasaOMeson();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5607,8 +5651,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5624,8 +5668,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5634,7 +5678,8 @@ public class SelectorDeVariables {
 	    			break;
 	    			
 	    		case 331:
-	    			c= manejador.otroTipoVivienda();	
+	    			//c= manejador.otroTipoVivienda();
+	    			c = manejador.filtrar(idNivel1, idOpcion2Seleccionada, valor);
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
@@ -5646,8 +5691,8 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            
+	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5663,8 +5708,7 @@ public class SelectorDeVariables {
 	    		        // On pressing Settings button
 	    		        alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	    		            public void onClick(DialogInterface dialog,int which) {
-	    		            	//Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-	    		            	//ctx.startActivity(intent);
+	    		            	    		            	
 	    		            	dialog.cancel();
 	    		            }
 	    		        });
@@ -5678,42 +5722,62 @@ public class SelectorDeVariables {
     	}
 	}
 	
-	public void dibujarPuntosFiltrados (Cursor c, Bitmap p){
-		if(c.moveToFirst()){
-			try{
-				do{
-					double lon = c.getDouble(0);
-					double lat = c.getDouble(1);
-					//Toast.makeText(ctx, "Lat: "+lat+"| Lon: "+lon, Toast.LENGTH_SHORT).show();
-					Cursor info = manejador.informacionFamilia(lon, lat);
-					//Toast.makeText(ctx, "Total info: "+ info.getCount(), Toast.LENGTH_SHORT).show();
-					if(info.moveToFirst()){
+	public void dibujarPuntosFiltrados (Cursor cursor, Bitmap point){
+		//}
+		cd= cursor;
+		p = point;
+		final ProgressDialog progressDialog = new ProgressDialog(ctx);
+		progressDialog.setTitle("Por favor espere...");
+		progressDialog.setMessage("Dibujando viviendas en el mapa.");
+		progressDialog.show();	
+
+		new Thread() { 
+			public void run() { 
+				//operaciones que tengas que realizar
+				if(cd.moveToFirst()){
+					try{
 						do{
-							int depto = info.getInt (0);
-    						int municipio = info.getInt(1);
-    						String area = info.getString(2);
-    					    int ctn_bar_col = info.getInt (3);				    
-    					    String zona = info.getString(4);
-    					    String num_vivienda = info.getString(5);
-    					    String num_familia = info.getString(6);
-    					    			
-    					    String num_exp = info.getString(0)+ info.getString(1)+ info.getString(2)+info.getString(3)+info.getString(4)+info.getString(5)+info.getString(6);
-    					    //Toast.makeText(ctx, "Antes de dibujar punto", Toast.LENGTH_SHORT).show();
-    						MyMarker fichaFiltro = new MyMarker(ctx, new LatLong(lat,lon), p, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+info.getString(7), false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
-    						mapView.getLayerManager().getLayers().add(fichaFiltro);
-    						markerList.add(fichaFiltro);
-    						
-						}while(info.moveToNext());
-					}										    								    											    										    											    						
-				}while (c.moveToNext());
-			}catch(Exception e){
-				Toast.makeText(ctx, "Error:"+ e, Toast.LENGTH_SHORT).show();
-			}
-		}
+							double lon = cd.getDouble(0);
+							double lat = cd.getDouble(1);
+							//Toast.makeText(ctx, "Lat: "+lat+"| Lon: "+lon, Toast.LENGTH_SHORT).show();
+							Cursor info = manejador.informacionFamilia(lon, lat);
+							//Toast.makeText(ctx, "Total info: "+ info.getCount(), Toast.LENGTH_SHORT).show();
+							if(info.moveToFirst()){
+								do{
+									int depto = info.getInt (0);
+									int municipio = info.getInt(1);
+									String area = info.getString(2);
+									int ctn_bar_col = info.getInt (3);				    
+									String zona = info.getString(4);
+									String num_vivienda = info.getString(5);
+									String num_familia = info.getString(6);
+
+									//String num_exp = info.getString(0)+ info.getString(1)+ info.getString(2)+info.getString(3)+info.getString(4)+info.getString(5)+info.getString(6);
+									String num_exp = "";
+									
+									if (area.equals("R")){
+										num_exp = manejador.numeroDeExpedienteRural(cd.getString(0), cd.getString(1));
+									}
+									else{
+										num_exp = manejador.numeroDeExpedienteUrbano(cd.getString(0), cd.getString(1));
+									}
+									
+									//Toast.makeText(ctx, "Antes de dibujar punto", Toast.LENGTH_SHORT).show();
+									MyMarker fichaFiltro = new MyMarker(ctx, new LatLong(lat,lon), p, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+info.getString(7), false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
+									mapView.getLayerManager().getLayers().add(fichaFiltro);
+									//markerList.add(fichaFiltro);
+
+								}while(info.moveToNext());
+							}										    								    											    										    											    						
+						}while (cd.moveToNext());
+
+					}catch(Exception e){
+						Toast.makeText(ctx, "Error:"+ e, Toast.LENGTH_SHORT).show();
+					}
+				}
+				progressDialog.dismiss(); 
+			} 
+		}.start();
+		
 	}
-	
-	public ArrayList<MyMarker> getVariablesDibujadas (){
-		return markerList;
-	}
-	
 }
