@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class InfoMarker extends Marker{
 	private int id_estasib_user_sp;// id establecimiento
+	private Double pointerLat, pointerLong;
 	private Context ctx;
 	private int actionType;
 	private boolean tieneExp;
@@ -26,7 +27,7 @@ public class InfoMarker extends Marker{
 
 	public InfoMarker(Context ctx, LatLong latLong, Bitmap bitmap, int horizontalOffset,
 			int verticalOffset, int actionType, boolean tieneExp, int depto, int municipio, 
-			String area, int ctn_bar_col, String zona, String num_vivienda, String  num_familia) {
+			String area, int ctn_bar_col, String zona, String num_vivienda, String  num_familia, Double pointerLat, Double pointerLong) {
 		super(latLong, bitmap, horizontalOffset, verticalOffset);
 		this.ctx = ctx;
 		this.actionType = actionType;
@@ -40,6 +41,8 @@ public class InfoMarker extends Marker{
 		this.zona = zona;
 		this.num_vivienda = num_vivienda;
 		this.num_familia = num_familia;
+		this.pointerLat = pointerLat;
+		this.pointerLong = pointerLong;
 	}
 	
 	public void setIdEstasib (int id_estasib){
@@ -55,6 +58,8 @@ public class InfoMarker extends Marker{
 					i = new Intent(ctx, Ficha_familia_activity.class);
 	        		i.putExtra("id_estasib_user_sp",id_estasib_user_sp);
 	        		i.putExtra("action", "New");
+	        		i.putExtra("gpsLat", pointerLat);
+	        		i.putExtra("gpsLon", pointerLong);
 	        		ctx.startActivity(i);
 	        		break;
 				case 1:
@@ -64,8 +69,8 @@ public class InfoMarker extends Marker{
 							Toast.makeText(ctx, "No existe este número de expediente", Toast.LENGTH_SHORT).show();
 						}else{
 							objGestionDB.getIdFamilia_direccion(depto, municipio, area,ctn_bar_col,zona,num_vivienda,num_familia,ctx);
-							Toast.makeText(ctx, "IdFamilia: "+objGestionDB.idfamilia, Toast.LENGTH_SHORT).show();
-							Toast.makeText(ctx, "DirFamilia: "+objGestionDB.direccionFamilia, Toast.LENGTH_SHORT).show();
+//							Toast.makeText(ctx, "IdFamilia: "+objGestionDB.idfamilia, Toast.LENGTH_SHORT).show();
+//							Toast.makeText(ctx, "DirFamilia: "+objGestionDB.direccionFamilia, Toast.LENGTH_SHORT).show();
 							i = new Intent(ctx, Ver_detalle_ficha.class);
 							i.putExtra("busquedaPor",2);//si la busqueda es por jefe de familia busquedaPor=1
 														//si la busqueda es por numero de expediente familiar busquedaPor=2

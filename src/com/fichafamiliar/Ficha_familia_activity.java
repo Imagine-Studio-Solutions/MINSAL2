@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import android.R.color;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -91,6 +92,8 @@ TextView TextViewReligionFamilia,
 		 TextViewTipoFamilia;
 String expedienteFamiliaDB="",expedienteFamiliaFormulario;
 
+Double gpsLat, gpsLon;
+
 int id_estasib;// id establecimiento
 int id_sp;					// id usuario tablet
 String  nombreusuario; 		// nombre usuario
@@ -158,6 +161,9 @@ private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
 
 		Bundle bundle = getIntent().getExtras();
 		action= bundle.getString("action");//para saber si viene de "Edit" o "New" 
+		gpsLat = bundle.getDouble("gpsLat");
+		gpsLon = bundle.getDouble("gpsLon");
+		
 		establecimiento_name=objGestionDB.getNameEstablecimiento(id_estasib,this.contexto);
 		nombre_establecimiento.setText(establecimiento_name);
 		//seteo el TextEdit del código del Ecosf
@@ -183,7 +189,7 @@ private static final String PREFRENCES_NAME = "sesionesSharedPreferences";
 			// t_latitud.setText(""+objGestionDB.s_latitud);
 			// t_longitud.setText(""+objGestionDB.s_longitud); 
 		}else if(action.equals("New")){
-		 objGestionDB.getDeptoMunicipioUser(id_sp,this.contexto);			
+			objGestionDB.getDeptoMunicipioUser(id_sp,this.contexto);			
 		}
 		loadSpinnerDataSp_depto();
 		//loadSpinnerDataSp_area();
@@ -709,6 +715,7 @@ public void guardarEditarInfo(){
 		//obtener el ultimo id que se inserto
 		this.idfamilia=objGestionDB.ultimoidInt("familia", this.contexto);
 		//Log.i("idfamilia", ""+idfamilia);
+		Toast.makeText(this.contexto, "("+gpsLat + "-"+gpsLon+")", Toast.LENGTH_SHORT);
 		
 		Intent i = new Intent(this, Ver_detalle_ficha.class);
 		i.putExtra("idfamilia",idfamilia);//pasar los datos que se necesitaran en la siguiente activity

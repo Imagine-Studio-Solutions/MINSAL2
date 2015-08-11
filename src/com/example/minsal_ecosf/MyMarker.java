@@ -30,7 +30,7 @@ public class MyMarker extends Marker{
 	private String content;
 	private Button crearFicha;
 	private Button verFicha;
-	private LatLong pointerPosition;
+	private Double pointerLat, pointerLon;
 	private int infoType;
 	private boolean tieneExp;
 	private int depto; 
@@ -57,7 +57,8 @@ public class MyMarker extends Marker{
 		this.num_familia = num_familia;
 		this.ctx = ctx;
 		content = bubbleContent; 
-		pointerPosition = latLong;
+		pointerLat = latLong.latitude;
+		pointerLon = latLong.longitude;
 		
 		LayoutInflater inflater = (LayoutInflater) ctx.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
 		View bubbleView = inflater.inflate(R.drawable.info_window, null);
@@ -88,7 +89,7 @@ public class MyMarker extends Marker{
 		if (this.contains(layerXY, tapXY) && !tapped) {
 			
 			markerBubble = new InfoMarker(ctx, tapLatLong, bubble, 0, -bubble.getHeight()/2, infoType, tieneExp, depto, 
-					municipio, area, ctn_bar_col, zona, num_vivienda, num_familia);
+					municipio, area, ctn_bar_col, zona, num_vivienda, num_familia, pointerLat, pointerLon);
 			((InfoMarker) markerBubble).setIdEstasib(id_estasib_user_sp);
 			mapView.getLayerManager().getLayers().add(markerBubble);
 			tapped = true;

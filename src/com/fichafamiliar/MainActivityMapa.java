@@ -5,17 +5,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +47,10 @@ import android.widget.Toast;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.location.LocationManager;
 
@@ -95,6 +101,7 @@ public class MainActivityMapa extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidGraphicFactory.createInstance(getApplication());
+		getActionBar().setIcon(R.drawable.logo_uca_ecosf);
 		setContentView(R.layout.main_activity_mapa);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
@@ -374,6 +381,10 @@ public class MainActivityMapa extends Activity {
         case R.id.action_creditos:
         	showCredits();
         	break;
+        	
+        case R.id.action_manual:
+        	mostar_archivo_pdf("manual_usuario_mapa.pdf"); 
+        	break;
     	}
 		return toggle != null && toggle.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
 	}
@@ -402,7 +413,7 @@ public class MainActivityMapa extends Activity {
 		switch (id) {			
 		default:				
 			return new AlertDialog.Builder(this)
-			.setIcon(R.drawable.ic_launcher)
+			.setIcon(R.drawable.buscar)
 			.setTitle(encabezado)//Cambiar después
 			.setItems(items, new DialogInterface.OnClickListener() {
 
@@ -563,11 +574,20 @@ public class MainActivityMapa extends Activity {
 	
 	public void showCredits(){
 		AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-   	 
-		LayoutInflater factory = LayoutInflater.from(this);
-		final View view = factory.inflate(R.layout.mapa_about, null);
-		alertDialog.setView(view);
-		
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("Departamento de Electrónica e Informática UCA.\n\n");
+		sb.append("Módulo de geo visualización y georreferencia.\n\n");
+		sb.append("Desarrolladores:\n");
+		sb.append("\tLic. Evelyn del Carmen Alvarenga\n");
+		sb.append("\tLic. Irvin Balmore Cabezas\n");
+		sb.append("\tLic. Telma Milagro Pineda\n");
+		sb.append("\tLic. Erick Giovanni Varela\n");
+		sb.append("\tEn conjunto con la DTIC del Ministerio de Salud. \n\n");
+		sb.append("Versión del módulo: 1.0 – agosto de 2015.");
+		alertDialog.setMessage(sb.toString());
+		alertDialog.setIcon(R.drawable.logo_uca_minsal);
+		alertDialog.setTitle("Créditos.");
         // On pressing Settings button
         alertDialog.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
@@ -577,5 +597,44 @@ public class MainActivityMapa extends Activity {
         // Showing Alert Message
         alertDialog.show();
 	}
+	
+	//muestra un archivo pdf	ejemplo //"manualAppSiff.pdf"
+	   private void mostar_archivo_pdf(String nombre_archivo){
+		AssetManager assetManager = getAssets();
+	    
+	    InputStream in = null;
+	    OutputStream out = null;
+	    File file = new File(getFilesDir(), nombre_archivo);
+	    try
+	    {
+	        in = assetManager.open(nombre_archivo);
+	        out = openFileOutput(file.getName(), Context.MODE_WORLD_READABLE);
+
+	        copyFile(in, out);
+	        in.close();
+	        in = null;
+	        out.flush();
+	        out.close();
+	        out = null;
+	    } catch (Exception e)
+	    {
+	        Log.e("tag", e.getMessage());
+	    }
+
+	    Intent intent = new Intent(Intent.ACTION_VIEW);
+	    intent.setDataAndType(
+	            Uri.parse("file://" + getFilesDir() + "/"+nombre_archivo),"application/pdf");
+
+	    startActivity(intent);
+	    }	
+		private void copyFile(InputStream in, OutputStream out) throws IOException
+	    {
+	        byte[] buffer = new byte[1024];
+	        int read;
+	        while ((read = in.read(buffer)) != -1)
+	        {
+	            out.write(buffer, 0, read);
+	        }
+	    }
 }
 

@@ -11,5 +11,10 @@
         <item
         android:id="@+id/action_creditos"
         android:orderInCategory="100"
-        android:title="Creditos"/>
+        android:title="Créditos"/>
+        
+        <item
+        android:id="@+id/action_manual"
+        android:orderInCategory="100"
+        android:title="Manual de usuario"/>
 </menu>
