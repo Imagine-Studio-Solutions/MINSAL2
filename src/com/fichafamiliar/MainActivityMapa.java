@@ -293,13 +293,13 @@ public class MainActivityMapa extends Activity {
 			
 					public void onDrawerClosed(View view) {
 						// Drawer cerrado
-						getActionBar().setTitle("Bienvenido");					
+						getActionBar().setTitle("Módulo de Visualización");					
 						invalidateOptionsMenu();
 					}
 		
 					public void onDrawerOpened(View drawerView) {
 						// Drawer abierto
-						getActionBar().setTitle("Menu");
+						getActionBar().setTitle("Menú");
 						invalidateOptionsMenu(); 
 					}
 				};
@@ -448,11 +448,11 @@ public class MainActivityMapa extends Activity {
 							if (idNivel1 != 59 && idNivel1 != 60 && idNivel1 !=64 && idNivel1 != 70 && idNivel1 != 61){
 								int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which]);
 								valor = valores[which];
-								SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+								new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
 							}else{
 								int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which+1]);
 								valor = valores[which];
-								SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+								new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
 							}
 
 
@@ -461,7 +461,7 @@ public class MainActivityMapa extends Activity {
 					}
 					else{
 						int idOpcion2Seleccionada = Integer.parseInt(idSubMenu[which+1]);
-						SelectorDeVariables sv = new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
+						new SelectorDeVariables(MainActivityMapa.this, manejador, mapView, idNivel1 ,idOpcion2Seleccionada, valor);
 					}
 				}
 

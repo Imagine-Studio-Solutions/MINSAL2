@@ -241,6 +241,10 @@ public Cursor filtrar (int idN1, int idN2, String valor){
 		valor = "\""+valor+"\"";
 	}
 	
+	if (valor.equals("ND")){
+		valor = "\""+valor+"\"";
+	}
+	
 	Cursor c = BD.getReadableDatabase().rawQuery("SELECT familia.longitud_vivienda, familia.latitud_vivienda " + 
 												"FROM familia, familia_variable, descriptor, variable, valordescriptor "+ 
 												"WHERE familia.idfamilia_tablet = familia_variable.id_familia_tablet "+
@@ -291,9 +295,20 @@ public String numeroDeExpedienteRural(String lon, String lat){
 	BD.open();
 	String numE="";
 	
-	Cursor c = BD.getReadableDatabase().rawQuery("SELECT (departamento.dpto_digestyc || municipios.munic_digestyc || " +
+	/*Cursor c = BD.getReadableDatabase().rawQuery("SELECT (departamento.dpto_digestyc || municipios.munic_digestyc || " +
 			"familia.codigo_area || cantones.canton_digestyc || familia.codigo_zona || familia.numerovivienda " +
 			"|| familia.numerofamilia) as numero_expediente " +
+			"FROM familia, departamento, municipios, area, cantones " +
+			"WHERE familia.codigo_departamento = departamento.departamentoid " +
+			"AND familia.codigo_municipio = municipios.idmunicipio " +
+			"AND familia.codigo_area = \"R\" " +
+			"AND familia.codigo_canton = cantones.idcanton " +
+			"AND familia.latitud_vivienda = \""+lat+"\" "+
+			"AND FAMIlia.longitud_vivienda = \""+lon+"\" ", null);*/
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT departamento.dpto_digestyc, municipios.munic_digestyc, " +
+			"familia.codigo_area, cantones.canton_digestyc, " +
+			"familia.codigo_zona, familia.numerovivienda, familia.numerofamilia " +
 			"FROM familia, departamento, municipios, area, cantones " +
 			"WHERE familia.codigo_departamento = departamento.departamentoid " +
 			"AND familia.codigo_municipio = municipios.idmunicipio " +
@@ -305,7 +320,19 @@ public String numeroDeExpedienteRural(String lon, String lat){
 	try{	
 		if(c.moveToFirst()){
 			do{
-				numE = c.getString(0);
+				//numE = c.getString(0);
+				String depto = c.getString(0);
+				String municipio = c.getString(1);
+				String cod_area = c.getString(2);
+				int cantonNum = c.getInt(3);
+				String canton = ""+cantonNum;
+				String cod_zona = c.getString(4);
+				String num_vivienda = c.getString(5);
+				String num_familia = c.getString(6);
+				
+				numE = depto + " " + municipio +" "+cod_area+" "+canton+" "+cod_zona+" "+num_vivienda+" "+num_familia;
+//				numE = depto +municipio +cod_area+canton+cod_zona+num_vivienda+num_familia;
+				
 			}while(c.moveToNext());
 		}	
 		//return numE;
@@ -321,9 +348,21 @@ public String numeroDeExpedienteUrbano(String lon, String lat){
 	BD.open();
 	String numE="";
 	
-	Cursor c = BD.getReadableDatabase().rawQuery("SELECT  (departamento.dpto_digestyc || municipios.munic_digestyc " +
+	
+	/*Cursor c = BD.getReadableDatabase().rawQuery("SELECT  (departamento.dpto_digestyc || municipios.munic_digestyc " +
 			"|| familia.codigo_area || colonias.col_digestyc || familia.codigo_zona || familia.numerovivienda || " +
 			"familia.numerofamilia) as numero_expediente " +
+			"FROM familia, departamento, municipios, area, colonias " +
+			"WHERE familia.codigo_departamento = departamento.departamentoid " +
+			"AND familia.codigo_municipio = municipios.idmunicipio " +
+			"AND familia.codigo_area = \"U\" " +
+			"AND familia.codigo_colonia = colonias.idcolonia " +
+			"AND familia.latitud_vivienda = \""+lat+"\" "+
+			"AND FAMIlia.longitud_vivienda = \""+lon+"\" ", null);*/
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT departamento.dpto_digestyc, " +
+			"municipios.munic_digestyc, familia.codigo_area, colonias.col_digestyc, " +
+			"familia.codigo_zona,  familia.numerovivienda, familia.numerofamilia" +
 			"FROM familia, departamento, municipios, area, colonias " +
 			"WHERE familia.codigo_departamento = departamento.departamentoid " +
 			"AND familia.codigo_municipio = municipios.idmunicipio " +
@@ -336,7 +375,19 @@ public String numeroDeExpedienteUrbano(String lon, String lat){
 	
 		if(c.moveToFirst()){
 			do{
-				numE = c.getString(0);
+				//numE = c.getString(0);
+				String depto = c.getString(0);
+				String municipio = c.getString(1);
+				String cod_area = c.getString(2);
+				int coloniaNum = c.getInt(3);
+				String colonia = ""+coloniaNum;
+				String cod_zona = c.getString(4);
+				String num_vivienda = c.getString(5);
+				String num_familia = c.getString(6);
+				
+				numE = depto + " " + municipio +" "+cod_area+" "+colonia+" "+cod_zona+" "+num_vivienda+" "+num_familia;
+//				numE = depto +municipio +cod_area+colonia+cod_zona+num_vivienda+num_familia;
+				
 			}while(c.moveToNext());
 		}	
 		//return numE;

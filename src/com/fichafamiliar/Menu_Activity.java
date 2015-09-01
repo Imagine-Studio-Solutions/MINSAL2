@@ -329,8 +329,8 @@ public class sincronizarDatos extends AsyncTask<String, Void, String> {
 	}
 
 	public void lanzar(View view){
-		Intent i = new Intent(this, MainActivityMapa.class);
+		Intent i = new Intent(Menu_Activity.this, MainActivityMapa.class);
 		i.putExtra("id_estasib_user_sp",id_estasib_user_sp);
-		startActivity(i);
+		Menu_Activity.this.startActivity(i);
 	}
 }
