@@ -1597,7 +1597,7 @@ public class SelectorDeVariables {
 	    			
 	    			if(c.getCount()!=0){
 	    				//Queda pendiente cambiar el icono
-	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.otros_materiales));
+	    				p = AndroidGraphicFactory.convertToBitmap(ctx.getResources().getDrawable(R.drawable.duralita));
 	    				
 	    				// Setting Dialog Message
 	    		        alertDialog.setMessage("El número de viviendas con material de techo \"Lámina de asbeto o duralita\" son: "+c.getCount());
@@ -5763,7 +5763,7 @@ public class SelectorDeVariables {
 									}
 									
 									//Toast.makeText(ctx, "Antes de dibujar punto", Toast.LENGTH_SHORT).show();
-									MyMarker fichaFiltro = new MyMarker(ctx, new LatLong(lat,lon), p, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+info.getString(7), false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
+									MyMarker fichaFiltro = new MyMarker(ctx, new LatLong(lat,lon), p, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+info.getString(7), 1, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 									mapView.getLayerManager().getLayers().add(fichaFiltro);
 									//markerList.add(fichaFiltro);
 

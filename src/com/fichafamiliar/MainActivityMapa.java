@@ -4,14 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,16 +26,12 @@ import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
-import org.mapsforge.map.layer.Layer;
-import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
-import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
 import com.example.minsal_ecosf.*;
 import com.fichafamiliar.R;
-import com.fichafamiliar.R.string;
  
 import android.view.View;
 import android.widget.AdapterView;
@@ -70,9 +64,6 @@ public class MainActivityMapa extends Activity {
 	private ActionBarDrawerToggle toggle;
 	//Menú Nivel 1
 	private String opciones[], idMenu[];
-	//=================Para mostrar fichas segun filtro=================
-	private Bitmap p;
-	private MyMarker fichaFiltro;
 	///=================================================================
 	//Menú nivel 2
 	private List<String> listItems = new ArrayList<String>();
@@ -154,7 +145,7 @@ public class MainActivityMapa extends Activity {
 		mapView.getModel().mapViewPosition.setCenter(new LatLong(13.6801783,-89.231388));//punto inical del mapa
  
 		gpsPointer = new MyMarker(this, new LatLong(13.6801783,-89.231388), AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.pointer)),
-				0, 0, mapView, "Posicion actual del equipo", true, false,0, 0, "", 0,"", "", "");
+				0, 0, mapView, "Posicion actual del equipo", 0, false,0, 0, "", 0,"", "", "");
 		gpsPointer.setIdEstasib(id_estasib_user_sp);
 		mapView.getLayerManager().getLayers().add(gpsPointer);
 		
@@ -162,16 +153,11 @@ public class MainActivityMapa extends Activity {
 		
 		//Instancio la clase del manejador de la BASE DE DATOS.
 		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
-        
 		manejador.abrir();
-		manejador.insertarFicha(1,13.6801783,-89.136031);
-		
-		
-		String[] x = manejador.leer();
-		
+
+      
 		dibujarCasitas();	
-		
-		
+		dibujarEcosf();
 		
 		//-------------------------------------Menu lateral-----------------------------------
 		// Rescatamos el Action Bar y activamos el boton Home
@@ -474,8 +460,37 @@ public class MainActivityMapa extends Activity {
 		mapView.getLayerManager().getLayers().clear();
 		mapView.getLayerManager().getLayers().add(tileRendererLayer);
 		mapView.getLayerManager().getLayers().add(gpsPointer);
+		dibujarEcosf();
 	}
 	
+	void dibujarEcosf () {
+		final Handler_sqlite manejador = new Handler_sqlite (this, mapView);
+		manejador.abrir();
+		Cursor c = manejador.establecimientosECOSF();
+		
+		double lon, lat;
+		String nombre;
+		//Pointer y MyMarker
+		Bitmap pointer;
+		MyMarker fichasDefault;
+		//ECOSF
+		try{
+			if(c.moveToFirst()){
+				do{
+					lon = c.getDouble(0);
+					lat = c.getDouble(1);
+					nombre = c.getString(2);
+					pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.ecosf2));
+					fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, nombre, 2, false, 0, 0, "", 0,"", "", "");
+					mapView.getLayerManager().getLayers().add(fichasDefault);
+				}while(c.moveToNext());
+				manejador.cerrar();
+			}
+		}
+		catch (Exception e){
+			
+		}
+	}
 	
 	void dibujarCasitas(){
 		final Handler_sqlite manejador = new Handler_sqlite(this, mapView);
@@ -493,7 +508,7 @@ public class MainActivityMapa extends Activity {
 		String cod_sit_viv, num_exp, jefe, area, zona, num_vivienda, num_familia;
 		int tipo_riesgo, depto, municipio,ctn_bar_col;
 		
-		//Pointer y MyMarket
+		//Pointer y MyMarker
 		Bitmap pointer;
 		MyMarker fichasDefault;
 		
@@ -528,19 +543,19 @@ public class MainActivityMapa extends Activity {
 					
 						//Riesgo Alto--> Rojo
 						case 1:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.red_house));
-								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
+								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, 1, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
 								break;
 								
 						//Riesgo Medio--> Amarillo
 						case 2:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.yellow_house));
-								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
+								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, 1, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
 								break;		
 						
 						//Riesgo Bajo--> Verde
 						case 3:	pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.green_house));
-								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, false, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
+								fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Número de Expediente: "+num_exp+"\nJefe de Familia: "+jefe, 1, true, depto,municipio,area,ctn_bar_col,zona,num_vivienda,num_familia);
 								mapView.getLayerManager().getLayers().add(fichasDefault);
 								break;
 										
@@ -561,7 +576,7 @@ public class MainActivityMapa extends Activity {
 					lon = c.getDouble(0);
 					lat = c.getDouble(1);
 					pointer = AndroidGraphicFactory.convertToBitmap(getResources().getDrawable(R.drawable.lightblue_house));
-					fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada", false, false, 0, 0, "", 0,"", "", "");
+					fichasDefault = new MyMarker(this, new LatLong(lat,lon), pointer, 0, 0, mapView, "Vivienda Deshabitada",1, false, 0, 0, "", 0,"", "", "");
 					mapView.getLayerManager().getLayers().add(fichasDefault);
 				}while(c.moveToNext());
 				manejador.cerrar();
@@ -626,7 +641,8 @@ public class MainActivityMapa extends Activity {
 	            Uri.parse("file://" + getFilesDir() + "/"+nombre_archivo),"application/pdf");
 
 	    startActivity(intent);
-	    }	
+	    }
+	   
 		private void copyFile(InputStream in, OutputStream out) throws IOException
 	    {
 	        byte[] buffer = new byte[1024];

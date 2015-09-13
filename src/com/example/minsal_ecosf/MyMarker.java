@@ -43,7 +43,7 @@ public class MyMarker extends Marker{
 	private int id_estasib_user_sp;// id establecimiento
 
 	public MyMarker(final Context ctx, LatLong latLong, Bitmap bitmap, int horizontalOffset,
-			int verticalOffset, MapView mapView, String bubbleContent, boolean gpsPointer, boolean tieneExp, 
+			int verticalOffset, MapView mapView, String bubbleContent, int markerType, boolean tieneExp, 
 			int depto, int municipio, String area, int ctn_bar_col, String zona, String num_vivienda, String  num_familia) {
 		super(latLong, bitmap, horizontalOffset, verticalOffset);
 		this.mapView = mapView; 
@@ -64,15 +64,23 @@ public class MyMarker extends Marker{
 		View bubbleView = inflater.inflate(R.drawable.info_window, null);
 		crearFicha = (Button) bubbleView.findViewById(R.id.bCrearFicha); 
 		verFicha = (Button) bubbleView.findViewById(R.id.bVerFicha);
+		infoType = markerType;
 		
-		if (gpsPointer){
-			crearFicha.setVisibility(View.VISIBLE);
-	     	verFicha.setVisibility(View.GONE);
-	     	infoType = 0;
-		} else {
-			crearFicha.setVisibility(View.GONE);
-	     	verFicha.setVisibility(View.VISIBLE);
-	     	infoType = 1;
+		switch (markerType){
+			case 0: 
+				crearFicha.setVisibility(View.VISIBLE);
+		     	verFicha.setVisibility(View.GONE);
+		     	break;
+			case 1 :
+				crearFicha.setVisibility(View.GONE);
+		     	verFicha.setVisibility(View.VISIBLE);
+		     	break;
+			case 2 :
+				crearFicha.setVisibility(View.GONE);
+		     	verFicha.setVisibility(View.GONE);
+		     	break;
+		    default:
+			    break;
 		}
 		TextView textArea = (TextView) bubbleView.findViewById( R.id.contenido );
 		setBackground(bubbleView, ctx.getResources().getDrawable(R.drawable.balloon_overlay_unfocused));

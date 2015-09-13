@@ -8,8 +8,10 @@ import org.mapsforge.core.graphics.Bitmap;
 
 import com.fichafamiliar.R;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -398,7 +400,17 @@ public String numeroDeExpedienteUrbano(String lon, String lat){
 			
 }
 
-
+public Cursor establecimientosECOSF(){
+	BD = new DBHelper(ctx);
+	BD.open();
+	
+	Cursor c = BD.getReadableDatabase().rawQuery("SELECT estasib.lng, estasib.lat, estasib.estasib " +
+			"FROM estasib WHERE estasib.lng NOT NULL " +
+			"AND estasib.lat NOT NULL AND estasib.lat IS NOT 0.0 " +
+			"AND estasib.lng IS NOT 0.0", null);
+	
+	return c;
+}
 
 /************************************************************************************************************
  * 
